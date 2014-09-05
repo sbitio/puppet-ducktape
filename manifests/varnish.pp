@@ -5,8 +5,8 @@ class ducktape::varnish (
   validate_bool($enabled)
 
   if $enabled {
-    include ::ductape::varnish::vcl
-    include ::ductape::varnish::secret
+    include ::ducktape::varnish::vcl
+    include ::ducktape::varnish::secret
   }
 
 }
