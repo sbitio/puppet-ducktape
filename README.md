@@ -13,7 +13,7 @@ Every single functionality can be disabled togling false the proper param.
 This is the list of modules supported right now:
 
 * puppetlabs/apache (https://github.com/puppetlabs/puppetlabs-apache.git): 
-* puppetlabs/corosync (https://github.com/jonhattan/puppetlabs-corosync.git):
+* puppetlabs/corosync (https://github.com/puppetlabs/puppetlabs-corosync.git):
 * puppetlabs/haproxy (https://github.com/puppetlabs/puppetlabs-haproxy.git):
 * NITEMAN/logcheck (https://github.com/NITEMAN/puppet-logcheck.git):
 * puppetlabs/mysql (https://github.com/puppetlabs/puppetlabs-mysql.git):
