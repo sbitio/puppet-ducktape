@@ -25,5 +25,8 @@ class ducktape {
   if defined('::sudo') and defined(Class['::sudo']) {
     require ::ducktape::sudo
   }
+  if defined('::varnish') and defined(Class['::varnish']) {
+    require ::ducktape::varnish
+  }
 }
 

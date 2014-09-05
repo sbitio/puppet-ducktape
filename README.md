@@ -19,6 +19,7 @@ This is the list of modules supported right now:
 * puppetlabs/mysql (https://github.com/puppetlabs/puppetlabs-mysql.git):
 * mayflower/php (https://github.com/Mayflower/puppet-php.git):
 * saz/sudo (https://github.com/saz/puppet-sudo.git):
+* maxchk/varnish (https://github.com/maxchk/puppet-varnish.git):
 
 ## Requirements
 
