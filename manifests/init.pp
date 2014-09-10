@@ -19,6 +19,9 @@ class ducktape {
   if defined('::mysql::server') and defined(Class['::mysql::server']) {
     require ::ducktape::mysql::server
   }
+  if defined('::newrelic') and defined(Class['::newrelic']) {
+    require ::ducktape::newrelic
+  }
   if defined('::php') and defined(Class['::php']) {
     require ::ducktape::php
   }
