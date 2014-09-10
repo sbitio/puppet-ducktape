@@ -18,7 +18,7 @@ class Hiera
         Backend.datasources(scope, order_override) do |source|
           rx = /([^\[]*)\[(.*)\]([^\]]*)/
           match = rx.match(source)
-          if match:
+          if match
             match[2].split(',').each do |group|
               source = match[1] + group + match[3]
               Hiera.debug("Add to hierarchy #{source}")
