@@ -29,7 +29,8 @@ Ducktape must be included after all supported classes. Ideally you should includ
 ## TODO
 
 * Split rpm
-* Split yaml_roles
+* Split yaml_hierarchy_expander
+* Split json
 
 ## License
 
