@@ -10,6 +10,22 @@ class ducktape::mysql::server inherits ducktape::mysql {
         notify  => Class['::mysql::server::service']
       }
     }
+    if $::lsbdistcodename == 'wheezy' 
+       and defined('::apt_extras::dotdeb')
+       and defined(Class[::apt_extras::dotdeb]) 
+       and defined('::pam') 
+    {
+      pam::service_conf { 'su':
+        type    => 'session',
+        control => 'required',
+        module  => 'pam_limits.so',
+      }
+      file { '/etc/security/limits.d/mysql.conf' :
+        ensure => present,
+        source => "puppet:///ductape/mysql/server/wheezy_5.6_limits.conf",
+        mode   => 0644,
+      }
+    }
     anchor { 'ducktape::mysql::server::begin': } ->
       Class['::ducktape::mysql::flavour'] ->
       Class['::mysql::server::install'] ->
