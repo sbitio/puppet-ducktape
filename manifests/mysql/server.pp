@@ -22,7 +22,7 @@ class ducktape::mysql::server inherits ducktape::mysql {
       }
       file { '/etc/security/limits.d/mysql.conf' :
         ensure => present,
-        source => "puppet:///ductape/mysql/server/wheezy_5.6_limits.conf",
+        source => "puppet:///ducktape/mysql/server/wheezy_5.6_limits.conf",
         mode   => 0644,
       }
     }
