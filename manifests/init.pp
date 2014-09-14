@@ -22,6 +22,9 @@ class ducktape {
   if defined('::newrelic') and defined(Class['::newrelic']) {
     require ::ducktape::newrelic
   }
+  if defined('::openvpn') and defined(Class['::openvpn']) {
+    require ::ducktape::openvpn
+  }
   if defined('::php') and defined(Class['::php']) {
     require ::ducktape::php
   }

@@ -18,6 +18,7 @@ This is the list of modules supported right now:
 * NITEMAN/logcheck (https://github.com/NITEMAN/puppet-logcheck.git):
 * puppetlabs/mysql (https://github.com/puppetlabs/puppetlabs-mysql.git):
 * fsalum/newrelic (https://github.com/fsalum/puppet-newrelic.git):
+* luxflux/openvpn (https://github.com/luxflux/puppet-openvpn.git):
 * mayflower/php (https://github.com/Mayflower/puppet-php.git):
 * saz/sudo (https://github.com/saz/puppet-sudo.git):
 * maxchk/varnish (https://github.com/maxchk/puppet-varnish.git):
