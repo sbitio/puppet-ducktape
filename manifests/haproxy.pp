@@ -6,6 +6,10 @@ class ducktape::haproxy (
 
   if $enabled {
     include ducktape::haproxy::autoload
+
+    if defined('::munin::node') and defined(Class['::munin::node']) {
+      include ::ducktape::haproxy::external::munin_node_plugin
+    }
   }
 
 }

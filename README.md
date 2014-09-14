@@ -16,6 +16,7 @@ This is the list of modules supported right now:
 * puppetlabs/corosync (https://github.com/puppetlabs/puppetlabs-corosync.git):
 * puppetlabs/haproxy (https://github.com/puppetlabs/puppetlabs-haproxy.git):
 * NITEMAN/logcheck (https://github.com/NITEMAN/puppet-logcheck.git):
+* NITEMAN/munin (https://github.com/NITEMAN/puppet-munin.git):
 * puppetlabs/mysql (https://github.com/puppetlabs/puppetlabs-mysql.git):
 * fsalum/newrelic (https://github.com/fsalum/puppet-newrelic.git):
 * luxflux/openvpn (https://github.com/luxflux/puppet-openvpn.git):
