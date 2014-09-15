@@ -21,7 +21,7 @@ class Hiera
               var = "%{#{expander}}"
               expanders[var] = scope[expander]
             else
-              Hiera.warn "'#{expander}' expander not in scope. Ignoring."
+              Hiera.debug("'#{expander}' expander not in scope. Ignoring.")
             end
           end
         end
