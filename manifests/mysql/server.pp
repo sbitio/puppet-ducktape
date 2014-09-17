@@ -30,6 +30,11 @@ class ducktape::mysql::server inherits ducktape::mysql {
       Class['::ducktape::mysql::flavour'] ->
       Class['::mysql::server::install'] ->
     anchor { 'ducktape::mysql::server::end': }
+
+    # External checks.
+    if defined('::monit') and defined(Class['::monit']) {
+      include ::ducktape::mysql::external::monit
+    }
   }
 }
 

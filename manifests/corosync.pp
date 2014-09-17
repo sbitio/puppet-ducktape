@@ -18,6 +18,11 @@ class ducktape::corosync (
     -> Service['corosync']
     -> Service['pacemaker']
     -> anchor { 'corosync::end': }
+
+    # External checks.
+    if defined('::monit') and defined(Class['::monit']) {
+      include ::ducktape::corosync::external::monit
+    }
   }
 
 }

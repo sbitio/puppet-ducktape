@@ -13,6 +13,12 @@ class ducktape {
   if defined('::logcheck') and defined(Class['::logcheck']) {
     require ::ducktape::logcheck
   }
+  if defined('::memcached') and defined(Class['::memcached']) {
+    require ::ducktape::memcached
+  }
+  if defined('::munin::node') and defined(Class['::munin::node']) {
+    require ::ducktape::munin::node
+  }
   if defined('::mysql::client') and defined(Class['::mysql::client']) {
     require ::ducktape::mysql::client
   }
@@ -22,17 +28,36 @@ class ducktape {
   if defined('::newrelic') and defined(Class['::newrelic']) {
     require ::ducktape::newrelic
   }
+  if defined('::ntp') and defined(Class['::ntp']) {
+    require ::ducktape::ntp
+  }
   if defined('::openvpn') and defined(Class['::openvpn']) {
     require ::ducktape::openvpn
   }
   if defined('::php') and defined(Class['::php']) {
     require ::ducktape::php
   }
+  if defined('::postfix') and defined(Class['::postfix']) {
+    require ::ducktape::postfix
+  }
+  if defined('::postgresql') and defined(Class['::postgresql']) {
+    require ::ducktape::postgresql
+  }
+  if defined('::puppetdb') and defined(Class['::puppetdb']) {
+    require ::ducktape::puppetdb
+  }
+  if defined('::ssh') and defined(Class['::ssh']) {
+    require ::ducktape::ssh
+  }
   if defined('::sudo') and defined(Class['::sudo']) {
     require ::ducktape::sudo
+  }
+  if defined('::tomcat') and defined(Class['::tomcat']) {
+    require ::ducktape::mysql::tomcat
   }
   if defined('::varnish') and defined(Class['::varnish']) {
     require ::ducktape::varnish
   }
+
 }
 
