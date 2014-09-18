@@ -22,7 +22,7 @@ class ducktape::memcached::external::monit(
     }
     monit::check::service { $::memcached::params::service_name:
       pidfile => $pidfile,
-      tests   => [$tcp_test, $udp_test,],
+      tests   => [$test_tcp, $test_udp,],
     }
   }
 
