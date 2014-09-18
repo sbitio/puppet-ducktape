@@ -9,7 +9,7 @@ class ducktape::apache::external::monit(
 
   if $enabled {
     # Declare health check vhost.
-    file { "${documentroot}/index.html":
+    file { "${docroot}/index.html":
       ensure  => present,
       content => "monit-test",
     }
