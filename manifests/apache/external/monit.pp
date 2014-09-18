@@ -2,12 +2,13 @@ class ducktape::apache::external::monit(
   $enabled    = true,
   $port       = 80,
   $servername = "monit-test.${::fqdn}",
-  $docroot    = "/var/www/${servername}",
 ) {
 
   validate_bool($enabled)
 
   if $enabled {
+    $docroot = "/var/www/${servername}"
+
     # Declare health check vhost.
     file { "${docroot}/index.html":
       ensure  => present,
