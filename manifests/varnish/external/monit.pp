@@ -13,7 +13,7 @@ class ducktape::varnish::external::monit(
     $connection_test = {
       type     => connection,
       protocol => http,
-      port     => $::varnish:varnish_listen_port,
+      port     => $::varnish::varnish_listen_port,
       protocol_test => {
         request    => '/',
         hostheader => 'health.varnish',
