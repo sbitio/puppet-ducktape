@@ -21,6 +21,9 @@ class ducktape::apache::external::monit(
       access_log_format => "-",
       error_log_pipe    => '/dev/null',
     }
+    host { $servername:
+      ip => '127.0.0.1',
+    }
 
     # $::apache::pidfile declares RedHat pidfile as a relative path.
     $pidfile = $::osfamily ? {
