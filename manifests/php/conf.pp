@@ -30,7 +30,7 @@ define ducktape::php::conf(
   # to enable config files ourselves
   # See https://github.com/Mayflower/puppet-php/blob/4aafc92f44beb71f7074b576cf50cf245a690e84/manifests/extension.pp#L89
   if $::osfamily == 'Debian' {
-    $symlink = "${::php::params::config_root}/mods-enabled/${filename}"
+    $symlink = "${::php::params::config_root}/mods-available/${filename}"
     $symlink_ensure = $ensure ? {
       present => link,
       absent  => absent,
