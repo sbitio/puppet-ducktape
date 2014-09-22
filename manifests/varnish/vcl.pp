@@ -11,12 +11,13 @@ class ducktape::varnish::vcl (
     if $vcl_source != undef {
       validate_string($vcl_source)
       file { "/etc/varnish/${vcl_name}.vcl" :
-        ensure => $::varnish::version ? {
+        ensure  => $::varnish::version ? {
           absent  => absent,
           default => present,
         },
-        source => $vcl_source,
-        notify => Class['::varnish::service'],
+        source  => $vcl_source,
+        require => Class['::varnish::install'],
+        notify  => Class['::varnish::service'],
       }
     }
   }
