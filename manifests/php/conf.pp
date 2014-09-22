@@ -15,8 +15,9 @@ define ducktape::php::conf(
   case $ensure {
     present: {
       php::config { $name:
-        file   => $php_config_file,
-        config => $config,
+        file    => $php_config_file,
+        config  => $config,
+        require => Class['::php::packages'],
       }
     }
     absent: {
