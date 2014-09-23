@@ -19,9 +19,14 @@ class ducktape::varnish::external::monit(
         hostheader => 'health.varnish',
       },
     }
+    $adm_test = {
+      type => connection,
+      port => $::varnish::varnish_admin_listen_port,
+    }
     monit::check::service { 'varnish':
-      pidfile       => $pidfile,
-      tests         => [$connection_test, ],
+      pidfile => $pidfile,
+      binary  => '/usr/sbin/varnishd',
+      tests   => [$connection_test, ],
       #TODO# if 5 restarts within 5 cycles then timeout
     }
   }
