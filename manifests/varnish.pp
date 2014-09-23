@@ -11,6 +11,9 @@ class ducktape::varnish (
     if defined('::monit') and defined(Class['::monit']) {
       include ::ducktape::varnish::external::monit
     }
+    if defined('::apache') and defined(Class['::apache']) {
+      include ::ducktape::varnish::external::apache_log_formats_override
+    }
   }
 
 }
