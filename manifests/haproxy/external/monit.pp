@@ -11,6 +11,10 @@ class ducktape::haproxy::external::monit(
     $connection_test = {
       type     => connection,
       protocol => http,
+      protocol_test => {
+        # TODO find a way to get this from hiera
+        request => '/haproxy',
+      },
       port     => $port_hive['stats1']['ports'],
     }
     monit::check::service { 'haproxy':
