@@ -10,7 +10,7 @@ define ducktape::apache::conf(
   Allowed values are 'present' and 'absent'.")
   validate_array($directives)
 
-  $file = "${::apache::confd_dir}/${priority}-${name}"
+  $file = "${::apache::confd_dir}/${priority}-${name}.conf"
 
   if $ensure == present {
     if $content != undef {
