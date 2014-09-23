@@ -7,10 +7,11 @@ class ducktape::haproxy::external::monit(
   if $enabled {
     #TODO# create a connection test for each frontend
 
+    $port_hive = hiera('ducktape::haproxy::frontends')
     $connection_test = {
       type     => connection,
       protocol => http,
-      port     => hiera('ducktape::haproxy::frontends::stats1::port'),
+      port     => $port_hive['stats1']['ports'],
     }
     monit::check::service { 'haproxy':
       pidfile       => $::haproxy::params::global_options['pidfile'],
