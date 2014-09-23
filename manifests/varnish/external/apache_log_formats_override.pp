@@ -7,7 +7,6 @@ class ducktape::varnish::external::apache_log_formats_override (
     $combined       = 'LogFormat "%{X-Forwarded-For}i %l %u %t \"%r\" %>s %O \"%{Referer}i\" \"%{User-Agent}i\"" combined'
     $common         = 'LogFormat "%{X-Forwarded-For}i %l %u %t \"%r\" %>s %O" common'
 
-    $vhost_combined = 'LogFormat "%v:%p %h %l %u %t \"%r\" %>s %O \"%{Referer}i\" \"%{User-Agent}i\"" vhost_combined'
     ::ducktape::apache::conf { 'varnish-log-formats-override' :
       priority   => $priority,
       directives => [ 
