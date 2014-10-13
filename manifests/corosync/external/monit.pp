@@ -17,7 +17,8 @@ class ducktape::corosync::external::monit(
       'Debian' => '/var/run/pacemakerd.pid', #TODO# Untested
     }
     monit::check::service { 'pacemaker':
-      pidfile  => $pidfile_pacemaker,
+      binary  => '/usr/sbin/pacemakerd',
+      pidfile => $pidfile_pacemaker,
     }
   }
 
