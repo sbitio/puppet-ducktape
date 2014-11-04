@@ -16,4 +16,4 @@ env.mysqluser root
 # passwordless login (not recommended), leave it as it is.
 #
 # env.mysqlpassword geheim
-env.mysqlpassword <%= scope.lookupvar('mysql::server::root_password') %>
+env.mysqlpassword <%= scope.lookupvar('::mysql::server::root_password') %>
