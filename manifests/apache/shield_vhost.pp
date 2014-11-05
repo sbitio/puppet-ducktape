@@ -15,12 +15,13 @@ class ducktape::apache::shield_vhost (
       access_log  => false,
       error_log   => false,
       priority    => $priority,
-      options     => [ 'None' ],
       override    => [ 'None' ],
       directories => [ 
-        { path  => $docroot,
-          order => 'allow,deny',
-          deny  => 'from all', 
+        { path           => $docroot,
+          order          => 'allow,deny',
+          deny           => 'from all', 
+          options        => [ 'None' ],
+          allow_override => [ 'None' ],
         }, 
       ],
     }
