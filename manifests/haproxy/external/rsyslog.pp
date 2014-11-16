@@ -1,4 +1,4 @@
-class haproxy::external::rsyslog (
+class ducktape::haproxy::external::rsyslog (
   $ensure      = present,
   $enabled     = true,
   $priority    = '49',
