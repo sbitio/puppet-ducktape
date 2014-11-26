@@ -16,6 +16,10 @@ class ducktape::ssh::external::monit(
     }
     monit::check::service { $::ssh::params::service_name:
       pidfile => $pidfile,
+      binary  => $::osfamily ? {
+        'Debian' => '/usr/sbin/sshd',
+        default  => undef,
+      },
       tests   => [$test, ],
     }
   }

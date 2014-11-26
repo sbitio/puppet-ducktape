@@ -16,6 +16,10 @@ class ducktape::ntp::external::monit(
     }
     monit::check::service { $::ntp::service_name:
       pidfile => $pidfile,
+      binary  => $::osfamily ? {
+        'Debian' => '/usr/sbin/ntpd',
+        default  => undef,
+      },
       tests   => [$test, ],
     }
   }
