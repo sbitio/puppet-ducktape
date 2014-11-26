@@ -31,6 +31,11 @@ class ducktape::mysql::server inherits ducktape::mysql {
       Class['::mysql::server::install'] ->
     anchor { 'ducktape::mysql::server::end': }
 
+    # Declare configuration snippets.
+    $defaults = hiera('ducktape::mysql::conf::defaults', {})
+    $confs    = hiera_hash('ducktape::mysql::confs', {})
+    create_resources('::ducktape::mysql::conf', $confs, $defaults)
+
     # External checks.
     if defined('::monit') and defined(Class['::monit']) {
       include ::ducktape::mysql::external::monit
