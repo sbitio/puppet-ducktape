@@ -22,6 +22,10 @@ class ducktape::memcached::external::monit(
     }
     monit::check::service { $::memcached::params::service_name:
       pidfile => $pidfile,
+      binary  => $::osfamily ? {
+        'Debian' => '/usr/bin/memcached',
+        default  => undef,
+      },
       tests   => [$test_tcp, $test_udp,],
     }
   }
