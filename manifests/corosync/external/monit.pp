@@ -5,6 +5,7 @@ class ducktape::corosync::external::monit(
   validate_bool($enabled)
 
   if $enabled {
+    #TODO# Add network test
     $pidfile_corosync = $::osfamily ? {
       /(RedHat|Debian)/ => '/var/run/corosync.pid',
     }

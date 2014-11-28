@@ -5,6 +5,7 @@ class ducktape::postgresql::external::monit(
   validate_bool($enabled)
 
   if $enabled {
+    #TODO# Add network test
     monit::check::service { 'postgresql':
     }
   }
