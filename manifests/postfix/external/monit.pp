@@ -12,6 +12,7 @@ class ducktape::postfix::external::monit(
       type     => connection,
       protocol => smtp,
       port     => 25,
+      action   => 'restart',
     }
     monit::check::service { 'postfix':
       pidfile => $pidfile,

@@ -13,6 +13,7 @@ class ducktape::ntp::external::monit(
       type        => connection,
       socket_type => udp,
       port        => 123,
+      action      => 'restart',
     }
     monit::check::service { $::ntp::service_name:
       pidfile => $pidfile,

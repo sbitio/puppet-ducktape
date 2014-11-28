@@ -40,6 +40,7 @@ class ducktape::apache::external::monit(
       host     => $servername,
       protocol => http,
       port     => $port,
+      action   => 'restart',
     }
     monit::check::service { $::apache::service_name:
       pidfile       => $pidfile,

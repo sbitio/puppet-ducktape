@@ -6,9 +6,10 @@ class ducktape::mysql::external::monit(
 
   if $enabled {
     $connection_test = {
-      type => connection,
-      host => '127.0.0.1',
-      port => 3306,
+      type   => connection,
+      host   => '127.0.0.1',
+      port   => 3306,
+      action => 'restart',
     }
     monit::check::service { "$::mysql::server::service_name":
       pidfile => $::mysql::params::pidfile,

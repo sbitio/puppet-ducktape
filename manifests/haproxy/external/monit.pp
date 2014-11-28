@@ -16,6 +16,7 @@ class ducktape::haproxy::external::monit(
         request => '/haproxy',
       },
       port     => $port_hive['stats1']['ports'],
+      action   => 'restart',
     }
     monit::check::service { 'haproxy':
       pidfile       => $::haproxy::params::global_options['pidfile'],
