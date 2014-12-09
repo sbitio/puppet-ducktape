@@ -3,14 +3,14 @@ define ducktape::php::conf(
   $priority = '99',
   $config   = {},
 ) {
+#TODO# Add $sapi = [] param. If not empty, limit this config to the given SAPI list.
 
   validate_re($ensure, '^(present|absent)$',
   "${ensure} is not supported for ensure.
   Allowed values are 'present' and 'absent'.")
   validate_hash($config)
 
-  $filename = "${priority}-${name}.ini"
-  $php_config_file = "${::php::params::config_root_ini}/${filename}"
+  $php_config_file = "${::php::params::config_root_ini}/${name}.ini"
 
   case $ensure {
     present: {
@@ -18,6 +18,12 @@ define ducktape::php::conf(
         file    => $php_config_file,
         config  => $config,
         require => Class['::php::packages'],
+        before  => File_line[$name],
+      }
+      file_line { $name:
+        path  => $php_config_file,
+        line  => "; priority=${priority}",
+        match => '^; priority=',
       }
     }
     absent: {
@@ -27,20 +33,16 @@ define ducktape::php::conf(
     }
   }
 
-  # FIXME: On Ubuntu/Debian systems we use the mods-available folder and have
-  # to enable config files ourselves
-  # See https://github.com/Mayflower/puppet-php/blob/4aafc92f44beb71f7074b576cf50cf245a690e84/manifests/extension.pp#L89
+  # Ubuntu/Debian systems use the mods-available folder. We need to enable
+  # settings files ourselves with php5enmod command.
+  # See https://github.com/Mayflower/puppet-php/blob/master/manifests/extension.pp#L101
   if $::osfamily == 'Debian' {
-    $symlink = "${::php::params::config_root}/conf.d/${filename}"
-    $symlink_ensure = $ensure ? {
-      present => link,
-      absent  => absent,
+    $cmd = "php5enmod ${name}"
+    exec { $cmd:
+      refreshonly => true,
     }
-    file { $symlink:
-      ensure  => $symlink_ensure,
-      target  => $php_config_file,
-      require => Php::Config[$name],
-    }
-  } 
+    File_line[$name] ~> Exec[$cmd]
+    Php::Config[$name] ~> Exec[$cmd]
+  }
 }
 
