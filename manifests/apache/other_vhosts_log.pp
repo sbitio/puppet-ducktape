@@ -4,7 +4,7 @@ class ducktape::apache::other_vhosts_log (
   $format   = 'vhost_combined',
 ) {
   if $enabled {
-    $directive = "CustomLog ${::apache::params::logroot}/other_vhosts_access.log ${format}"
+    $directive = "CustomLog ${::apache::params::logroot}/other_vhosts_access.log ${format} env=!dontlog"
     ::ducktape::apache::conf { 'other-vhosts-access-log' :
       priority   => $priority,
       directives => [ 
