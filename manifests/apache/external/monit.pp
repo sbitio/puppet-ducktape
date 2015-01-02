@@ -29,7 +29,10 @@ class ducktape::apache::external::monit(
     # $::apache::pidfile declares Debian pidfile as a shell variable.
     # $::apache::pidfile declares RedHat pidfile as a relative path.
     $pidfile = $::osfamily ? {
-      'Debian' => '/var/run/apache2.pid',
+      'Debian' => $::lsbdistcodename ? {
+        /(jessie|trusty)/ => '/var/run/apache2/apache2.pid',
+        default           => '/var/run/apache2.pid',
+      },
       'RedHat' => '/var/run/httpd/httpd.pid',
       default  => $::apache::pidfile,
     }
