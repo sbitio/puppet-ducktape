@@ -7,7 +7,7 @@ class ducktape::haproxy::external::monit(
   if $enabled {
     #TODO# create a connection test for each frontend
 
-    $port_hive = hiera('ducktape::haproxy::frontends')
+    $port_hive = hiera_hash('ducktape::haproxy::frontends')
     $connection_test = {
       type     => connection,
       protocol => http,
