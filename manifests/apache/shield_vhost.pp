@@ -28,6 +28,7 @@ class ducktape::apache::shield_vhost (
           deny           => 'from all', 
           options        => [ 'None' ],
           allow_override => [ 'None' ],
+          require        => 'all denied'
         }, 
       ],
     }
