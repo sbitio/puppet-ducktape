@@ -42,7 +42,6 @@ added in a feature.
 
 ## TODO
 
-* Move out `install_rpm`
 * Move out `yaml_hierarchy_expander`
 * Move out `json`
 * Add nagios integration

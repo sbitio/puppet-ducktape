@@ -1,6 +1,4 @@
 class ducktape {
-  create_resources(ducktape::install_rpm, hiera_hash('extra_packages_rpm', {}))
-
   if defined('::apache') and defined(Class['::apache']) {
     require ::ducktape::apache
   }
