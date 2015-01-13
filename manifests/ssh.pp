@@ -6,7 +6,7 @@ class ducktape::ssh(
 
   if $enabled {
     # External checks.
-    if defined('::ssh') and defined(Class['::ssh']) {
+    if defined('::monit') and defined(Class['::monit']) {
       include ::ducktape::ssh::external::monit
     }
   }
