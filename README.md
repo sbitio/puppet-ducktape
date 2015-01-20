@@ -15,6 +15,7 @@ Those are the modules we work with at present:
 * [puppetlabs/corosync](https://forge.puppetlabs.com/puppetlabs/corosync)
 * [puppetlabs/haproxy](https://forge.puppetlabs.com/puppetlabs/haproxy)
 * [sbitio/logcheck](https://github.com/sbitio/puppet-logcheck)
+* [rodjek/logrotate](https://forge.puppetlabs.com/rodjek/logrotate)
 * [saz/memcached](https://forge.puppetlabs.com/saz/memcached)
 * [sbitio/monit](https://github.com/sbitio/puppet-monit)
 * [sbitio/munin](https://github.com/sbitio/puppet-munin)
