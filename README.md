@@ -23,7 +23,7 @@ Those are the modules we work with at present:
 * [fsalum/newrelic](https://forge.puppetlabs.com/fsalum/newrelic)
 * [puppetlabs/ntp](https://forge.puppetlabs.com/puppetlabs/ntp)
 * [luxflux/openvpn](https://forge.puppetlabs.com/luxflux/openvpn)
-* [nodes/php](https://forge.puppetlabs.com/nodes/php)
+* [mayflower/php](https://forge.puppetlabs.com/mayflower/php)
 * [camptocamp/postfix](https://forge.puppetlabs.com/camptocamp/postfix)
 * [puppetlabs/puppetdb](https://forge.puppetlabs.com/puppetlabs/puppetdb)
 * [saz/ssh](https://forge.puppetlabs.com/saz/ssh)
