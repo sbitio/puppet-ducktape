@@ -1,5 +1,5 @@
 define ducktape::logstash::lumberjack (
-  $enabled = false,
+  $enabled = true,
   $port,
   $cert,
   $key,
