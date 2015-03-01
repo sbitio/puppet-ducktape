@@ -31,6 +31,7 @@ Those are the modules we work with at present:
 * [saz/sudo](https://forge.puppetlabs.com/saz/sudo)
 * [NITEMAN/tomcat](https://github.com/NITEMAN/puppet-tomcat)
 * [maxchk/varnish](https://forge.puppetlabs.com/maxchk/varnish)
+* [puppetlabs/vcsrepo](https://forge.puppetlabs.com/puppetlabs/vcsrepo)
 
 
 ## Requirements
