@@ -15,7 +15,7 @@ class ducktape {
     require ::ducktape::logrotate
   }
   if defined('::logstash') and defined(Class['::logstash']) {
-    require ::ducktape::logrotate
+    require ::ducktape::logstash
   }
   if defined('::memcached') and defined(Class['::memcached']) {
     require ::ducktape::memcached
