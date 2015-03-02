@@ -59,9 +59,8 @@ class ducktape {
   if defined('::varnish') and defined(Class['::varnish']) {
     require ::ducktape::varnish
   }
-  if defined('::vcsrepo') and defined(Class['::vcsrepo']) {
-    require ::ducktape::vcsrepo
-  }
+
+  require ::ducktape::vcsrepo
 
 }
 
