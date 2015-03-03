@@ -17,6 +17,7 @@ Those are the modules we work with at present:
 * [sbitio/logcheck](https://github.com/sbitio/puppet-logcheck)
 * [rodjek/logrotate](https://forge.puppetlabs.com/rodjek/logrotate)
 * [elasticsearch/logstash](https://forge.puppetlabs.com/elasticsearch/logstash)
+* [elasticsearch/logstash-forwarder](https://github.com/elasticsearch/puppet-logstashforwarder/)
 * [saz/memcached](https://forge.puppetlabs.com/saz/memcached)
 * [sbitio/monit](https://github.com/sbitio/puppet-monit)
 * [sbitio/munin](https://github.com/sbitio/puppet-munin)

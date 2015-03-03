@@ -1,0 +1,7 @@
+# template doc http://www.rsyslog.com/doc/master/configuration/templates.html
+# bind doc http://www.rsyslog.com/how-to-bind-a-template/
+$template <%= @templatename %>,"%msg%\n"
+
+:msg, contains, "<%= @programname %>[" -<%= @log_dst %>;<%= @templatename %>
+& ~
+
