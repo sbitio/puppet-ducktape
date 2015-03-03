@@ -27,6 +27,7 @@ Those are the modules we work with at present:
 * [mayflower/php](https://forge.puppetlabs.com/mayflower/php)
 * [camptocamp/postfix](https://forge.puppetlabs.com/camptocamp/postfix)
 * [puppetlabs/puppetdb](https://forge.puppetlabs.com/puppetlabs/puppetdb)
+* [saz/rsyslog](https://forge.puppetlabs.com/saz/rsyslog)
 * [saz/ssh](https://forge.puppetlabs.com/saz/ssh)
 * [saz/sudo](https://forge.puppetlabs.com/saz/sudo)
 * [NITEMAN/tomcat](https://github.com/NITEMAN/puppet-tomcat)
