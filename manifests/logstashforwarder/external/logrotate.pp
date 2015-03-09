@@ -7,7 +7,8 @@ class ducktape::logstashforwarder::external::logrotate(
   if $enabled {
     logrotate::rule { 'logstash-forwarder':
       path          => [
-        '/var/log/logstash-forwarder',
+        '/var/log/logstash-forwarder.log',
+        '/var/log/logstash-forwarder/logstash-forwarder*',
       ],
       sharedscripts => true,
       postrotate    => $::osfamily ? {
