@@ -27,7 +27,6 @@ class ducktape::apache::external::munin_node_plugin (
     ]
 
     @munin::node::plugin::conf { 'apache' :
-      ensure => $ensure,
       config => {
         'apache_*' => [
           "env.url http://${ip}:${port}/server-status?auto",
@@ -35,13 +34,9 @@ class ducktape::apache::external::munin_node_plugin (
       },
     }
 
-    @munin::node::plugin::required_package { $required_packages :
-      ensure => $ensure,
-      tag    => $plugins,
-    }
+    ensure_resource('munin::node::plugin::required_package', $required_packages)
 
     @munin::node::plugin { $plugins :
-      ensure    => $ensure,
       required_packages => $required_packages,
       require   => [
         Service[$apache::params::service_name],

@@ -18,19 +18,8 @@ class ducktape::haproxy::external::munin_node_plugin (
         fail("Unsupported platform: ${::osfamily}")
       }
     }
-    # TODO: add stdlib requirement
-    #@munin::node::plugin::required_package { $required_packages :
-    #   ensure => $ensure,
-    #   # TODO: add stdlib as dependency
-    #   tag    => 'haproxy_',
-    #}
-    ensure_resource(
-      'munin::node::plugin::required_package',
-      $required_packages,
-      {
-        ensure => $ensure,
-      }
-    )
+    ensure_resource('munin::node::plugin::required_package', $required_packages)
+
     # TODO: add tag Munin::Node::pl
     @munin::node::plugin { 'haproxy_' :
       ensure  => $ensure,
