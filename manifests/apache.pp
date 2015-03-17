@@ -14,6 +14,9 @@ class ducktape::apache (
     if defined('::monit') and defined(Class['::monit']) {
       include ::ducktape::apache::external::monit
     }
+    if defined('::munin') and defined(Class['::munin']) {
+      include ::ducktape::apache::external::munin::node::plugin
+    }
     # Autoincluded classes
     include ::ducktape::apache::more_log_formats
     include ::ducktape::apache::other_vhosts_log
