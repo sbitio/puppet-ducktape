@@ -1,4 +1,4 @@
-class ducktape::apache::external::munin::node::plugin (
+class ducktape::apache::external::munin_node_plugin (
   $enabled    = true,
   $port       = 80,
   $ip         = "127.0.0.1",
