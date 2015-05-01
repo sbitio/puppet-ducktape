@@ -1,4 +1,4 @@
-class ducktape::haproxy::autoload (
+class ducktape::postfix::autoload (
   $load_configs = true,
 ) {
 
