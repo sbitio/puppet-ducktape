@@ -12,8 +12,8 @@ class ducktape::logstashforwarder::external::logrotate(
       ],
       sharedscripts => true,
       postrotate    => $::osfamily ? {
-        Debian => 'invoke-rc.d logstash-forwarder force-reload > /dev/null',
-        RedHat => '/sbin/service logstash-forwarder force-reload > /dev/null 2>&1 || :'
+        Debian => 'invoke-rc.d logstash-forwarder restart > /dev/null',
+        RedHat => '/sbin/service logstash-forwarder restart > /dev/null 2>&1 || :'
       },
       create        => true,
       create_mode   => 640,
