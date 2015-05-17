@@ -6,9 +6,26 @@ class ducktape::apache::shield_vhost (
   $priority        = '10',
   $custom_fragment = undef,
 ) {
+
   if $enabled {
-    #TODO# Ensure this works in Apache 2.4 (like Ubuntu 14)
-    #See# http://httpd.apache.org/docs/2.4/upgrading.html
+
+    $_directory = {
+      path           => $docroot,
+      options        => [ 'None' ],
+      allow_override => [ 'None' ],
+    }
+    if versioncmp($::apache::apache_version, '2.4') >= 0 {
+      $_directory_version = {
+        require => 'all granted',
+      }
+    } else {
+      $_directory_version = {
+        order => 'allow,deny',
+        allow => 'from all',
+      }
+    }
+    $_directories = [ merge($_directory, $_directory_version) ]
+
     apache::vhost{ 'shield' :
       ensure          => $ensure,
       port            => $port,
@@ -22,15 +39,9 @@ class ducktape::apache::shield_vhost (
           SetEnvIf Request_Method OPTIONS dontlog
         </IfModule>
         ${custom_fragment}",
-      directories     => [
-        { path           => $docroot,
-          order          => 'allow,deny',
-          deny           => 'from all', 
-          options        => [ 'None' ],
-          allow_override => [ 'None' ],
-          require        => 'all denied'
-        }, 
-      ],
+      directories     => $_directories,
     }
   }
+
 }
+
