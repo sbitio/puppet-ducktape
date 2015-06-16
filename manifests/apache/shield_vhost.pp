@@ -16,12 +16,12 @@ class ducktape::apache::shield_vhost (
     }
     if versioncmp($::apache::apache_version, '2.4') >= 0 {
       $_directory_version = {
-        require => 'all granted',
+        require => 'all denied',
       }
     } else {
       $_directory_version = {
         order => 'allow,deny',
-        allow => 'from all',
+        deny  => 'from all',
       }
     }
     $_directories = [ merge($_directory, $_directory_version) ]
