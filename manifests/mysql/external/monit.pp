@@ -15,7 +15,10 @@ class ducktape::mysql::external::monit(
       pidfile => $::mysql::params::pidfile,
       binary  => $::osfamily ? {
         'Debian' => '/usr/sbin/mysqld',
-        'Redhat' => '/usr/sbin/mysqld',
+        'Redhat' => $::lsbmajdistrelease ? {
+          7       => '/usr/libexec/mysqld',
+          default => '/usr/sbin/mysqld',
+        },
         default  => undef,
       },
       tests   => [$connection_test, ],
