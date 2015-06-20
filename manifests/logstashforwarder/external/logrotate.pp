@@ -8,7 +8,9 @@ class ducktape::logstashforwarder::external::logrotate(
     logrotate::rule { 'logstash-forwarder':
       path          => [
         '/var/log/logstash-forwarder.log',
-        '/var/log/logstash-forwarder/logstash-forwarder*',
+        '/var/log/logstash-forwarder.err',
+        '/var/log/logstash-forwarder/logstash-forwarder.log',
+        '/var/log/logstash-forwarder/logstash-forwarder.err',
       ],
       sharedscripts => true,
       postrotate    => $::osfamily ? {
@@ -19,6 +21,9 @@ class ducktape::logstashforwarder::external::logrotate(
       create_mode   => 640,
       create_owner  => 'root',
       create_group  => 'adm',
+      missingok     => true,
+      rotate        => 52,
+      rotate_every  => 'week',
     }
   }
 
