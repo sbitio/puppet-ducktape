@@ -14,7 +14,9 @@ class ducktape::apache::external::munin_node_plugin (
       debian : {
         $required_packages = 'libio-all-lwp-perl'
       }
-      redhat : {}
+      redhat : {
+        $required_packages = 'perl-libwww-perl'
+      }
       default: {
         fail("Unsupported platform: ${::osfamily}")
       }
