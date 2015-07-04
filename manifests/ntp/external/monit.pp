@@ -10,8 +10,8 @@ class ducktape::ntp::external::monit(
     }
 
     $test = {
-      type        => connection,
-      socket_type => udp,
+      type        => 'connection',
+      socket_type => 'udp',
       port        => 123,
       action      => 'restart',
     }

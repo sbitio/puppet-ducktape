@@ -9,8 +9,8 @@ class ducktape::haproxy::external::monit(
 
     $port_hive = hiera_hash('ducktape::haproxy::frontends')
     $connection_test = {
-      type     => connection,
-      protocol => http,
+      type     => 'connection',
+      protocol => 'http',
       protocol_test => {
         # TODO find a way to get this from hiera
         request => '/haproxy',

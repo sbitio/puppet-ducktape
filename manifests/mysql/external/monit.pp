@@ -6,7 +6,7 @@ class ducktape::mysql::external::monit(
 
   if $enabled {
     $connection_test = {
-      type   => connection,
+      type   => 'connection',
       host   => '127.0.0.1',
       port   => 3306,
       action => 'restart',

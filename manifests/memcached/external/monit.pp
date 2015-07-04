@@ -11,14 +11,14 @@ class ducktape::memcached::external::monit(
     }
 
     $test_tcp = {
-      type        => connection,
-      socket_type => tcp,
+      type        => 'connection',
+      socket_type => 'tcp',
       port        => $::memcached::tcp_port,
       action      => 'restart',
     }
     $test_udp = {
-      type        => connection,
-      socket_type => udp,
+      type        => 'connection',
+      socket_type => 'udp',
       port        => $::memcached::udp_port,
       action      => 'restart',
     }

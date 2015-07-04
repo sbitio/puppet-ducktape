@@ -39,9 +39,9 @@ class ducktape::apache::external::monit(
     $initd_start     = "${::monit::service_program} ${::apache::service_name} start"
     $program_start   = "/bin/sh -c '$initd_start || /usr/bin/killall -9 ${::apache::service_name}' && /bin/sleep 2 && $initd_start; }'"
     $connection_test = {
-      type     => connection,
+      type     => 'connection',
       host     => $servername,
-      protocol => http,
+      protocol => 'http',
       port     => $port,
       action   => 'restart',
     }
