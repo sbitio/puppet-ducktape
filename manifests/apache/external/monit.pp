@@ -36,7 +36,7 @@ class ducktape::apache::external::monit(
       'RedHat' => '/var/run/httpd/httpd.pid',
       default  => $::apache::pidfile,
     }
-    $initd_start     = "/etc/init.d/${::apache::service_name} start"
+    $initd_start     = "${::monit::service_program} ${::apache::service_name} start"
     $program_start   = "/bin/sh -c '$initd_start || /usr/bin/killall -9 ${::apache::service_name}' && /bin/sleep 2 && $initd_start; }'"
     $connection_test = {
       type     => connection,
