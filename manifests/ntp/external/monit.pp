@@ -6,7 +6,19 @@ class ducktape::ntp::external::monit(
 
   if $enabled {
     $pidfile = $::osfamily ? {
-      /(RedHat|Debian)/ => '/var/run/ntpd.pid',
+      'Debian' => '/var/run/ntpd.pid',
+      'RedHat' => $::lsbmajdistrelease ? {
+        7       => undef,
+        default => '/var/run/ntpd.pid',
+      },
+    }
+
+    $matching = $::osfamily ? {
+      'Debian' => undef,
+      'RedHat' => $::lsbmajdistrelease ? {
+        7       => '/usr/sbin/ntpd',
+        default => undef,
+      },
     }
 
     $test = {
@@ -16,8 +28,9 @@ class ducktape::ntp::external::monit(
       action      => 'restart',
     }
     monit::check::service { $::ntp::service_name:
-      pidfile => $pidfile,
-      binary  => $::osfamily ? {
+      pidfile  => $pidfile,
+      matching => $matching,
+      binary   => $::osfamily ? {
         'Debian' => '/usr/sbin/ntpd',
         default  => undef,
       },
