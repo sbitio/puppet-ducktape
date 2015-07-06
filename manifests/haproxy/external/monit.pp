@@ -8,7 +8,10 @@ class ducktape::haproxy::external::monit(
     #TODO# create a connection test for each frontend
 
     $init_system = $::operatingsystem ? {
-      'Ubuntu' => 'sysv',
+      'Ubuntu' => $lsbmajdistrelease ? {
+        /(12\.|14\.)/ => 'sysv',
+        default       => undef,
+      },
       default  => undef,
     }
     $port_hive = hiera_hash('ducktape::haproxy::frontends')

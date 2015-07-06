@@ -13,7 +13,10 @@ class ducktape::ntp::external::monit(
       },
     }
     $init_system = $::operatingsystem ? {
-      'Ubuntu' => 'sysv',
+      'Ubuntu' => $lsbmajdistrelease ? {
+        /(12\.|14\.)/ => 'sysv',
+        default       => undef,
+      },
       default  => undef,
     }
 

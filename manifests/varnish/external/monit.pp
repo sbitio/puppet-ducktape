@@ -10,7 +10,10 @@ class ducktape::varnish::external::monit(
       'Debian' => '/var/run/varnishd.pid',
     }
     $init_system = $::operatingsystem ? {
-      'Ubuntu' => 'sysv',
+      'Ubuntu' => $lsbmajdistrelease ? {
+        /(12\.|14\.)/ => 'sysv',
+        default       => undef,
+      },
       default  => undef,
     }
     # Declare service check.
