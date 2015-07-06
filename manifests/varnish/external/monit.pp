@@ -9,6 +9,10 @@ class ducktape::varnish::external::monit(
       'RedHat' => '/var/run/varnish.pid',
       'Debian' => '/var/run/varnishd.pid',
     }
+    $init_system = $::operatingsystem ? {
+      'Ubuntu' => 'sysv',
+      default  => undef,
+    }
     # Declare service check.
     $connection_test = {
       type     => connection,
@@ -24,9 +28,10 @@ class ducktape::varnish::external::monit(
       port => $::varnish::varnish_admin_listen_port,
     }
     monit::check::service { 'varnish':
-      pidfile => $pidfile,
-      binary  => '/usr/sbin/varnishd',
-      tests   => [$connection_test, ],
+      init_system => $init_system,
+      pidfile     => $pidfile,
+      binary      => '/usr/sbin/varnishd',
+      tests       => [$connection_test, ],
       #TODO# if 5 restarts within 5 cycles then timeout
     }
   }

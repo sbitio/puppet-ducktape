@@ -7,6 +7,10 @@ class ducktape::haproxy::external::monit(
   if $enabled {
     #TODO# create a connection test for each frontend
 
+    $init_system = $::operatingsystem ? {
+      'Ubuntu' => 'sysv',
+      default  => undef,
+    }
     $port_hive = hiera_hash('ducktape::haproxy::frontends')
     $connection_test = {
       type     => 'connection',
@@ -19,8 +23,9 @@ class ducktape::haproxy::external::monit(
       action   => 'restart',
     }
     monit::check::service { 'haproxy':
-      pidfile       => $::haproxy::params::global_options['pidfile'],
-      tests         => [$connection_test, ],
+      init_system => $init_system,
+      pidfile     => $::haproxy::params::global_options['pidfile'],
+      tests       => [$connection_test, ],
       #TODO# if 5 restarts within 5 cycles then timeout
     }
   }
