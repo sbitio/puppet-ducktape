@@ -12,6 +12,10 @@ class ducktape::ntp::external::monit(
         default => '/var/run/ntpd.pid',
       },
     }
+    $init_system = $::operatingsystem ? {
+      'Ubuntu' => 'sysv',
+      default  => undef,
+    }
 
     $matching = $::osfamily ? {
       'Debian' => undef,
@@ -28,8 +32,9 @@ class ducktape::ntp::external::monit(
       action      => 'restart',
     }
     monit::check::service { $::ntp::service_name:
-      pidfile  => $pidfile,
-      matching => $matching,
+      init_system => $init_system,
+      pidfile     => $pidfile,
+      matching    => $matching,
       binary   => $::osfamily ? {
         'Debian' => '/usr/sbin/ntpd',
         default  => undef,

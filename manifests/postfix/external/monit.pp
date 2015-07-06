@@ -8,6 +8,10 @@ class ducktape::postfix::external::monit(
     $pidfile = $::osfamily ? {
       /(RedHat|Debian)/ => '/var/spool/postfix/pid/master.pid',
     }
+    $init_system = $::operatingsystem ? {
+      'Ubuntu' => 'sysv',
+      default  => undef,
+    }
     $test = {
       type     => connection,
       protocol => smtp,
@@ -15,8 +19,9 @@ class ducktape::postfix::external::monit(
       action   => 'restart',
     }
     monit::check::service { 'postfix':
-      pidfile => $pidfile,
-      tests   => [$test,]
+      init_system => $init_system,
+      pidfile     => $pidfile,
+      tests       => [$test,]
     }
   }
 
