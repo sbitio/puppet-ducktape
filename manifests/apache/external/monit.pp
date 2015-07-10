@@ -36,6 +36,13 @@ class ducktape::apache::external::monit(
       'RedHat' => '/var/run/httpd/httpd.pid',
       default  => $::apache::pidfile,
     }
+    $init_system = $::operatingsystem ? {
+      'Ubuntu' => $lsbmajdistrelease ? {
+        /(12\.|14\.)/ => 'sysv',
+        default       => undef,
+      },
+      default  => undef,
+    }
     $initd_start     = "${::monit::service_program} ${::apache::service_name} start"
     $program_start   = "/bin/sh -c '$initd_start || /usr/bin/killall -9 ${::apache::service_name}' && /bin/sleep 2 && $initd_start; }'"
     $connection_test = {
@@ -46,6 +53,7 @@ class ducktape::apache::external::monit(
       action   => 'restart',
     }
     monit::check::service { $::apache::service_name:
+      init_system   => $init_system,
       pidfile       => $pidfile,
       program_start => $program_start,
       tests         => [$connection_test, ],
