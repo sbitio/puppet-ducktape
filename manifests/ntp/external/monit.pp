@@ -38,11 +38,11 @@ class ducktape::ntp::external::monit(
       init_system => $init_system,
       pidfile     => $pidfile,
       matching    => $matching,
-      binary   => $::osfamily ? {
+      binary      => $::osfamily ? {
         'Debian' => '/usr/sbin/ntpd',
         default  => undef,
       },
-      tests   => [$test, ],
+      tests       => [$test, ],
     }
   }
 
