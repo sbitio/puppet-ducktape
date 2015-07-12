@@ -13,6 +13,10 @@ class ducktape::postfix::external::monit(
         /(12\.|14\.)/ => 'sysv',
         default       => undef,
       },
+      'Debian' => $lsbdistcodename ? {
+        'jessie' => 'sysv',
+        default  => undef,
+      },
       default  => undef,
     }
     $test = {

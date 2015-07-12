@@ -41,6 +41,10 @@ class ducktape::apache::external::monit(
         /(12\.|14\.)/ => 'sysv',
         default       => undef,
       },
+      'Debian' => $lsbdistcodename ? {
+        'jessie' => 'sysv',
+        default  => undef,
+      },
       default  => undef,
     }
     $initd_start     = "${::monit::service_program} ${::apache::service_name} start"
