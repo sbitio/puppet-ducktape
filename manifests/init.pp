@@ -59,6 +59,9 @@ class ducktape {
   if defined('::sudo') and defined(Class['::sudo']) {
     require ::ducktape::sudo
   }
+  if defined('::tomcat') and defined(Class['::tomcat']) {
+    require ::ducktape::tomcat
+  }
   if defined('::varnish') and defined(Class['::varnish']) {
     require ::ducktape::varnish
   }

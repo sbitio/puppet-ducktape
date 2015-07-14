@@ -31,7 +31,7 @@ Those are the modules we work with at present:
 * [saz/rsyslog](https://forge.puppetlabs.com/saz/rsyslog)
 * [saz/ssh](https://forge.puppetlabs.com/saz/ssh)
 * [saz/sudo](https://forge.puppetlabs.com/saz/sudo)
-* [NITEMAN/tomcat](https://github.com/NITEMAN/puppet-tomcat)
+* [sbitio/tomcat](https://github.com/sbitio/puppet-tomcat)
 * [maxchk/varnish](https://forge.puppetlabs.com/maxchk/varnish)
 * [puppetlabs/vcsrepo](https://forge.puppetlabs.com/puppetlabs/vcsrepo)
 
