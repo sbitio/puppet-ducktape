@@ -37,14 +37,14 @@ class ducktape::mysql::external::munin_node_plugin(
   ],
   $kjellm_plugin      = true,
   $kjellm_plugins     = [
-    "InnoDB.pm",
-    "MyISAM.pm",
-    "QueryCache.pm",
-    "ReplicationSlave.pm",
-    "Standard.pm",
+    'InnoDB.pm',
+    'MyISAM.pm',
+    'QueryCache.pm',
+    'ReplicationSlave.pm',
+    'Standard.pm',
   ],
   $kjellm_contribs    = [
-    "CacheEfficiency.pm",
+    'CacheEfficiency.pm',
   ],
   $kjellm_repo_dst    = '/opt/kjellm-munin-mysql'
 ) {
@@ -81,7 +81,7 @@ class ducktape::mysql::external::munin_node_plugin(
     }
     if $new_plugin {
       @munin::node::plugin { 'mysql_' :
-        ensure => $ensure,
+        ensure  => $ensure,
         sufixes => $new_plugin_sufixes,
         require => [
         Service[$mysql::params::service_name],
@@ -113,15 +113,15 @@ class ducktape::mysql::external::munin_node_plugin(
       }
       $lib_dir = "${::munin::node::params::imported_scripts_dir}/mysql_lib"
       file { $lib_dir :
-        ensure  => $kjellm_ensure ? {
+        ensure => $kjellm_ensure ? {
           present => link,
           default => $ensure
         },
-        target  => "${kjellm_repo_dst}/lib/Munin/MySQL/Graph",
+        target => "${kjellm_repo_dst}/lib/Munin/MySQL/Graph",
       }
       $contrib_dir = "${::munin::node::params::imported_scripts_dir}/mysql_contrib"
       file { $contrib_dir :
-        ensure  => $kjellm_ensure ? {
+        ensure => $kjellm_ensure ? {
           present => link,
           default => $ensure
         },
@@ -157,8 +157,8 @@ class ducktape::mysql::external::munin_node_plugin(
         content => template('ducktape/mysql/external/kjellm_munin_plugin_conf.erb'),
       }
       @munin::node::plugin { 'mysql' :
-        ensure => $ensure,
-        target => "${kjellm_repo_dst}/mysql",
+        ensure  => $ensure,
+        target  => "${kjellm_repo_dst}/mysql",
         require => [
           Ducktape::Mysql::External::Munin_node_plugin::Kjellm_link[$kjellm_plugins],
           Ducktape::Mysql::External::Munin_node_plugin::Kjellm_link[$kjellm_contribs],
@@ -177,6 +177,6 @@ define ducktape::mysql::external::munin_node_plugin::kjellm_link (
   $dst = "${perl_lib_dir}${name}"
   exec { "ducktape-mysql-server-external-munin_node_plugin-kjellm_link-${name}" :
     command => "ln -s ${src} ${dst}",
-    unless => "test $(readlink ${dst}) = ${src}",
+    unless  => "test $(readlink ${dst}) = ${src}",
   }
 }

@@ -12,14 +12,14 @@ class ducktape::apache::external::monit(
     # Declare health check vhost.
     file { "${docroot}/index.html":
       ensure  => present,
-      content => "monit-test",
+      content => 'monit-test',
     }
     apache::vhost { $servername:
       port              => $port,
       docroot           => $docroot,
       options           => [],
       access_log_pipe   => '/dev/null',
-      access_log_format => "-",
+      access_log_format => '-',
       error_log_pipe    => '/dev/null',
     }
     host { $servername:
@@ -48,7 +48,7 @@ class ducktape::apache::external::monit(
       default  => undef,
     }
     $initd_start     = "${::monit::service_program} ${::apache::service_name} start"
-    $program_start   = "/bin/sh -c '$initd_start || /usr/bin/killall -9 ${::apache::service_name}' && /bin/sleep 2 && $initd_start; }'"
+    $program_start   = "/bin/sh -c '${initd_start} || /usr/bin/killall -9 ${::apache::service_name}' && /bin/sleep 2 && ${initd_start}; }'"
     $connection_test = {
       type     => 'connection',
       host     => $servername,

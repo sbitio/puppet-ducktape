@@ -11,10 +11,10 @@ class ducktape::sudo::defaults (
   if $enabled {
     # sudo_groups
     if $hiera_mode == 'array' {
-      $sudo_groups = hiera_array("ducktape::sudo::defaults::groups", [])
+      $sudo_groups = hiera_array('ducktape::sudo::defaults::groups', [])
     }
     else {
-      $sudo_groups = hiera("ducktape::sudo::defaults::groups", '')
+      $sudo_groups = hiera('ducktape::sudo::defaults::groups', '')
     }
     if $sudo_groups != [] and $sudo_groups != '' {
       Group[$sudo_groups] -> Sudo::Conf <| |>
@@ -33,8 +33,8 @@ class ducktape::sudo::defaults (
     # vagrant
     if $vagrant_enabled {
       sudo::conf { 'vagrant' :
-        priority            => 00,
-        content => 'vagrant ALL=NOPASSWD:ALL
+        priority => 00,
+        content  => 'vagrant ALL=NOPASSWD:ALL
 Defaults:vagrant !requiretty',
       }
     }
@@ -44,7 +44,7 @@ Defaults:vagrant !requiretty',
         'Debian' : {
            sudo::conf { 'cloud-init-users' :
              priority => 90,
-             content => 'admin ALL=(ALL) NOPASSWD:ALL',
+             content  => 'admin ALL=(ALL) NOPASSWD:ALL',
            }
         }
         default : {}

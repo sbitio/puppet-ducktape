@@ -9,12 +9,12 @@ class ducktape::varnish::secret (
     if $secret != undef {
       validate_string($secret)
       file { $::varnish::varnish_secret_file :
-        ensure => $::varnish::version ? {
+        ensure  => $::varnish::version ? {
           absent  => absent,
           default => present,
         },
         content => "${secret}\n",
-        notify => Class['::varnish::service'],
+        notify  => Class['::varnish::service'],
       }
     }
   }

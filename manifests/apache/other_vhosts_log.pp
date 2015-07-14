@@ -7,7 +7,7 @@ class ducktape::apache::other_vhosts_log (
     $directive = "CustomLog ${::apache::params::logroot}/other_vhosts_access.log ${format} env=!dontlog"
     ::ducktape::apache::conf { 'other-vhosts-access-log' :
       priority   => $priority,
-      directives => [ 
+      directives => [
         "# Define an access log for VirtualHosts that don't define their own logfile",
         $directive,
       ],

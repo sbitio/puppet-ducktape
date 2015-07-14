@@ -34,7 +34,7 @@ class ducktape::memcached::external::munin_node_plugin (
         'bytes',
         'counters',
       ],
-      config => [
+      config  => [
         "env.host ${host}",
         "env.port ${::memcached::tcp_port}",
       ],

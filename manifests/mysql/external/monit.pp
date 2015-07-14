@@ -22,7 +22,7 @@ class ducktape::mysql::external::monit(
       port   => 3306,
       action => 'restart',
     }
-    monit::check::service { "$::mysql::server::service_name":
+    monit::check::service { $::mysql::server::service_name:
       init_system => $init_system,
       pidfile     => $::mysql::params::pidfile,
       binary      => $::osfamily ? {

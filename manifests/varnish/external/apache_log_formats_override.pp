@@ -9,7 +9,7 @@ class ducktape::varnish::external::apache_log_formats_override (
 
     ::ducktape::apache::conf { 'varnish-log-formats-override' :
       priority   => $priority,
-      directives => [ 
+      directives => [
         $vhost_combined,
         $combined,
         $common,

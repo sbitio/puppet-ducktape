@@ -5,15 +5,15 @@ class ducktape::mysql::server inherits ducktape::mysql {
       file { '/var/run/mysqld':
         ensure  => directory,
         owner   => 'mysql',
-        mode    => 755,
+        mode    => '0755',
         require => Class['::mysql::server::install'],
         notify  => Class['::mysql::server::service']
       }
     }
-    if $::lsbdistcodename == 'wheezy' 
+    if $::lsbdistcodename == 'wheezy'
        and defined('::apt_extras::dotdeb')
-       and defined(Class[::apt_extras::dotdeb]) 
-       and defined('::pam') 
+       and defined(Class[::apt_extras::dotdeb])
+       and defined('::pam')
     {
       pam::service_conf { 'su':
         type    => 'session',
@@ -22,8 +22,8 @@ class ducktape::mysql::server inherits ducktape::mysql {
       }
       file { '/etc/security/limits.d/mysql.conf' :
         ensure => present,
-        source => "puppet:///modules/ducktape/mysql/server/wheezy_5.6_limits.conf",
-        mode   => 0644,
+        source => 'puppet:///modules/ducktape/mysql/server/wheezy_5.6_limits.conf',
+        mode   => '0644',
       }
     }
     anchor { 'ducktape::mysql::server::begin': } ->

@@ -1,7 +1,7 @@
 class ducktape::apache::external::munin_node_plugin (
   $enabled    = true,
   $port       = 80,
-  $ip         = "127.0.0.1",
+  $ip         = '127.0.0.1',
 ) {
 
   validate_bool($enabled)
@@ -40,7 +40,7 @@ class ducktape::apache::external::munin_node_plugin (
 
     @munin::node::plugin { $plugins :
       required_packages => $required_packages,
-      require   => [
+      require           => [
         Service[$apache::params::service_name],
         Package[$required_packages],
       ],
