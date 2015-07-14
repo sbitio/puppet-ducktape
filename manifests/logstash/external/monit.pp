@@ -7,7 +7,7 @@ class ducktape::logstash::external::monit(
   if $enabled {
 
     $init_system = $::operatingsystem ? {
-      'Debian' => $lsbdistcodename ? {
+      'Debian' => $::lsbdistcodename ? {
         'jessie' => 'sysv',
         default  => undef,
       },

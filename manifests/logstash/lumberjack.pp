@@ -23,7 +23,7 @@ define ducktape::logstash::lumberjack (
       ensure => present,
       source => $key,
     }
-    logstash::configfile { 'input_lumberjack_${port}':
+    logstash::configfile { "input_lumberjack_${port}":
       content => template('ducktape/logstash/lumberjack.erb')
     }
   }

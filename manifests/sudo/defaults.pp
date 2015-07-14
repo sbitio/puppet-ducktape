@@ -42,10 +42,10 @@ Defaults:vagrant !requiretty',
     if $amazon_enabled {
       case $::operatingsystem {
         'Debian' : {
-           sudo::conf { 'cloud-init-users' :
-             priority => 90,
-             content  => 'admin ALL=(ALL) NOPASSWD:ALL',
-           }
+          sudo::conf { 'cloud-init-users' :
+            priority => 90,
+            content  => 'admin ALL=(ALL) NOPASSWD:ALL',
+          }
         }
         default : {}
       }

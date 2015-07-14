@@ -27,7 +27,7 @@ define ducktape::php::conf(
       }
     }
     absent: {
-      file { $file:
+      file { $php_config_file:
         ensure => absent,
       }
     }

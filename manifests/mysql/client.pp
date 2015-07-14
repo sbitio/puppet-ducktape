@@ -1,5 +1,5 @@
 class ducktape::mysql::client inherits ducktape::mysql {
-  if $enabled {
+  if $ducktape::mysql::enabled {
     anchor { 'ducktape::mysql::client::begin': } ->
       Class['::ducktape::mysql::flavour'] ->
       Class['::mysql::client'] ->

@@ -19,9 +19,9 @@ class ducktape::memcached::external::munin_node_plugin (
       }
     }
     @munin::node::plugin::required_package { $required_packages :
-       ensure => $ensure,
-       # TODO: add stdlib as dependency
-       tag    => 'memcached_',
+      ensure => $ensure,
+      # TODO: add stdlib as dependency
+      tag    => 'memcached_',
     }
     $host = $::memcached::listen_ip ? {
       '0.0.0.0' => '127.0.0.1',

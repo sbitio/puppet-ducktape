@@ -10,7 +10,7 @@ class ducktape::varnish::external::monit(
       'Debian' => '/var/run/varnishd.pid',
     }
     $init_system = $::operatingsystem ? {
-      'Ubuntu' => $lsbmajdistrelease ? {
+      'Ubuntu' => $::lsbmajdistrelease ? {
         /(12\.|14\.)/ => 'sysv',
         default       => undef,
       },

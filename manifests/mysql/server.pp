@@ -1,6 +1,7 @@
 class ducktape::mysql::server inherits ducktape::mysql {
-  if $enabled {
-    if $flavour == 'percona' {
+
+  if $ducktape::mysql::enabled {
+    if $ducktape::mysql::flavour == 'percona' {
       # We want the pid inside this folder (Debian/RedHat default).
       file { '/var/run/mysqld':
         ensure  => directory,
@@ -11,9 +12,9 @@ class ducktape::mysql::server inherits ducktape::mysql {
       }
     }
     if $::lsbdistcodename == 'wheezy'
-       and defined('::apt_extras::dotdeb')
-       and defined(Class[::apt_extras::dotdeb])
-       and defined('::pam')
+      and defined('::apt_extras::dotdeb')
+      and defined(Class[::apt_extras::dotdeb])
+      and defined('::pam')
     {
       pam::service_conf { 'su':
         type    => 'session',
