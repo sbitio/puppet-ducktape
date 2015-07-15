@@ -1,4 +1,4 @@
-class ductape::tomcat::external::monit (
+class ducktape::tomcat::external::monit (
   $enabled = true,
 ) {
 
