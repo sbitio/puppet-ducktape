@@ -12,6 +12,13 @@ class ducktape::ntp::external::monit(
         default => '/var/run/ntpd.pid',
       },
     }
+    $matching = $::osfamily ? {
+      'Debian' => undef,
+      'RedHat' => $::lsbmajdistrelease ? {
+        7       => '/usr/sbin/ntpd',
+        default => undef,
+      },
+    }
     $init_system = $::operatingsystem ? {
       'Ubuntu' => $::lsbmajdistrelease ? {
         /(12\.|14\.)/ => 'sysv',
@@ -22,14 +29,6 @@ class ducktape::ntp::external::monit(
         default  => undef,
       },
       default  => undef,
-    }
-
-    $matching = $::osfamily ? {
-      'Debian' => undef,
-      'RedHat' => $::lsbmajdistrelease ? {
-        7       => '/usr/sbin/ntpd',
-        default => undef,
-      },
     }
 
     $test = {
