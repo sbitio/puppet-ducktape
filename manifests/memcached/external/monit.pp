@@ -6,8 +6,18 @@ class ducktape::memcached::external::monit(
 
   if $enabled {
     $pidfile = $::osfamily ? {
-      'RedHat' => '/var/run/memcached/memcached.pid',
       'Debian' => '/var/run/memcached.pid',
+      'RedHat' => $::lsbmajdistrelease ? {
+        7       => undef,
+        default => '/var/run/memcached/memcached.pid',
+      },
+    }
+    $matching = $::osfamily ? {
+      'Debian' => undef,
+      'RedHat' => $::lsbmajdistrelease ? {
+        7       => '/usr/bin/memcached',
+        default => undef,
+      },
     }
 
     $test_tcp = {
