@@ -33,9 +33,10 @@ class ducktape::memcached::external::monit(
       action      => 'restart',
     }
     monit::check::service { $::memcached::params::service_name:
-      pidfile => $pidfile,
-      binary  => '/usr/bin/memcached',
-      tests   => [$test_tcp, $test_udp,],
+      pidfile  => $pidfile,
+      matching => $matching,
+      binary   => '/usr/bin/memcached',
+      tests    => [$test_tcp, $test_udp,],
     }
   }
 
