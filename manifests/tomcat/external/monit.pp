@@ -43,7 +43,7 @@ class ducktape::tomcat::external::monit (
 
     monit::check::service { $::tomcat::service_name :
       init_system => $init_system,
-      pidfile     => $::tomcat::pid_file,
+      pidfile     => $pidfile,
       matching    => $matching,
       binary      => $bin,
       tests       => [ $connection_test ],
