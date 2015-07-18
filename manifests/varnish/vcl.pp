@@ -4,6 +4,8 @@ class ducktape::varnish::vcl (
   $vcl_source = undef,
 ) {
 
+#TODO# try to move this to upstream module
+
   validate_bool($enabled)
   validate_string($vcl_name)
 
