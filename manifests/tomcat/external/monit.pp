@@ -15,6 +15,20 @@ class ducktape::tomcat::external::monit (
       },
       default  => undef,
     }
+    $pidfile = $::osfamily ? {
+      'Debian' => undef,
+      'RedHat' => $::lsbmajdistrelease ? {
+        7       => undef,
+        default => '/var/run/memcached/memcached.pid',
+      },
+    }
+    $matching = $::osfamily ? {
+      'Debian' => undef,
+      'RedHat' => $::lsbmajdistrelease ? {
+        7       => '/usr/share/tomcat',
+        default => undef,
+      },
+    }
     $bin = $::tomcat::java_home ? {
       undef   => "${::tomcat::default_java_home}/bin/java",
       default => "${::tomcat::java_home}/bin/java",
@@ -30,6 +44,7 @@ class ducktape::tomcat::external::monit (
     monit::check::service { $::tomcat::service_name :
       init_system => $init_system,
       pidfile     => $::tomcat::pid_file,
+      matching    => $matching,
       binary      => $bin,
       tests       => [ $connection_test ],
       require     => Class['::tomcat::service'],
