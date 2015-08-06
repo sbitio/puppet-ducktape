@@ -53,6 +53,9 @@ class ducktape {
   if defined('::puppetdb') and defined(Class['::puppetdb']) {
     require ::ducktape::puppetdb
   }
+  if defined('::rabbitmq') and defined(Class['::rabbitmq']) {
+    require ::ducktape::rabbitmq
+  }
   if defined('::ssh') and defined(Class['::ssh']) {
     require ::ducktape::ssh
   }
