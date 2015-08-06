@@ -9,17 +9,17 @@ class ducktape::rabbitmq::autoload (
 
   if $load_vhosts {
     $rabbitmq_vhost_defaults = hiera('ducktape::rabbitmq::vhost::defaults', {})
-    create_resources('rabbitmq::vhost', hiera_hash('ducktape::rabbitmq::vhosts', {}), $rabbitmq_vhost_defaults)
+    create_resources('rabbitmq_vhost', hiera_hash('ducktape::rabbitmq::vhosts', {}), $rabbitmq_vhost_defaults)
   }
 
   if $load_exchanges {
     $rabbitmq_exchange_defaults = hiera('ducktape::rabbitmq::exchange::defaults', {})
-    create_resources('rabbitmq::exchange', hiera_hash('ducktape::rabbitmq::exchanges', {}), $rabbitmq_exchange_defaults)
+    create_resources('rabbitmq_exchange', hiera_hash('ducktape::rabbitmq::exchanges', {}), $rabbitmq_exchange_defaults)
   }
 
   if $load_queues {
     $rabbitmq_queue_defaults = hiera('ducktape::rabbitmq::queue::defaults', {})
-    create_resources('rabbitmq::queue', hiera_hash('ducktape::rabbitmq::queues', {}), $rabbitmq_queue_defaults)
+    create_resources('rabbitmq_queue', hiera_hash('ducktape::rabbitmq::queues', {}), $rabbitmq_queue_defaults)
   }
 
 }
