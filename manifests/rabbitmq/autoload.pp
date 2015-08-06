@@ -1,7 +1,9 @@
 class ducktape::rabbitmq::autoload (
-  $load_vhosts    = true,
-  $load_exchanges = true,
-  $load_queues    = true,
+  $load_vhosts           = true,
+  $load_exchanges        = true,
+  $load_queues           = true,
+  $load_users            = true,
+  $load_user_permissions = true,
 ) {
 
   validate_bool($load_vhosts)
@@ -20,6 +22,16 @@ class ducktape::rabbitmq::autoload (
   if $load_queues {
     $rabbitmq_queue_defaults = hiera('ducktape::rabbitmq::queue::defaults', {})
     create_resources('rabbitmq_queue', hiera_hash('ducktape::rabbitmq::queues', {}), $rabbitmq_queue_defaults)
+  }
+
+  if $load_users {
+    $rabbitmq_user_defaults = hiera('ducktape::rabbitmq::user::defaults', {})
+    create_resources('rabbitmq_user', hiera_hash('ducktape::rabbitmq::users', {}), $rabbitmq_user_defaults)
+  }
+
+  if $load_user_permissions {
+    $rabbitmq_user_permissions_defaults = hiera('ducktape::rabbitmq::user_permissions::defaults', {})
+    create_resources('rabbitmq_user_permissions', hiera_hash('ducktape::rabbitmq::user_permissions', {}), $rabbitmq_user_permissions_defaults)
   }
 
 }
