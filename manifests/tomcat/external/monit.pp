@@ -16,10 +16,10 @@ class ducktape::tomcat::external::monit (
       default  => undef,
     }
     $pidfile = $::osfamily ? {
-      'Debian' => undef,
+      'Debian' => "/var/run/${::tomcat::service_name}.pid",
       'RedHat' => $::lsbmajdistrelease ? {
         7       => undef,
-        default => '/var/run/memcached/memcached.pid',
+        default => '/var/run/tomcat6.pid',
       },
     }
     $matching = $::osfamily ? {
