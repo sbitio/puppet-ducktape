@@ -9,7 +9,7 @@ class ducktape::openvpn (
 
     # External checks.
     if defined('::monit') and defined(Class['::monit']) {
-      # BROKEN, pidfile depends on defines, cannotuse service check include ::ducktape::openvpn::external::monit
+      #TODO# BROKEN, pidfile depends on defines, cannotuse service check include ::ducktape::openvpn::external::monit
     }
   }
 
