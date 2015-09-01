@@ -38,6 +38,9 @@ class ducktape {
   if defined('::ntp') and defined(Class['::ntp']) {
     require ::ducktape::ntp
   }
+  if defined('::opendkim') and defined(Class['::opendkim']) {
+    require ::ducktape::opendkim
+  }
   if defined('::openvpn') and defined(Class['::openvpn']) {
     require ::ducktape::openvpn
   }

@@ -24,6 +24,7 @@ Those are the modules we work with at present:
 * [puppetlabs/mysql](https://forge.puppetlabs.com/puppetlabs/mysql)
 * [fsalum/newrelic](https://forge.puppetlabs.com/fsalum/newrelic)
 * [puppetlabs/ntp](https://forge.puppetlabs.com/puppetlabs/ntp)
+* [bi4o4ek/opendkim](https://forge.puppetlabs.com/bi4o4ek/opendkim)
 * [luxflux/openvpn](https://forge.puppetlabs.com/luxflux/openvpn)
 * [mayflower/php](https://forge.puppetlabs.com/mayflower/php)
 * [camptocamp/postfix](https://forge.puppetlabs.com/camptocamp/postfix)
