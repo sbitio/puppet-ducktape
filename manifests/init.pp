@@ -38,6 +38,9 @@ class ducktape {
   if defined('::ntp') and defined(Class['::ntp']) {
     require ::ducktape::ntp
   }
+  if defined('::nfs::server') and defined(Class['::nfs::server']) {
+    require ::ducktape::nfs::server
+  }
   if defined('::opendkim') and defined(Class['::opendkim']) {
     require ::ducktape::opendkim
   }
