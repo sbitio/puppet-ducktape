@@ -10,8 +10,17 @@ class ducktape::rsyslog::external::monit(
       'RedHat' => '/var/run/syslogd.pid',
     }
 
+    $binary = $::osfamily ? {
+      'RedHat' => $::lsbmajdistrelease ? {
+        6       => '/sbin/rsyslogd',
+        default => '/usr/sbin/rsyslogd',
+      },
+      default => '/usr/sbin/rsyslogd',
+    }
+
     monit::check::service { 'rsyslog':
       pidfile  => $pidfile,
+      binary   => $binary,
     }
   }
 
