@@ -62,8 +62,8 @@ class ducktape {
   if defined('::rabbitmq') and defined(Class['::rabbitmq']) {
     require ::ducktape::rabbitmq
   }
-  if defined('::rsyslod') and defined(Class['::rsyslod']) {
-    require ::ducktape::rsyslod
+  if defined('::rsyslog') and defined(Class['::rsyslog']) {
+    require ::ducktape::rsyslog
   }
   if defined('::ssh') and defined(Class['::ssh']) {
     require ::ducktape::ssh
