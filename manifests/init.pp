@@ -41,6 +41,9 @@ class ducktape {
   if defined('::nfs::server') and defined(Class['::nfs::server']) {
     require ::ducktape::nfs::server
   }
+  if defined('::nfs::client') and defined(Class['::nfs::client']) {
+    require ::ducktape::nfs::client
+  }
   if defined('::opendkim') and defined(Class['::opendkim']) {
     require ::ducktape::opendkim
   }
