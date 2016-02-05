@@ -32,7 +32,6 @@ Those are the modules we work with at present:
 * [puppetlabs/puppetdb](https://forge.puppetlabs.com/puppetlabs/puppetdb)
 * [puppetlabs/rabbitmq](https://forge.puppetlabs.com/puppetlabs/rabbitmq)
 * [saz/rsyslog](https://forge.puppetlabs.com/saz/rsyslog)
-* [maestrodev/sonarqube](https://forge.puppetlabs.com/maestrodev/sonarqube)
 * [saz/ssh](https://forge.puppetlabs.com/saz/ssh)
 * [saz/sudo](https://forge.puppetlabs.com/saz/sudo)
 * [sbitio/tomcat](https://github.com/sbitio/puppet-tomcat)

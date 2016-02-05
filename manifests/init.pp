@@ -68,9 +68,6 @@ class ducktape {
   if defined('::rsyslog') and defined(Class['::rsyslog']) {
     require ::ducktape::rsyslog
   }
-  if defined('::sonarqube') and defined(Class['::sonarqube']) {
-    require ::ducktape::sonarqube
-  }
   if defined('::ssh') and defined(Class['::ssh']) {
     require ::ducktape::ssh
   }
