@@ -14,6 +14,12 @@ class ducktape::apache::shield_vhost (
       options        => [ 'None' ],
       allow_override => [ 'None' ],
     }
+    $_location = {
+      path           => '/.*',
+      provider       => 'location',
+      options        => [ 'None' ],
+      allow_override => [ 'None' ],
+    }
     if versioncmp($::apache::apache_version, '2.4') >= 0 {
       $_directory_version = {
         require => 'all denied',
@@ -24,7 +30,10 @@ class ducktape::apache::shield_vhost (
         deny  => 'from all',
       }
     }
-    $_directories = [ merge($_directory, $_directory_version) ]
+    $_directories = [
+      merge($_directory, $_directory_version),
+      merge($_location, $_directory_version),
+    ]
 
     apache::vhost{ 'shield' :
       ensure          => $ensure,
