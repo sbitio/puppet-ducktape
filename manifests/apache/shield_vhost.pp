@@ -16,7 +16,7 @@ class ducktape::apache::shield_vhost (
     }
     $_location = {
       path           => '/.*',
-      provider       => 'location',
+      provider       => 'locationmatch',
       options        => [ 'None' ],
       allow_override => [ 'None' ],
     }
