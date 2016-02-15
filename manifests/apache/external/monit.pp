@@ -1,13 +1,20 @@
 class ducktape::apache::external::monit(
-  $enabled    = true,
-  $port       = 80,
-  $servername = "monit-test.${::fqdn}",
+  $enabled        = true,
+  $ip             = '127.0.0.1',
+  $port           = 80,
+  $vhost_priority = 99,
+  $vhost_seed     = 'monit-test',
+  $vhost_prefix   = 'monit-test-',
+  $vhost_suffix   = ".${::fqdn}",
 ) {
 
   validate_bool($enabled)
+  #TODO# Add more validations
 
   if $enabled {
-    $docroot = "/var/www/${servername}"
+    $rand_fragment = fqdn_rand(10, $vhost_seed)
+    $servername    = "${vhost_prefix}${rand_fragment}${::fqdn}"
+    $docroot       = "/var/www/${servername}"
 
     # Declare health check vhost.
     file { "${docroot}/index.html":
@@ -17,13 +24,14 @@ class ducktape::apache::external::monit(
     apache::vhost { $servername:
       port              => $port,
       docroot           => $docroot,
-      options           => [],
+      options           => [ 'None' ],
+      priority          => $vhost_priority,
       access_log_pipe   => '/dev/null',
       access_log_format => '-',
       error_log_pipe    => '/dev/null',
     }
     host { $servername:
-      ip => '127.0.0.1',
+      ip => $ip,
     }
 
     # $::apache::pidfile declares Debian pidfile as a shell variable.

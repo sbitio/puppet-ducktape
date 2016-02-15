@@ -1,7 +1,11 @@
 class ducktape::apache::external::munin_node_plugin (
-  $enabled    = true,
-  $port       = 80,
-  $ip         = '127.0.0.1',
+  $enabled        = true,
+  $ip             = '127.0.0.1',
+  $port           = 80,
+  $vhost_priority = 99,
+  $vhost_seed     = 'munin-apache',
+  $vhost_prefix   = 'munin-apache-',
+  $vhost_suffix   = ".${::fqdn}",
 ) {
 
   validate_bool($enabled)
@@ -9,6 +13,45 @@ class ducktape::apache::external::munin_node_plugin (
 
   if $enabled {
     #TODO# Add mod_status
+
+    $rand_fragment = fqdn_rand(10, $vhost_seed)
+    $servername    = "${vhost_prefix}${rand_fragment}${::fqdn}"
+    $docroot       = "/var/www/${servername}"
+
+    $_location = {
+      path           => $::apache::mod::status::status_path,
+      provider       => 'location',
+      options        => [ 'None' ],
+      allow_override => [ 'None' ],
+    }
+    if versioncmp($::apache::apache_version, '2.4') >= 0 {
+      $_directory_version = {
+        require => 'ip 127.0.0.1',
+      }
+    } else {
+      $_directory_version = {
+        order => 'allow,deny',
+        deny  => 'from all',
+        allow => 'from 127.0.0.1'
+      }
+    }
+    $_directories = [
+      merge($_location, $_directory_version),
+    ]
+
+    apache::vhost { $servername:
+      port              => $port,
+      docroot           => $docroot,
+      options           => [ 'None' ],
+      priority          => $vhost_priority,
+      access_log_pipe   => '/dev/null',
+      access_log_format => '-',
+      error_log_pipe    => '/dev/null',
+      directories       => $_directories,
+    }
+    host { $servername:
+      ip => $ip,
+    }
 
     case $::osfamily {
       debian : {
@@ -31,7 +74,7 @@ class ducktape::apache::external::munin_node_plugin (
     @munin::node::plugin::conf { 'apache' :
       config => {
         'apache_*' => [
-          "env.url http://${ip}:${port}/server-status?auto",
+          "env.url http://${servername}:${port}/${::apache::mod::status::status_path}?auto",
         ],
       },
     }
