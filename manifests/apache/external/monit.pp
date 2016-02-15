@@ -12,7 +12,7 @@ class ducktape::apache::external::monit(
   #TODO# Add more validations
 
   if $enabled {
-    $rand_fragment = fqdn_rand(10, $vhost_seed)
+    $rand_fragment = fqdn_rand(1000000, $vhost_seed)
     $servername    = "${vhost_prefix}${rand_fragment}${::fqdn}"
     $docroot       = "/var/www/${servername}"
 
