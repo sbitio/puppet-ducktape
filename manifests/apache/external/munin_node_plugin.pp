@@ -15,7 +15,7 @@ class ducktape::apache::external::munin_node_plugin (
     #TODO# Add mod_status
 
     $rand_fragment = fqdn_rand(1000000, $vhost_seed)
-    $servername    = "${vhost_prefix}${rand_fragment}${::fqdn}"
+    $servername    = "${vhost_prefix}${rand_fragment}${vhost_suffix}"
     $docroot       = "/var/www/${servername}"
 
     $_location = {
