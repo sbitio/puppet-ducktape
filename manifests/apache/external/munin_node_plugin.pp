@@ -41,7 +41,7 @@ class ducktape::apache::external::munin_node_plugin (
       }
     } else {
       $_directory_version = {
-        order => 'allow,deny',
+        order => 'deny,allow',
         deny  => 'from all',
         allow => 'from 127.0.0.1'
       }
