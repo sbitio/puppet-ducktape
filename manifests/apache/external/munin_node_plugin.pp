@@ -12,14 +12,19 @@ class ducktape::apache::external::munin_node_plugin (
   #TODO# Add more validations
 
   if $enabled {
-    #TODO# Add mod_status
 
     $rand_fragment = fqdn_rand(1000000, $vhost_seed)
     $servername    = "${vhost_prefix}${rand_fragment}${vhost_suffix}"
     $docroot       = "/var/www/${servername}"
 
+    #TODO# Add mod_status dependency
+    $status_path = $::apache::mod::status::status_path ? {
+      undef  => '/server-status',
+      defaul => $::apache::mod::status::status_path,
+    }
+
     $_location = {
-      path           => $::apache::mod::status::status_path,
+      path           => $status_path,
       provider       => 'location',
       options        => [ 'None' ],
       allow_override => [ 'None' ],
@@ -74,7 +79,7 @@ class ducktape::apache::external::munin_node_plugin (
     @munin::node::plugin::conf { 'apache' :
       config => {
         'apache_*' => [
-          "env.url http://${servername}:${port}/${::apache::mod::status::status_path}?auto",
+          "env.url http://${servername}:${port}/${status_path}?auto",
         ],
       },
     }
