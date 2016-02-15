@@ -33,7 +33,7 @@ class ducktape::apache::external::munin_node_plugin (
       provider       => 'location',
       options        => [ 'None' ],
       allow_override => [ 'None' ],
-      handler        => 'server-status',
+      sethandler     => 'server-status',
     }
     if versioncmp($::apache::apache_version, '2.4') >= 0 {
       $_directory_version = {
