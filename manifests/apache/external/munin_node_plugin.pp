@@ -23,6 +23,11 @@ class ducktape::apache::external::munin_node_plugin (
       defaul => $::apache::mod::status::status_path,
     }
 
+    $_directory = {
+      path           => $docroot,
+      options        => [ 'None' ],
+      allow_override => [ 'None' ],
+    }
     $_location = {
       path           => $status_path,
       provider       => 'location',
@@ -42,6 +47,7 @@ class ducktape::apache::external::munin_node_plugin (
       }
     }
     $_directories = [
+      merge($_directory, $_directory_version),
       merge($_location, $_directory_version),
     ]
 
