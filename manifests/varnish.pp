@@ -7,6 +7,9 @@ class ducktape::varnish (
   if $enabled {
     include ::ducktape::varnish::vcl
 
+    if defined('::munin::node') and defined(Class['::munin::node']) {
+      include ::ducktape::varnish::external::munin_node_plugin
+    }
     if defined('::monit') and defined(Class['::monit']) {
       include ::ducktape::varnish::external::monit
     }
@@ -16,4 +19,3 @@ class ducktape::varnish (
   }
 
 }
-
