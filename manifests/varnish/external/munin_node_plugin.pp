@@ -22,7 +22,7 @@ class ducktape::varnish::external::munin_node_plugin(
         'env.varnishstat varnishstat',
         'env.name',
       ]
-      $source = 'puppet:///modules/ducktape/files/varnish/external/munin_node_plugin/varnish4_'
+      $source = 'puppet:///modules/ducktape/varnish/external/munin_node_plugin/varnish4_'
     }
     else {
       $varnish_plugin = 'varnish_'
