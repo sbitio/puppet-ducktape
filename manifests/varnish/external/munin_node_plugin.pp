@@ -17,6 +17,11 @@ class ducktape::varnish::external::munin_node_plugin(
 
     if versioncmp($::varnish::varnish_version, '4.0') >= 0 {
       $varnish_plugin = 'varnish4_'
+      $config = [
+        'group varnish',
+        'env.varnishstat varnishstat',
+        'env.name',
+      ]
       $source = 'puppet:///modules/ducktape/files/varnish/external/munin_node_plugin/varnish4_'
     }
     else {
@@ -24,6 +29,7 @@ class ducktape::varnish::external::munin_node_plugin(
     }
     @munin::node::plugin { $varnish_plugin :
       ensure    => $ensure,
+      config    => $config,
       sufixes   => [
         'backend_traffic',
         'bad',
