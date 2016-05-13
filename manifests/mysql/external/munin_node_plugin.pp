@@ -152,6 +152,14 @@ class ducktape::mysql::external::munin_node_plugin(
           }
         }
       }
+      case $::osfamily {
+        debian : {
+          @munin::node::plugin::required_package { 'libmodule-pluggable-perl' :
+            ensure => $ensure,
+            tag    => 'mysql',
+          }
+        }
+      }
       @munin::node::plugin::conf { 'mysql' :
         ensure  => $ensure,
         content => template('ducktape/mysql/external/kjellm_munin_plugin_conf.erb'),
