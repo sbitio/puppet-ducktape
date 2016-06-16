@@ -17,9 +17,6 @@ class ducktape {
   if defined('::logstash') and defined(Class['::logstash']) {
     require ::ducktape::logstash
   }
-  if defined('::logstashforwarder') and defined(Class['::logstashforwarder']) {
-    require ::ducktape::logstashforwarder
-  }
   if defined('::memcached') and defined(Class['::memcached']) {
     require ::ducktape::memcached
   }
