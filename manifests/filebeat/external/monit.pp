@@ -6,10 +6,10 @@ class ducktape::filebeat::external::monit(
   #TODO# Add more validations
 
   if $enabled {
-    $pidfile = '/var/run/filebeat.pid'
+    $binary = '/usr/bin/filebeat-god'
     monit::check::service { 'filebeat':
-      pidfile => $pidfile,
-      binary  => '/usr/bin/filebeat-god',
+      matching => $binary,
+      binary   => $binary,
     }
   }
 
