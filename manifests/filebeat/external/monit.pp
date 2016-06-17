@@ -6,7 +6,7 @@ class ducktape::filebeat::external::monit(
   #TODO# Add more validations
 
   if $enabled {
-    $binary = '/usr/bin/filebeat-god'
+    $binary = '/usr/bin/filebeat'
     monit::check::service { 'filebeat':
       matching => $binary,
       binary   => $binary,
