@@ -77,6 +77,9 @@ class ducktape {
   if defined('::tomcat') and defined(Class['::tomcat']) {
     require ::ducktape::tomcat
   }
+  if defined('::topbeat') and defined(Class['::topbeat']) {
+    require ::ducktape::topbeat
+  }
   if defined('::varnish') and defined(Class['::varnish']) {
     require ::ducktape::varnish
   }

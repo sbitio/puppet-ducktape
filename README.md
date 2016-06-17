@@ -35,6 +35,7 @@ Those are the modules we work with at present:
 * [saz/ssh](https://forge.puppetlabs.com/saz/ssh)
 * [saz/sudo](https://forge.puppetlabs.com/saz/sudo)
 * [sbitio/tomcat](https://github.com/sbitio/puppet-tomcat)
+* [pcfens/topbeat](https://forge.puppetlabs.com/pcfens/topbeat)
 * [bashtoni/varnish](https://forge.puppetlabs.com/bashtoni/varnish)
 * [puppetlabs/vcsrepo](https://forge.puppetlabs.com/puppetlabs/vcsrepo)
 
