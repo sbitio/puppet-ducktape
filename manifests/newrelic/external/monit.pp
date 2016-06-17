@@ -11,11 +11,13 @@ class ducktape::newrelic::external::monit(
     $init_system = 'sysv'
     monit::check::service { 'newrelic-daemon':
       init_system => $init_system,
-      pidfile => $pidfile_daemon,
+      pidfile     => $pidfile_daemon,
+      binary      => '/usr/bin/newrelic-daemon',
     }
     monit::check::service { 'newrelic-sysmond':
       init_system => $init_system,
-      pidfile => $pidfile_nrsysmond,
+      pidfile     => $pidfile_nrsysmond,
+      binary      => '/usr/sbin/nrsysmond',
     }
   }
 
