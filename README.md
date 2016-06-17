@@ -13,6 +13,7 @@ Those are the modules we work with at present:
 
 * [puppetlabs/apache](https://forge.puppetlabs.com/puppetlabs/apache)
 * [puppetlabs/corosync](https://forge.puppetlabs.com/puppetlabs/corosync)
+* [pcfens/filebeat](https://forge.puppetlabs.com/pcfens/filebeat)
 * [puppetlabs/haproxy](https://forge.puppetlabs.com/puppetlabs/haproxy)
 * [sbitio/logcheck](https://github.com/sbitio/puppet-logcheck)
 * [rodjek/logrotate](https://forge.puppetlabs.com/rodjek/logrotate)

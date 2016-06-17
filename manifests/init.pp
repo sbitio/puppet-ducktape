@@ -8,6 +8,9 @@ class ducktape {
   if defined('::haproxy') and defined(Class['::haproxy']) {
     require ::ducktape::haproxy
   }
+  if defined('::filebeat') and defined(Class['::filebeat']) {
+    require ::ducktape::filebeat
+  }
   if defined('::logcheck') and defined(Class['::logcheck']) {
     require ::ducktape::logcheck
   }
