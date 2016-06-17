@@ -9,6 +9,7 @@ class ducktape::topbeat::external::monit(
     $pidfile = '/var/run/topbeat.pid'
     monit::check::service { 'topbeat':
       pidfile => $pidfile,
+      binary  => '/usr/bin/topbeat-god',
     }
   }
 

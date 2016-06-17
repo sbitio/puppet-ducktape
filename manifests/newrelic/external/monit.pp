@@ -8,10 +8,13 @@ class ducktape::newrelic::external::monit(
   if $enabled {
     $pidfile_daemon = '/var/run/newrelic-daemon.pid'
     $pidfile_nrsysmond = '/var/run/newrelic/nrsysmond.pid'
+    $init_system = 'sysv'
     monit::check::service { 'newrelic-daemon':
+      init_system => $init_system,
       pidfile => $pidfile_daemon,
     }
-    monit::check::service { 'nrsysmond':
+    monit::check::service { 'newrelic-sysmond':
+      init_system => $init_system,
       pidfile => $pidfile_nrsysmond,
     }
   }

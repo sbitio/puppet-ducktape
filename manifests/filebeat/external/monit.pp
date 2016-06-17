@@ -9,6 +9,7 @@ class ducktape::filebeat::external::monit(
     $pidfile = '/var/run/filebeat.pid'
     monit::check::service { 'filebeat':
       pidfile => $pidfile,
+      binary  => '/usr/bin/filebeat-god',
     }
   }
 
