@@ -16,7 +16,7 @@ Those are the modules we work with at present:
 * [pcfens/filebeat](https://forge.puppetlabs.com/pcfens/filebeat)
 * [puppetlabs/haproxy](https://forge.puppetlabs.com/puppetlabs/haproxy)
 * [sbitio/logcheck](https://github.com/sbitio/puppet-logcheck)
-* [rodjek/logrotate](https://forge.puppetlabs.com/rodjek/logrotate)
+* [yo61/logrotate](https://forge.puppet.com/yo61/logrotate)
 * [elasticsearch/logstash](https://forge.puppetlabs.com/elasticsearch/logstash)
 * [saz/memcached](https://forge.puppetlabs.com/saz/memcached)
 * [sbitio/monit](https://github.com/sbitio/puppet-monit)
