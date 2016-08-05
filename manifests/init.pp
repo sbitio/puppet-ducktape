@@ -8,6 +8,9 @@ class ducktape {
   if defined('::filebeat') and defined(Class['::filebeat']) {
     require ::ducktape::filebeat
   }
+  if defined('::gluster') and defined(Class['::gluster']) {
+    require ::ducktape::gluster
+  }
   if defined('::gluster::client') and defined(Class['::gluster::client']) {
     require ::ducktape::gluster
   }
