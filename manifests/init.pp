@@ -5,11 +5,14 @@ class ducktape {
   if defined('::corosync') and defined(Class['::corosync']) {
     require ::ducktape::corosync
   }
-  if defined('::haproxy') and defined(Class['::haproxy']) {
-    require ::ducktape::haproxy
-  }
   if defined('::filebeat') and defined(Class['::filebeat']) {
     require ::ducktape::filebeat
+  }
+  if defined('::gluster::client') and defined(Class['::gluster::client']) {
+    require ::ducktape::gluster
+  }
+  if defined('::haproxy') and defined(Class['::haproxy']) {
+    require ::ducktape::haproxy
   }
   if defined('::logcheck') and defined(Class['::logcheck']) {
     require ::ducktape::logcheck
