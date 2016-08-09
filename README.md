@@ -27,6 +27,7 @@ Those are the modules we work with at present:
 * [echocat/nfs](https://forge.puppetlabs.com/echocat/nfs)
 * [puppetlabs/ntp](https://forge.puppetlabs.com/puppetlabs/ntp)
 * [bi4o4ek/opendkim](https://forge.puppetlabs.com/bi4o4ek/opendkim)
+* [camptocamp/openldap](https://forge.puppetlabs.com/camptocamp/openldap)
 * [luxflux/openvpn](https://forge.puppetlabs.com/luxflux/openvpn)
 * [mayflower/php](https://forge.puppetlabs.com/mayflower/php)
 * [camptocamp/postfix](https://forge.puppetlabs.com/camptocamp/postfix)
