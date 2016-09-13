@@ -8,16 +8,18 @@ class ducktape::corosync (
     corosync::service { 'pacemaker':
       version => 1,
     }
-    service { 'pacemaker':
-      enable  => true,
-      ensure  => running,
-      require => Package['pacemaker'],
-    }
+    if (!$::corosync::manage_pacemaker_service) {
+      service { 'pacemaker':
+        enable  => true,
+        ensure  => running,
+        require => Package['pacemaker'],
+      }
 
-    anchor { 'corosync::begin': }
-    -> Service['corosync']
-    -> Service['pacemaker']
-    -> anchor { 'corosync::end': }
+      anchor { 'corosync::begin': }
+      -> Service['corosync']
+      -> Service['pacemaker']
+      -> anchor { 'corosync::end': }
+    }
 
     # External checks.
     if defined('::monit') and defined(Class['::monit']) {
