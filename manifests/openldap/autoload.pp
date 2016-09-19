@@ -15,15 +15,15 @@ class ducktape::openldap::autoload(
   }
 
   if $load_indexes {
-    $index_defaults = hiera('ducktape::openldap::server::index_defaults', {})
-    $indexes = hiera_hash('ducktape::openldap::server::indexes', {})
-    create_resources('openldap::server::index', $indexes, $index_defaults)
+    $index_defaults = hiera('ducktape::openldap::server::dbindex_defaults', {})
+    $indexes = hiera_hash('ducktape::openldap::server::dbindexes', {})
+    create_resources('openldap::server::dbindex', $indexes, $index_defaults)
   }
 
   if $load_schemas {
     $schema_defaults = hiera('ducktape::openldap::server::schema_defaults', {})
     $schemas = hiera_hash('ducktape::openldap::server::schemas', {})
-    create_resources('openldap::server::access', $schemas, $schema_defaults)
+    create_resources('openldap::server::schema', $schemas, $schema_defaults)
   }
 
 }
