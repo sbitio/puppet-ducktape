@@ -1,4 +1,4 @@
-class ducktape::puppetdb(
+class ducktape::puppetserver(
   $enabled = true,
 ) {
 
