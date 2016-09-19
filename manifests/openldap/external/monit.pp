@@ -9,7 +9,7 @@ class ducktape::openldap::external::monit(
     $pidfile = $::osfamily ? {
       'Debian' => '/var/run/slapd/slapd.pid',
     }
-    monit::check::service { 'slapd':
+    monit::check::service { $::openldap::server::service:
       pidfile => $pidfile,
     }
   }
