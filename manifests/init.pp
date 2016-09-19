@@ -68,6 +68,9 @@ class ducktape {
   if defined('::puppetdb') and defined(Class['::puppetdb']) {
     require ::ducktape::puppetdb
   }
+  if defined('::puppetserver') and defined(Class['::puppetserver']) {
+    require ::ducktape::puppetserver
+  }
   if defined('::rabbitmq') and defined(Class['::rabbitmq']) {
     require ::ducktape::rabbitmq
   }
