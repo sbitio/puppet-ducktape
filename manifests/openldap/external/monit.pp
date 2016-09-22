@@ -12,7 +12,7 @@ class ducktape::openldap::external::monit(
     $init_system = $::lsbdistcodename ? {
       'jessie' => 'sysv',
     }
-    monit::check::service { $::openldap::server:service:
+    monit::check::service { $::openldap::server::service:
       pidfile => $pidfile,
       init_system => $init_system,
     }
