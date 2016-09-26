@@ -9,7 +9,8 @@ class ducktape::puppetserver(
     # of libraries provided by modules (f.e. hiera backends).
     # See https://tickets.puppetlabs.com/browse/SERVER-571
     puppetserver::config::puppetserver { 'puppetserver.conf/jruby-puppet/ruby-load-path':
-      value => ['/opt/puppetlabs/puppet/lib/ruby/vendor_ruby', '/opt/puppetlabs/puppet/cache/lib'],
+      value  => ['/opt/puppetlabs/puppet/lib/ruby/vendor_ruby', '/opt/puppetlabs/puppet/cache/lib'],
+      notify => Service['puppetserver'],
     }
 
     # Tell etcleeper ignore puppet environments.
