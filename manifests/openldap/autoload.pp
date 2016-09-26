@@ -8,6 +8,12 @@ class ducktape::openldap::autoload(
   validate_bool($load_indexes)
   validate_bool($load_schemas)
 
+  if $load_schemas {
+    $schema_defaults = hiera('ducktape::openldap::server::schema_defaults', {})
+    $schemas = hiera_hash('ducktape::openldap::server::schemas', {})
+    create_resources('openldap::server::schema', $schemas, $schema_defaults)
+  }
+
   if $load_accesses {
     $access_defaults = hiera('ducktape::openldap::server::access_defaults', {})
     $accesses = hiera_hash('ducktape::openldap::server::accesses', {})
@@ -20,10 +26,5 @@ class ducktape::openldap::autoload(
     create_resources('openldap::server::dbindex', $indexes, $index_defaults)
   }
 
-  if $load_schemas {
-    $schema_defaults = hiera('ducktape::openldap::server::schema_defaults', {})
-    $schemas = hiera_hash('ducktape::openldap::server::schemas', {})
-    create_resources('openldap::server::schema', $schemas, $schema_defaults)
-  }
 
 }
