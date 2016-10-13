@@ -33,8 +33,7 @@ class ducktape::haproxy::external::munin_node_plugin (
         ],
       },
       require => [
-        # Upstream module doesn't have service as available variable
-        Class['::haproxy::service'],
+        Class['::haproxy'],
         Package[$required_packages],
       ],
     }
@@ -47,8 +46,7 @@ class ducktape::haproxy::external::munin_node_plugin (
         ],
       },
       require => [
-        # Upstream module doesn't have service as available variable
-        Class['::haproxy::service'],
+        Class['::haproxy'],
         Package[$required_packages],
       ],
     }
