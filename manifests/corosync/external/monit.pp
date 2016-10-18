@@ -17,9 +17,17 @@ class ducktape::corosync::external::monit(
       'RedHat' => '/var/run/pacemakerd.pid',
       'Debian' => '/var/run/pacemakerd.pid', #TODO# Untested
     }
+    $matching_pacemaker = $::osfamily ? {
+      'Debian' => $::lsbdistcodename ? {
+        jessie  =>  '/usr/sbin/pacemakerd',
+        default => undef,
+      },
+      default => undef,
+    }
     monit::check::service { 'pacemaker':
-      binary  => '/usr/sbin/pacemakerd',
-      pidfile => $pidfile_pacemaker,
+      binary   => '/usr/sbin/pacemakerd',
+      pidfile  => $pidfile_pacemaker,
+      matching => $matching,
     }
   }
 
