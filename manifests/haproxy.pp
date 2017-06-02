@@ -1,10 +1,17 @@
 class ducktape::haproxy (
   $enabled = true,
+  $package_install_options = undef,
 ) {
 
   validate_bool($enabled)
 
   if $enabled {
+    if ($package_install_options) {
+      Package <| title == "$::haproxy::package_name" |> {
+        install_options => $package_install_options,
+      }
+    }
+
     include ducktape::haproxy::autoload
 
     include ducktape::haproxy::latest
