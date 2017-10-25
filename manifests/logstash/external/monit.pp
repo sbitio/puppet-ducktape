@@ -1,5 +1,6 @@
 class ducktape::logstash::external::monit(
-  $enabled          = true,
+  $enabled = true,
+  $tests = [],
 ) {
 
   validate_bool($enabled)
@@ -29,7 +30,7 @@ class ducktape::logstash::external::monit(
       program_start => $program_start,
       pidfile       => '/var/run/logstash.pid',
       binary        => '/usr/bin/java',
-      tests         => $ducktape::logstash::external::monit::tests,
+      tests         => $tests,
       #TODO# if 5 restarts within 5 cycles then timeout
     }
   }
