@@ -28,7 +28,6 @@ class ducktape::varnish::external::munin_node_plugin(
       $varnish_plugin = 'varnish_'
     }
     @munin::node::plugin { $varnish_plugin :
-      ensure    => $ensure,
       config    => $config,
       sufixes   => [
         'backend_traffic',
