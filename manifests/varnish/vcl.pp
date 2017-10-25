@@ -13,7 +13,7 @@ class ducktape::varnish::vcl (
     if $vcl_source != undef {
       #TODO# make a propper vcl_source validation, since it can be an array or a string
       file { "/etc/varnish/${vcl_name}.vcl" :
-        ensure  => $::varnish::version ? {
+        ensure  => $::varnish::varnish_version ? {
           absent  => absent,
           default => present,
         },

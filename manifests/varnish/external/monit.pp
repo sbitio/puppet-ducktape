@@ -26,9 +26,11 @@ class ducktape::varnish::external::monit(
         hostheader => 'health.varnish',
       },
     }
+    #TODO# Provide a test for admin interface
     $adm_test = {
       type => connection,
-      port => $::varnish::varnish_admin_listen_port,
+      port => $::varnish::varnish_admin_listen,
+      port => $::varnish::varnish_admin_port,
     }
     monit::check::service { 'varnish':
       init_system => $init_system,
