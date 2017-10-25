@@ -17,11 +17,9 @@ class ducktape::apache::external::munin_node_plugin (
     $servername    = "${vhost_prefix}${rand_fragment}${vhost_suffix}"
     $docroot       = "/var/www/${servername}"
 
-    #TODO# Add mod_status dependency
-    $status_path = $::apache::mod::status::status_path ? {
-      undef  => '/server-status',
-      defaul => $::apache::mod::status::status_path,
-    }
+    # Require mod status.
+    include ::apache::mod::status
+    $status_path = $::apache::mod::status::status_path
 
     $_directory = {
       path           => $docroot,
