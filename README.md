@@ -55,7 +55,6 @@ added in a feature.
 
 ## TODO
 
-* Move out `yaml_hierarchy_expander`
 * Move out `json`
 * Add nagios integration
 
