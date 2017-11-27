@@ -14,16 +14,17 @@ define ducktape::php::conf(
 
   case $ensure {
     present: {
+      ini_setting { $name:
+        path    => $php_config_file,
+        section => '',
+        setting => '; priority',
+        value   => $priority,
+        before  => Php::Config[$name],
+      }
       php::config { $name:
         file    => $php_config_file,
         config  => $config,
         require => Class['::php::packages'],
-        before  => File_line[$name],
-      }
-      file_line { $name:
-        path  => $php_config_file,
-        line  => "; priority=${priority}",
-        match => '^; priority=',
       }
     }
     absent: {
@@ -41,7 +42,7 @@ define ducktape::php::conf(
     exec { $cmd:
       refreshonly => true,
     }
-    File_line[$name] ~> Exec[$cmd]
+    Ini_Setting[$name] ~> Exec[$cmd]
     Php::Config[$name] ~> Exec[$cmd]
   }
 }
