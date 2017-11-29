@@ -15,11 +15,12 @@ define ducktape::php::conf(
   case $ensure {
     present: {
       ini_setting { $name:
-        path    => $php_config_file,
-        section => '',
-        setting => '; priority',
-        value   => $priority,
-        before  => Php::Config[$name],
+        path              => $php_config_file,
+        section           => '',
+        key_val_separator => '=',
+        setting           => '; priority',
+        value             => $priority,
+        before            => Php::Config[$name],
       }
       php::config { $name:
         file    => $php_config_file,
