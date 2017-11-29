@@ -38,7 +38,10 @@ define ducktape::php::conf(
   # settings files ourselves with php5enmod command.
   # See https://github.com/Mayflower/puppet-php/blob/master/manifests/extension.pp#L101
   if $::osfamily == 'Debian' {
-    $cmd = "${::php::params::ext_tool_enable} ${name}"
+    $cmd = $::php::params::ext_tool_enable ? {
+      undef   => "php5enmod ${name}",
+      default => "${::php::params::ext_tool_enable} ${name}",
+    }
     exec { $cmd:
       refreshonly => true,
     }
