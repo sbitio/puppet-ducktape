@@ -86,6 +86,9 @@ class ducktape {
   if defined('::sudo') and defined(Class['::sudo']) {
     require ::ducktape::sudo
   }
+  if defined('::systemd') and defined(Class['::systemd']) {
+    require ::ducktape::systemd
+  }
   if defined('::tomcat') and defined(Class['::tomcat']) {
     require ::ducktape::tomcat
   }

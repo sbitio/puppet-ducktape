@@ -40,7 +40,8 @@ Those are the modules we work with at present:
 * [saz/sudo](https://forge.puppetlabs.com/saz/sudo)
 * [sbitio/tomcat](https://github.com/sbitio/puppet-tomcat)
 * [pcfens/topbeat](https://forge.puppetlabs.com/pcfens/topbeat)
-* [bashtoni/varnish](https://forge.puppetlabs.com/bashtoni/varnish)
+* [claranet/varnish](https://forge.puppetlabs.com/claranet/varnish)
+* [camptocamp/systemd](https://forge.puppet.com/camptocamp/systemd)
 * [puppetlabs/vcsrepo](https://forge.puppetlabs.com/puppetlabs/vcsrepo)
 
 
