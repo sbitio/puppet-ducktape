@@ -16,6 +16,9 @@ class ducktape::varnish (
     if defined('::apache') and defined(Class['::apache']) {
       include ::ducktape::varnish::external::apache_log_formats_override
     }
+    if defined('::systemd') and defined(Class['::systemd']) {
+      Systemd::Dropin_file<| unit == 'varnish.service' |> ~> Class['::varnish::service']
+    }
   }
 
 }
