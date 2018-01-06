@@ -26,7 +26,6 @@ class ducktape::varnish::external::monit(
     #TODO# Provide a test for admin interface
     $adm_test = {
       type => 'connection',
-      protocol => 'http',
       port => $::varnish::admin_port,
     }
     monit::check::service { 'varnish':
