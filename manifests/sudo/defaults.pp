@@ -4,8 +4,8 @@ class ducktape::sudo::defaults (
   $hiera_mode      = 'array',
   $ansible_enabled = true,
   $ansible_user    = 'ansible',
-  $vagrant_enabled = $::is_vagrant,
-  $amazon_enabled  = ($::ec2_ami_id != ''),
+  $vagrant_enabled = (defined('$::is_vagrant') and ($::is_vagrant)),
+  $amazon_enabled  = (defined('$::ec2_ami_id') and ($::ec2_ami_id != '')),
 ) {
 
   if $enabled {
