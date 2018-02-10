@@ -25,8 +25,9 @@ class ducktape::ntp::external::monit(
         default       => undef,
       },
       'Debian' => $::lsbdistcodename ? {
-        'jessie' => 'sysv',
-        default  => undef,
+        'jessie'  => 'sysv',
+        'stretch' => 'sysv',
+        default   => undef,
       },
       default  => undef,
     }
