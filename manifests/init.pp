@@ -8,6 +8,9 @@ class ducktape {
   if defined('::filebeat') and defined(Class['::filebeat']) {
     require ::ducktape::filebeat
   }
+  if defined('::firewall') and defined(Class['::firewall']) {
+    require ::ducktape::firewall
+  }
   if defined('::gluster') and defined(Class['::gluster']) {
     require ::ducktape::gluster
   }

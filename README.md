@@ -14,6 +14,7 @@ Those are the modules we work with at present:
 * [puppetlabs/apache](https://forge.puppetlabs.com/puppetlabs/apache)
 * [puppetlabs/corosync](https://forge.puppetlabs.com/puppetlabs/corosync)
 * [pcfens/filebeat](https://forge.puppetlabs.com/pcfens/filebeat)
+* [puppetlabs/firewall](https://github.com/puppetlabs/puppetlabs-firewall)
 * [puppet/gluster](https://forge.puppetlabs.com/puppet/gluster)
 * [puppetlabs/haproxy](https://forge.puppetlabs.com/puppetlabs/haproxy)
 * [danzilio/letsencrypt](https://forge.puppet.com/danzilio/letsencrypt)
