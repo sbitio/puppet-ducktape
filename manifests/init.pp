@@ -2,6 +2,9 @@ class ducktape {
   if defined('::apache') and defined(Class['::apache']) {
     require ::ducktape::apache
   }
+  if defined('::apt') and defined(Class['::apt']) {
+    require ::ducktape::apt
+  }
   if defined('::corosync') and defined(Class['::corosync']) {
     require ::ducktape::corosync
   }
