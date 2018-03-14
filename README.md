@@ -38,6 +38,7 @@ Those are the modules we work with at present:
 * [puppetlabs/puppetdb](https://forge.puppetlabs.com/puppetlabs/puppetdb)
 * [camptocamp/puppetserver](https://forge.puppetlabs.com/camptocamp/puppetserver)
 * [puppetlabs/rabbitmq](https://forge.puppetlabs.com/puppetlabs/rabbitmq)
+* [arioch/redis](https://forge.puppet.com/arioch/redis)
 * [saz/rsyslog](https://forge.puppetlabs.com/saz/rsyslog)
 * [saz/ssh](https://forge.puppetlabs.com/saz/ssh)
 * [saz/sudo](https://forge.puppetlabs.com/saz/sudo)

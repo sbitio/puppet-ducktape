@@ -83,6 +83,9 @@ class ducktape {
   if defined('::rabbitmq') and defined(Class['::rabbitmq']) {
     require ::ducktape::rabbitmq
   }
+  if defined('::redis') and defined(Class['::redis']) {
+    require ::ducktape::redis
+  }
   if defined('::rsyslog') and defined(Class['::rsyslog']) {
     require ::ducktape::rsyslog
   }
