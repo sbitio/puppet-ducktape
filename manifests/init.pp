@@ -104,6 +104,9 @@ class ducktape {
   if defined('::topbeat') and defined(Class['::topbeat']) {
     require ::ducktape::topbeat
   }
+  if defined('::twemproxy') and defined(Class['::twemproxy']) {
+    require ::ducktape::twemproxy
+  }
   if defined('::varnish') and defined(Class['::varnish']) {
     require ::ducktape::varnish
   }

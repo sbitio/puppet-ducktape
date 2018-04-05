@@ -42,10 +42,11 @@ Those are the modules we work with at present:
 * [saz/rsyslog](https://forge.puppetlabs.com/saz/rsyslog)
 * [saz/ssh](https://forge.puppetlabs.com/saz/ssh)
 * [saz/sudo](https://forge.puppetlabs.com/saz/sudo)
+* [camptocamp/systemd](https://forge.puppet.com/camptocamp/systemd)
 * [sbitio/tomcat](https://github.com/sbitio/puppet-tomcat)
 * [pcfens/topbeat](https://forge.puppetlabs.com/pcfens/topbeat)
+* [sbog/twemproxy](https://forge.puppet.com/sbog/twemproxy)
 * [claranet/varnish](https://forge.puppetlabs.com/claranet/varnish)
-* [camptocamp/systemd](https://forge.puppet.com/camptocamp/systemd)
 * [puppetlabs/vcsrepo](https://forge.puppetlabs.com/puppetlabs/vcsrepo)
 
 
