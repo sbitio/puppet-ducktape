@@ -1,7 +1,7 @@
 class ducktape::firewall (
   $enabled = true,
-  $purge_firewall = true,
-  $purge_firewallchain = true,
+  $purge_firewall = false,
+  $purge_firewallchain = false,
 ) {
 
   validate_bool($enabled)
