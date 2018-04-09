@@ -5,4 +5,5 @@ class ducktape::redis::external::munin_node_plugin(
     @munin::node::plugin { 'nutcracker_requests' :
       target => "${::ducktape::munin::node::contrib_plugins_path}/plugins/twemproxy/nutcracker_requests_",
     }
+  }
 }
