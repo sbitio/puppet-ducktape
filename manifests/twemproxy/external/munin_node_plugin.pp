@@ -1,4 +1,4 @@
-class ducktape::redis::external::munin_node_plugin(
+class ducktape::twemproxy::external::munin_node_plugin(
   $enabled = true,
 ) {
   if $enabled and $ducktape::munin::node::enabled and $ducktape::munin::node::manage_repo {
