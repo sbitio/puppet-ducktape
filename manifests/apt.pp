@@ -1,5 +1,6 @@
 class ducktape::apt (
   $enabled = true,
+  $force_apt_update_before_packages = true,
 ) {
 
   validate_bool($enabled)
@@ -16,5 +17,8 @@ class ducktape::apt (
     create_resources('::apt::source', $sources, $source_defaults)
   }
 
+  if ($force_apt_update_before_packages) {
+    Class['apt::update'] -> Package <||>
+  }
 }
 
