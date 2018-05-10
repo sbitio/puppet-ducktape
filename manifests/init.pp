@@ -111,6 +111,7 @@ class ducktape {
     require ::ducktape::varnish
   }
 
+  require ::ducktape::anchors
   require ::ducktape::vcsrepo
 
 }
