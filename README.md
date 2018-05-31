@@ -13,6 +13,7 @@ Those are the modules we work with at present:
 
 * [puppetlabs/apache](https://forge.puppetlabs.com/puppetlabs/apache)
 * [puppetlabs/apt](https://forge.puppetlabs.com/puppetlabs/apt)
+* [puppet/archive](https://github.com/voxpupuli/puppet-archive)
 * [puppetlabs/corosync](https://forge.puppetlabs.com/puppetlabs/corosync)
 * [pcfens/filebeat](https://forge.puppetlabs.com/pcfens/filebeat)
 * [puppetlabs/firewall](https://forge.puppet.com/puppetlabs/firewall)

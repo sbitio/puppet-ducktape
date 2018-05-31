@@ -112,6 +112,7 @@ class ducktape {
   }
 
   require ::ducktape::anchors
+  require ::ducktape::archive
   require ::ducktape::vcsrepo
 
 }
