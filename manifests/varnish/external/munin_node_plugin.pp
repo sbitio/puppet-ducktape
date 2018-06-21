@@ -16,13 +16,19 @@ class ducktape::varnish::external::munin_node_plugin(
     ensure_resource('munin::node::plugin::required_package', $required_packages)
 
     if versioncmp($::varnish::varnish_version, '4.0') >= 0 {
-      $varnish_plugin = 'varnish4_'
       $config = [
         'group varnish',
         'env.varnishstat varnishstat',
         'env.name',
       ]
-      $source = 'puppet:///modules/ducktape/varnish/external/munin_node_plugin/varnish4_'
+      if versioncmp($::varnish::varnish_version, '5.0') >= 0 {
+        $varnish_plugin = 'varnish5_'
+        $source = 'puppet:///modules/ducktape/varnish/external/munin_node_plugin/varnish5_'
+      }
+      else {
+        $varnish_plugin = 'varnish4_'
+        $source = 'puppet:///modules/ducktape/varnish/external/munin_node_plugin/varnish4_'
+      }
     }
     else {
       $varnish_plugin = 'varnish_'
