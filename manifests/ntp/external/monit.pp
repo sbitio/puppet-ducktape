@@ -1,5 +1,6 @@
 class ducktape::ntp::external::monit(
   $enabled = true,
+  $action  = 'restart',
 ) {
 
   validate_bool($enabled)
@@ -36,7 +37,7 @@ class ducktape::ntp::external::monit(
       type        => 'connection',
       socket_type => 'udp',
       port        => 123,
-      action      => 'restart',
+      action      => $action,
     }
     monit::check::service { $::ntp::service_name:
       init_system => $init_system,

@@ -1,5 +1,6 @@
 class ducktape::postfix::external::monit(
   $enabled = true,
+  $action  = 'restart',
 ) {
 
   validate_bool($enabled)
@@ -23,7 +24,7 @@ class ducktape::postfix::external::monit(
       type     => connection,
       protocol => smtp,
       port     => 25,
-      action   => 'restart',
+      action   => $action,
     }
     monit::check::service { 'postfix':
       init_system => $init_system,

@@ -1,5 +1,6 @@
 class ducktape::memcached::external::monit(
   $enabled = true,
+  $action  = 'restart',
 ) {
 
   validate_bool($enabled)
@@ -30,13 +31,13 @@ class ducktape::memcached::external::monit(
       type        => 'connection',
       socket_type => 'tcp',
       port        => $::memcached::tcp_port,
-      action      => 'restart',
+      action      => $action,
     }
     $test_udp = {
       type        => 'connection',
       socket_type => 'udp',
       port        => $::memcached::udp_port,
-      action      => 'restart',
+      action      => $action,
     }
     monit::check::service { $::memcached::params::service_name:
       pidfile  => $pidfile,

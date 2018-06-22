@@ -1,5 +1,6 @@
 class ducktape::apache::external::monit(
   $enabled        = true,
+  $action         = 'restart',
   $ip             = '127.0.0.1',
   $port           = 80,
   $vhost_priority = 99,
@@ -70,7 +71,7 @@ class ducktape::apache::external::monit(
       host     => $servername,
       protocol => 'http',
       port     => $port,
-      action   => 'restart',
+      action   => $action,
     }
     monit::check::service { $::apache::service_name:
       init_system   => $init_system,

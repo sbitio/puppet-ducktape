@@ -1,5 +1,6 @@
 class ducktape::opendkim::external::monit(
   $enabled = true,
+  $action  = 'restart',
   $port    = $::ducktape::opendkim::port,
 ) {
 
@@ -20,7 +21,7 @@ class ducktape::opendkim::external::monit(
     $test = {
       type     => connection,
       port     => $port,
-      action   => 'restart',
+      action   => $action,
     }
     monit::check::service { 'opendkim':
       init_system => $init_system,

@@ -1,5 +1,5 @@
 class ducktape::filebeat::external::monit(
-  $enabled        = true,
+  $enabled = true,
 ) {
 
   validate_bool($enabled)

@@ -1,5 +1,6 @@
 class ducktape::haproxy::external::monit(
   $enabled = true,
+  $action  = 'restart',
 ) {
 
   validate_bool($enabled)
@@ -23,7 +24,7 @@ class ducktape::haproxy::external::monit(
         request => '/haproxy',
       },
       port     => $port_hive['stats1']['ports'],
-      action   => 'restart',
+      action   => $action,
     }
     monit::check::service { 'haproxy':
       init_system => $init_system,

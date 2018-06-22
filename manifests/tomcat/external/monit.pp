@@ -1,5 +1,6 @@
 class ducktape::tomcat::external::monit (
   $enabled = true,
+  $action  = 'restart',
 ) {
 
   if $enabled {
@@ -38,7 +39,7 @@ class ducktape::tomcat::external::monit (
       type     => 'connection',
       protocol => 'http',
       port     => $::tomcat::http_port,
-      action   => 'restart',
+      action   => $action,
     }
 
     monit::check::service { $::tomcat::service_name :
