@@ -20,8 +20,8 @@ class ducktape::mysql::flavour (
           }
           'Debian': {
             apt::key { 'percona':
-              key        => '9334A25F8507EFA5',
-              key_server => 'keys.gnupg.net',
+              id     => '9334A25F8507EFA5',
+              server => 'keys.gnupg.net',
             }
             apt::source { 'percona':
               location    => 'http://repo.percona.com/apt',
