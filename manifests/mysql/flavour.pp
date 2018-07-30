@@ -24,11 +24,10 @@ class ducktape::mysql::flavour (
               server => 'keys.gnupg.net',
             }
             apt::source { 'percona':
-              location    => 'http://repo.percona.com/apt',
-              release     => $::lsbdistcodename,
-              repos       => 'main',
-              include_src => false,
-              require     => Apt::Key['percona'],
+              location => 'http://repo.percona.com/apt',
+              release  => $::lsbdistcodename,
+              repos    => 'main',
+              require  => Apt::Key['percona'],
             }
           }
           default : {
