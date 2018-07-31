@@ -9,7 +9,7 @@ class ducktape::logstash::external::monit(
 
     monit::check::service { 'logstash':
       binary       => '/usr/bin/java',
-      matching     => 'org.logstash.Logstash',
+      matching     => 'logstash',
       systemd_file => '/etc/systemd/system/logstash.service',
       tests        => $tests,
       #TODO# if 5 restarts within 5 cycles then timeout

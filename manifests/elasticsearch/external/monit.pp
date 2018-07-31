@@ -10,7 +10,7 @@ class ducktape::elasticsearch::external::monit(
 
     monit::check::service { 'elasticsearch':
       binary       => '/usr/bin/java',
-      matching     => 'org.elasticsearch.bootstrap.Elasticsearch',
+      matching     => 'elasticsearch',
       systemd_file => $systemd_file,
       tests        => $tests,
       #TODO# if 5 restarts within 5 cycles then timeout
