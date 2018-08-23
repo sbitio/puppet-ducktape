@@ -29,6 +29,7 @@ define ducktape::mysql::conf(
     group   => 'root',
     mode    => '0644',
     content => $content_real,
+    notify  => Class['::mysql::server::service'],
   }
 }
 
