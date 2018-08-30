@@ -1,6 +1,6 @@
 class ducktape::varnish::vcl (
   $enabled    = true,
-  $vcl_name   = $::hostname,
+  $vcl_name   = puppet,
   $vcl_source = undef,
 ) {
 
