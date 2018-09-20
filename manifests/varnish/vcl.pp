@@ -19,7 +19,8 @@ class ducktape::varnish::vcl (
         },
         source  => $vcl_source,
         require => Class['::varnish::install'],
-        notify  => Class['::varnish::service'],
+        #TODO This is quite dirty&fragile (accessing internal), but since notifying varnish::service class restarts varnish...
+        notify  => Exec['vcl_reload'],
       }
     }
   }
