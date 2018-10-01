@@ -64,8 +64,8 @@ class ducktape::apache::external::monit(
       },
       default  => undef,
     }
-    $initd_start     = "${::monit::service_program} ${::apache::service_name} start"
-    $program_start   = "/bin/sh -c '${initd_start} || /usr/bin/killall -9 ${::apache::service_name}' && /bin/sleep 2 && ${initd_start}; }'"
+    $initd           = "${::monit::service_program} ${::apache::service_name}"
+    $program_start   = "/bin/sh -c '${initd} stop || /usr/bin/killall -9 ${::apache::service_name}' && /bin/sleep 2 && ${initd} start"
     $connection_test = {
       type     => 'connection',
       host     => $servername,
