@@ -1,19 +1,18 @@
 class ducktape::haproxy::autoload (
-  $load_frontends = true,
-  $load_backends  = true,
+  Boolean $frontend          = true,
+  Hash    $frontend_defaults = {},
+  Hash    $frontends         = {},
+  Boolean $backend           = true,
+  Hash    $backend_defaults  = {},
+  Hash    $backends          = {},
 ) {
 
-  validate_bool($load_frontends)
-  validate_bool($load_backends)
-
-  if $load_frontends {
-    $haproxy_frontend_defaults = hiera('ducktape::haproxy::frontend::defaults', {})
-    create_resources('haproxy::frontend', hiera_hash('ducktape::haproxy::frontends', {}), $haproxy_frontend_defaults)
+  if $frontend {
+    create_resources('haproxy::frontend', $frontends, $frontend_defaults)
   }
 
-  if $load_backends {
-    $haproxy_backend_defaults = hiera('ducktape::haproxy::backend::defaults', {})
-    create_resources('haproxy::backend', hiera_hash('ducktape::haproxy::backends', {}), $haproxy_backend_defaults)
+  if $backend {
+    create_resources('haproxy::backend', $backends, $backend_defaults)
   }
 
 }
