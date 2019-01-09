@@ -22,7 +22,7 @@ class ducktape::haproxy::external::monit(
         # TODO find a way to get this from hiera
         request => '/haproxy',
       },
-      port     => $port_hive['stats1']['ports'],
+      port     => $port_hive['stats_fe']['ports'],
       action   => $action,
     }
     monit::check::service { 'haproxy':
