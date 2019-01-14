@@ -28,7 +28,7 @@ Those are the modules we work with at present:
 * [sbitio/monit](https://github.com/sbitio/puppet-monit)
 * [sbitio/munin](https://github.com/sbitio/puppet-munin)
 * [puppetlabs/mysql](https://forge.puppetlabs.com/puppetlabs/mysql)
-* [fsalum/newrelic](https://forge.puppetlabs.com/fsalum/newrelic)
+* [claranet/newrelic](https://forge.puppetlabs.com/claranet/newrelic)
 * [echocat/nfs](https://forge.puppetlabs.com/echocat/nfs)
 * [puppetlabs/ntp](https://forge.puppetlabs.com/puppetlabs/ntp)
 * [bi4o4ek/opendkim](https://forge.puppetlabs.com/bi4o4ek/opendkim)
