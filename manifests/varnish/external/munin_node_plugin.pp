@@ -19,7 +19,6 @@ class ducktape::varnish::external::munin_node_plugin(
       $config = [
         'group varnish',
         'env.varnishstat varnishstat',
-        'env.name',
       ]
       if versioncmp($::varnish::varnish_version, '5.0') >= 0 {
         $varnish_plugin = 'varnish5_'
