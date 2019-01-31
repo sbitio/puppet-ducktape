@@ -20,6 +20,7 @@ Those are the modules we work with at present:
 * [alexharvey/firewall_multi](https://forge.puppet.com/alexharvey/firewall_multi)
 * [puppet/gluster](https://forge.puppetlabs.com/puppet/gluster)
 * [puppetlabs/haproxy](https://forge.puppetlabs.com/puppetlabs/haproxy)
+* [elastic/kibana](https://forge.puppetlabs.com/elastic/kibana)
 * [danzilio/letsencrypt](https://forge.puppet.com/danzilio/letsencrypt)
 * [sbitio/logcheck](https://github.com/sbitio/puppet-logcheck)
 * [yo61/logrotate](https://forge.puppet.com/yo61/logrotate)

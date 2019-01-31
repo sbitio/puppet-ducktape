@@ -23,6 +23,9 @@ class ducktape {
   if defined('::haproxy') and defined(Class['::haproxy']) {
     require ::ducktape::haproxy
   }
+  if defined('::kibana') and defined(Class['::kibana']) {
+    require ::ducktape::kibana
+  }
   if defined('::letsencrypt') and defined(Class['::letsencrypt']) {
     require ::ducktape::letsencrypt
   }
