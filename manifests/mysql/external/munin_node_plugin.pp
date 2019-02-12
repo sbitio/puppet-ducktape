@@ -54,10 +54,13 @@ class ducktape::mysql::external::munin_node_plugin(
 
   if $enabled and defined('::munin::node') and defined(Class['::munin::node']) {
 
-    case $::osfamily {
-      debian : { $required_packages = 'libcache-cache-perl' }
-      redhat : { $required_packages = 'perl-cache-cache' }
-      default: { fail("Unsupported platform: ${::osfamily}") }
+    $required_packages = $::operatingsystem ? {
+      'Debian' => $::lsbdistcodename ? {
+        'jessie'  => 'libdbd-mysql-perl',
+        'stretch' => 'libdbd-mysql-perl',
+        default   => 'libcache-cache-perl',
+      },
+      default  => [],
     }
 
     $all_plugins = concat(['mysql_'], $old_plugins)
