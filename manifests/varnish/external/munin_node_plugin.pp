@@ -16,6 +16,7 @@ class ducktape::varnish::external::munin_node_plugin(
     ensure_resource('munin::node::plugin::required_package', $required_packages)
 
     if versioncmp($::varnish::varnish_version, '4.0') >= 0 {
+      @munin::node::autoconf::exclusion { 'varnish_' : }
       $config = [
         'group varnish',
         'env.varnishstat varnishstat',
