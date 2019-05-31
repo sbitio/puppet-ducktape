@@ -9,7 +9,9 @@ class ducktape::newrelic (
     if (versioncmp($::operatingsystemrelease, '9') >= 0) {
       $cmd = @(EOT)
           for PHP_API in $(find /usr/lib/php -maxdepth 1 -name "20*" -type d -printf "%f\n"); do
-            ln -s /usr/lib/newrelic-php5/agent/x64/newrelic-$PHP_API.so /usr/lib/php/$PHP_API/newrelic.so
+            if [ ! -e /usr/lib/php/$PHP_API/newrelic.so ]; then
+              ln -s /usr/lib/newrelic-php5/agent/x64/newrelic-$PHP_API.so /usr/lib/php/$PHP_API/newrelic.so
+            fi
           done;
       |-EOT
       exec { 'newrelic-install-extension':
