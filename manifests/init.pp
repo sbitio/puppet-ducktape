@@ -114,6 +114,7 @@ class ducktape {
     require ::ducktape::varnish
   }
 
+  require ::ducktape::alternatives
   require ::ducktape::anchors
   require ::ducktape::archive
   require ::ducktape::vcsrepo
