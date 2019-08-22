@@ -117,6 +117,7 @@ class ducktape {
   require ::ducktape::alternatives
   require ::ducktape::anchors
   require ::ducktape::archive
+  require ::ducktape::docker::compose
   require ::ducktape::vcsrepo
 
 }
