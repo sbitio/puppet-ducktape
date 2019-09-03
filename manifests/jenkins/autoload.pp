@@ -8,9 +8,9 @@ class ducktape::jenkins::autoload (
   Boolean $native_credential          = true,
   Hash    $native_credential_defaults = {},
   Hash    $native_credentials         = {},
-  Boolean $roge                       = true,
-  Hash    $roge_defaults              = {},
-  Hash    $roges                      = {},
+  Boolean $rogue                      = true,
+  Hash    $rogue_defaults             = {},
+  Hash    $rogues                     = {},
   Boolean $user                       = true,
   Hash    $user_defaults              = {},
   Hash    $users                      = {},
@@ -39,8 +39,8 @@ class ducktape::jenkins::autoload (
     create_resources('jenkins_credentials', $native_credentials, $native_credential_defaults)
   }
 
-  if $roge {
-    $roge_main_defaults = {
+  if $rogue {
+    $rogue_main_defaults = {
       environment => [
         "JENKINS_CLI=/usr/bin/java -jar ${::jenkins::libdir}/jenkins-cli.jar -s http://127.0.0.1:8080 -auth ${::jenkins::cli_username}:${::jenkins::cli_password} groovy =",
       ],
@@ -48,7 +48,7 @@ class ducktape::jenkins::autoload (
       require =>  Class['jenkins::cli_helper'],
       logoutput => true,
     }
-    create_resources('exec', $roges, $roge_main_defaults + $roge_defaults)
+    create_resources('exec', $rogues, $rogue_main_defaults + $rogue_defaults)
   }
 
   if $user {
