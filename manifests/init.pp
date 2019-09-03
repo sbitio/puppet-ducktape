@@ -23,6 +23,9 @@ class ducktape {
   if defined('::haproxy') and defined(Class['::haproxy']) {
     require ::ducktape::haproxy
   }
+  if defined('::jenkins') and defined(Class['::jenkins']) {
+    require ::ducktape::jenkins
+  }
   if defined('::kibana') and defined(Class['::kibana']) {
     require ::ducktape::kibana
   }
