@@ -23,9 +23,6 @@ class ducktape::haproxy (
     if defined('::monit') and defined(Class['::monit']) {
       include ::ducktape::haproxy::external::monit
     }
-    if defined('::rsyslog') and defined(Class['::rsyslog']) {
-      include ::ducktape::haproxy::external::rsyslog
-    }
   }
 
 }
