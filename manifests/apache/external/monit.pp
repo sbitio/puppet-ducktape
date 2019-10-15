@@ -7,6 +7,7 @@ class ducktape::apache::external::monit(
   $vhost_seed     = 'monit-test',
   $vhost_prefix   = 'monit-test-',
   $vhost_suffix   = ".${::fqdn}",
+  $conn_tolerance = { cycles => 1 },
 ) {
 
   validate_bool($enabled)
@@ -67,11 +68,12 @@ class ducktape::apache::external::monit(
     $initd           = "${::monit::service_program} ${::apache::service_name}"
     $program_start   = "/bin/sh -c '${initd} stop || /usr/bin/killall -9 ${::apache::service_name} ; /bin/sleep 2 ; ${initd} start'"
     $connection_test = {
-      type     => 'connection',
-      host     => $servername,
-      protocol => 'http',
-      port     => $port,
-      action   => $action,
+      type      => 'connection',
+      host      => $servername,
+      protocol  => 'http',
+      port      => $port,
+      action    => $action,
+      tolerance => $conn_tolerance,
     }
     monit::check::service { $::apache::service_name:
       init_system   => $init_system,
