@@ -1,5 +1,6 @@
 class ducktape::nfs::client::autoload (
   $autorealize = true,
+  $nfstag      = 'nfs',
   $load_mounts = true,
 ) {
 
@@ -11,7 +12,7 @@ class ducktape::nfs::client::autoload (
     create_resources('nfs::client::mount', hiera_hash('ducktape::nfs::client::mounts', {}), $nfs_client_mount_defaults)
   }
   if $autorealize {
-    Nfs::Client::Mount <<| |>>
+    Nfs::Client::Mount <<| nfstag == $nfstag |>>
   }
 
 }
