@@ -19,7 +19,13 @@ class ducktape::firewall::autoload (
   if $load_chains {
     $chain_defaults = lookup('ducktape::firewall::chain::defaults', {'default_value' => {}})
     $chains = lookup('ducktape::firewall::chains', {'default_value' => {}})
-    create_resources('firewallchain', $chains, $chain_defaults)
+    $chains.each |String $name, Variant[Hash,String] $params| {
+      if $params != '' {
+        firewallchain { $name:
+          * => deep_merge($chain_defaults, $params),
+        }
+      }
+    }
   }
 
 }
