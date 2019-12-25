@@ -7,8 +7,8 @@ class ducktape::firewall::autoload (
   validate_bool($load_chains)
 
   if $load_rules {
-    $rule_defaults = hiera('ducktape::firewall::rule::defaults', {})
-    $rules = hiera_hash('ducktape::firewall::rules', {})
+    $rule_defaults = lookup('ducktape::firewall::rule::defaults', {'default_value' => {}})
+    $rules = lookup('ducktape::firewall::rules', {'default_value' => {}})
     if defined('::firewall_multi') and defined(Resource['::firewall_multi']) {
       create_resources('firewall_multi', $rules, $rule_defaults)
     }
@@ -17,8 +17,8 @@ class ducktape::firewall::autoload (
     }
   }
   if $load_chains {
-    $chain_defaults = hiera('ducktape::firewall::chain::defaults', {})
-    $chains = hiera_hash('ducktape::firewall::chains', {})
+    $chain_defaults = lookup('ducktape::firewall::chain::defaults', {'default_value' => {}})
+    $chains = lookup('ducktape::firewall::chains', {'default_value' => {}})
     create_resources('firewallchain', $chains, $chain_defaults)
   }
 
