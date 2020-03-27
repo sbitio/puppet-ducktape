@@ -26,7 +26,7 @@ class ducktape::openldap::external::monit(
     monit::check::service { $::openldap::server::service:
       pidfile => $pidfile,
       init_system => $init_system,
-      tests => [$connectio_test, ],
+      tests => [$connection_test, ],
     }
   }
 
