@@ -29,6 +29,9 @@ class ducktape {
   if defined('::kibana') and defined(Class['::kibana']) {
     require ::ducktape::kibana
   }
+  if defined('::ldap') and defined(Class['::ldap']) {
+    require ::ducktape::ldap
+  }
   if defined('::letsencrypt') and defined(Class['::letsencrypt']) {
     require ::ducktape::letsencrypt
   }
