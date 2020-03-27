@@ -23,6 +23,7 @@ Those are the modules we work with at present:
 * [puppetlabs/haproxy](https://forge.puppetlabs.com/puppetlabs/haproxy)
 * [puppet/jenkins](https://forge.puppet.com/puppet/jenkins)
 * [elastic/kibana](https://forge.puppetlabs.com/elastic/kibana)
+* [datacentred/ldap](https://forge.puppet.com/datacentred/ldap)
 * [danzilio/letsencrypt](https://forge.puppet.com/danzilio/letsencrypt)
 * [sbitio/logcheck](https://github.com/sbitio/puppet-logcheck)
 * [yo61/logrotate](https://forge.puppet.com/yo61/logrotate)
