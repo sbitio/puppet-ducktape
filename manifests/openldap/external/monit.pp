@@ -16,9 +16,17 @@ class ducktape::openldap::external::monit(
       },
       default  => undef,
     }
+
+    $connection_test = {
+      type     => 'connection',
+      protocol => 'ldap3',
+      port     => $::varnish::listen_port,
+      action   => 'restart',
+    }
     monit::check::service { $::openldap::server::service:
       pidfile => $pidfile,
       init_system => $init_system,
+      tests => [$connectio_test, ],
     }
   }
 
