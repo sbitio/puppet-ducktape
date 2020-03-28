@@ -9,23 +9,16 @@ class ducktape::openldap::external::monit(
     $pidfile = $::osfamily ? {
       'Debian' => '/var/run/slapd/slapd.pid',
     }
-    $init_system = $::operatingsystem ? {
-      'Debian' => $::lsbdistcodename ? {
-        'jessie' => 'sysv',
-        default  => undef,
-      },
-      default  => undef,
-    }
 
     $connection_test = {
       type     => 'connection',
       protocol => 'ldap3',
-      port     => $::varnish::listen_port,
+      port     => 389,
       action   => 'restart',
     }
     monit::check::service { $::openldap::server::service:
       pidfile => $pidfile,
-      init_system => $init_system,
+      init_system => 'sysv',
       tests => [$connection_test, ],
     }
   }
