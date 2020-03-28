@@ -29,7 +29,7 @@ class ducktape {
   if defined('::kibana') and defined(Class['::kibana']) {
     require ::ducktape::kibana
   }
-  if defined('::ldap') and defined(Class['::ldap']) {
+  if defined('::ldap::client') and defined(Class['::ldap::client']) {
     require ::ducktape::ldap
   }
   if defined('::letsencrypt') and defined(Class['::letsencrypt']) {
@@ -71,7 +71,7 @@ class ducktape {
   if defined('::opendkim') and defined(Class['::opendkim']) {
     require ::ducktape::opendkim
   }
-  if defined('::openldap') and defined(Class['::openldap']) {
+  if defined('::openldap::server') and defined(Class['::openldap::server']) {
     require ::ducktape::openldap
   }
   if defined('::openvpn') and defined(Class['::openvpn']) {
