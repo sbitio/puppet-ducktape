@@ -8,6 +8,9 @@ class ducktape {
   if defined('::corosync') and defined(Class['::corosync']) {
     require ::ducktape::corosync
   }
+  if defined('::dns::server') and defined(Class['::dns::server']) {
+    require ::ducktape::dns
+  }
   if defined('::filebeat') and defined(Class['::filebeat']) {
     require ::ducktape::filebeat
   }

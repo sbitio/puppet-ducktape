@@ -16,6 +16,7 @@ Those are the modules we work with at present:
 * [puppet/alternatives](https://forge.puppet.com/puppet/alternatives)
 * [puppet/archive](https://github.com/voxpupuli/puppet-archive)
 * [puppetlabs/corosync](https://forge.puppetlabs.com/puppetlabs/corosync)
+* [ajjahn/dns](https://forge.puppet.com/ajjahn/dns)
 * [pcfens/filebeat](https://forge.puppetlabs.com/pcfens/filebeat)
 * [puppetlabs/firewall](https://forge.puppet.com/puppetlabs/firewall)
 * [alexharvey/firewall_multi](https://forge.puppet.com/alexharvey/firewall_multi)
