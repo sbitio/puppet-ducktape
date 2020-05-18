@@ -15,13 +15,13 @@ class ducktape::jenkins (
     $jenkins_cli_authed ="/usr/bin/java -jar ${jenkins_cli} -s http://127.0.0.1:8080 -auth admin:$(cat $jenkins_initial_admin_password_file)"
     $puppet_helper = "/bin/cat ${::jenkins::libdir}/puppet_helper.groovy | ${jenkins_cli_authed} groovy ="
     if $::jenkins::cli_username == 'admin' {
-      $remove_admin_if_necesary = "/bin/true"
+      $remove_admin_if_necessary = "/bin/true"
     }
     else {
-      $remove_admin_if_necesary = "${puppet_helper} delete_user admin"
+      $remove_admin_if_necessary = "${puppet_helper} delete_user admin"
     }
     $jenkins_cli_ready_cmd = "${jenkins_cli_authed} who-am-i"
-    $jenkins_bootstrap_cmd = "${puppet_helper} set_security full_control && ${puppet_helper} create_or_update_user '${::jenkins::cli_username}' 'bootstrap@localhost' '${::jenkins::cli_password}' 'bootstrap' && ${remove_admin_if_necesary} && mv /var/lib/jenkins/secrets/initialAdminPassword /var/lib/jenkins/secrets/initialAdminPassword_back"
+    $jenkins_bootstrap_cmd = "${puppet_helper} set_security full_control && ${puppet_helper} create_or_update_user '${::jenkins::cli_username}' 'bootstrap@localhost' '${::jenkins::cli_password}' '${::jenkins::cli_username}' && ${remove_admin_if_necessary} && mv /var/lib/jenkins/secrets/initialAdminPassword /var/lib/jenkins/secrets/initialAdminPassword_back"
     exec { 'jenkins-ducktape-bootstrap-cliready':
       command => $jenkins_cli_ready_cmd,
       tries => 15,
