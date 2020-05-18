@@ -44,7 +44,7 @@ class ducktape::jenkins::autoload (
       environment => [
         "JENKINS_CLI=/usr/bin/java -jar ${::jenkins::libdir}/jenkins-cli.jar -s http://127.0.0.1:8080 -auth ${::jenkins::cli_username}:${::jenkins::cli_password} groovy =",
       ],
-      subscribe => Exec['jenkins-ducktape-bootstrap-cmd'],
+      subscribe => Exec['ducktape-jenkins-bootstrap-cmd'],
       require =>  Class['jenkins::cli_helper'],
       logoutput => true,
     }
