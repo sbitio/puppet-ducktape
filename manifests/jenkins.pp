@@ -11,8 +11,6 @@ class ducktape::jenkins (
     anchor {'jenkins-bootstrap-complete': }
 
     $jenkins_initial_admin_password_file = '/var/lib/jenkins/secrets/initialAdminPassword'
-    $jenkins_bootstrap_script_path = '/tmp/puppet-bootstrap-jenkins.sh'
-    $bootstrap_done_file = "${jenkins::libdir}/jenkins-puppet-bootstrap.done"
     $jenkins_cli = "${::jenkins::libdir}/jenkins-cli.jar"
     $jenkins_cli_authed ="/usr/bin/java -jar ${jenkins_cli} -s http://127.0.0.1:8080 -auth admin:$(cat $jenkins_initial_admin_password_file)"
     $puppet_helper = "/bin/cat ${::jenkins::libdir}/puppet_helper.groovy | ${jenkins_cli_authed} groovy ="
