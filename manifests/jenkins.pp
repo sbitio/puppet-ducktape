@@ -20,8 +20,9 @@ class ducktape::jenkins (
       unless => "test ! -e ${initial_admin_pass_file}",
     }
 
-    $jenkins_cli ="/usr/bin/java -jar ${::jenkins::libdir}/jenkins-cli.jar -s http://127.0.0.1:8080 -auth admin:$(cat ${initial_admin_pass_file})"
-    $puppet_helper = "/bin/cat ${::jenkins::libdir}/puppet_helper.groovy | ${jenkins_cli} groovy ="
+    $jenkins_cli = "/usr/bin/java -jar ${::jenkins::cli::jar} -s http://127.0.0.1:${jenkins::cli_helper::port} ${jenkins::cli_helper::prefix}"
+    $jenkins_cli_auth_init ="/usr/bin/java -jar ${::jenkins::libdir}/jenkins-cli.jar -s http://127.0.0.1:8080 -auth admin:$(cat ${initial_admin_pass_file})"
+    $puppet_helper = "/bin/cat ${::jenkins::libdir}/puppet_helper.groovy | ${jenkins_cli_auth_init} groovy ="
 
     if $admin_user == 'admin' {
       $remove_admin = "/bin/true"
@@ -31,7 +32,7 @@ class ducktape::jenkins (
     }
 
     exec { 'ducktape-jenkins-bootstrap-cliready':
-      command => "${jenkins_cli} who-am-i",
+      command => "${jenkins_cli_auth_init} who-am-i",
       tries => 15,
       try_sleep => 3,
     }
