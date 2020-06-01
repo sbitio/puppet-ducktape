@@ -24,6 +24,12 @@ class ducktape::jenkins (
     $jenkins_cli_auth_init ="/usr/bin/java -jar ${::jenkins::libdir}/jenkins-cli.jar -s http://127.0.0.1:8080 -auth admin:$(cat ${initial_admin_pass_file})"
     $puppet_helper = "/bin/cat ${::jenkins::libdir}/puppet_helper.groovy | ${jenkins_cli_auth_init} groovy ="
 
+    file {'/usr/local/bin/jenkins-cli':
+      ensure => 'present',
+      content => "#!/bin/bash\n\n${::ducktape::jenkins::jenkins_cli} ${::jenkins::_cli_auth_arg} \"$@\"",
+      mode => '0755',
+    }
+
     if $admin_user == 'admin' {
       $remove_admin = "/bin/true"
     }
@@ -42,6 +48,14 @@ class ducktape::jenkins (
         && ${remove_admin} \
         && rm ${initial_admin_pass_file}",
       notify => Class['Jenkins::Cli::Reload'],
+    }
+
+    #TODO# Generate token for admin user.
+    file {$::jenkins::cli_password_file:
+      ensure  => 'file',
+      mode    => '0400',
+      backup  => false,
+      content => "${admin_user}:${admin_pass}",
     }
   }
 

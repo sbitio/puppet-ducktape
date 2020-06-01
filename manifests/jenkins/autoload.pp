@@ -42,9 +42,12 @@ class ducktape::jenkins::autoload (
   if $rogue {
     $rogue_main_defaults = {
       environment => [
-        "JENKINS_CLI=/usr/bin/java -jar ${::jenkins::libdir}/jenkins-cli.jar -s http://127.0.0.1:8080 -auth ${::jenkins::cli_username}:${::jenkins::cli_password} groovy =",
+        'JENKINS_CLI=/usr/local/bin/jenkins-cli groovy =',
       ],
-      subscribe => Exec['ducktape-jenkins-bootstrap-cmd'],
+      subscribe => [
+        Exec['ducktape-jenkins-bootstrap-cmd'],
+        File['/usr/local/bin/jenkins-cli'],
+      ],
       require =>  Class['jenkins::cli_helper'],
       logoutput => true,
     }
