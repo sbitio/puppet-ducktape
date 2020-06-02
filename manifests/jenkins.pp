@@ -49,14 +49,6 @@ class ducktape::jenkins (
         && rm ${initial_admin_pass_file}",
       notify => Class['Jenkins::Cli::Reload'],
     }
-
-    #TODO# Generate token for admin user.
-    file {$::jenkins::cli_password_file:
-      ensure  => 'file',
-      mode    => '0400',
-      backup  => false,
-      content => "${admin_user}:${admin_pass}",
-    }
   }
 
   if $enabled {
