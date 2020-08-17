@@ -1,6 +1,6 @@
 class ducktape::systemd::autoload (
-  $load_dropin_files = true,
-  $load_unit_files = true,
+  Boolean $load_dropin_files = true,
+  Boolean $load_unit_files = true,
 ) {
 
   validate_bool($load_dropin_files)
