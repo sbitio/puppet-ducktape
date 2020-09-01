@@ -9,26 +9,25 @@ class ducktape::jenkins (
 ) {
 
   if $bootstrap {
-    anchor {'jenkins-bootstrap-start': } ->
+    anchor {'ducktape-jenkins-bootstrap-start': } ->
       Class['jenkins::cli_helper'] ->
-      Exec[ducktape-jenkins-bootstrap-cliready] ->
+      File['/usr/local/bin/jenkins-cli'] ->
       Exec[ducktape-jenkins-bootstrap-cmd] ->
-    anchor {'jenkins-bootstrap-complete': }
+    anchor {'ducktape-jenkins-bootstrap-complete': }
 
-    $initial_admin_pass_file = "/var/lib/jenkins/secrets/initialAdminPassword"
-    Exec {
-      unless => "test ! -e ${initial_admin_pass_file}",
-    }
-
-    $jenkins_cli = "/usr/bin/java -jar ${::jenkins::cli::jar} -s http://127.0.0.1:${jenkins::cli_helper::port} ${jenkins::cli_helper::prefix}"
-    $jenkins_cli_auth_init ="/usr/bin/java -jar ${::jenkins::libdir}/jenkins-cli.jar -s http://127.0.0.1:8080 -auth admin:$(cat ${initial_admin_pass_file})"
-    $puppet_helper = "/bin/cat ${::jenkins::libdir}/puppet_helper.groovy | ${jenkins_cli_auth_init} groovy ="
-
+    ### Create wrapper for jenkins cli
+    $jenkins_cli = "/usr/bin/java -jar ${::jenkins::cli::jar} -s http://127.0.0.1:${jenkins::cli_helper::port}${jenkins::cli_helper::prefix}"
     file {'/usr/local/bin/jenkins-cli':
       ensure => 'present',
-      content => "#!/bin/bash\n\n${::ducktape::jenkins::jenkins_cli} ${::jenkins::_cli_auth_arg} \"$@\"",
+      content  => epp('ducktape/jenkins/jenkins-cli', {'command' => $jenkins_cli, 'auth' => regsubst($::jenkins::_cli_auth_arg, "'", "", 'IG')}),
       mode => '0755',
     }
+
+    ### Create or update admin user
+    # Use jenkins-cli and add an additional -auth parameter for the initial setup.
+    $initial_admin_pass_file = "/var/lib/jenkins/secrets/initialAdminPassword"
+    $jenkins_cli_auth_init ="/usr/local/bin/jenkins-cli -auth admin:$(cat ${initial_admin_pass_file})"
+    $puppet_helper = "/bin/cat ${::jenkins::libdir}/puppet_helper.groovy | ${jenkins_cli_auth_init} groovy ="
 
     if $admin_user == 'admin' {
       $remove_admin = "/bin/true"
@@ -37,22 +36,17 @@ class ducktape::jenkins (
       $remove_admin = "${puppet_helper} delete_user admin"
     }
 
-    exec { 'ducktape-jenkins-bootstrap-cliready':
-      command => "${jenkins_cli_auth_init} who-am-i",
-      tries => 15,
-      try_sleep => 3,
-    }
     exec { 'ducktape-jenkins-bootstrap-cmd':
       command => "${puppet_helper} set_security full_control \
         && ${puppet_helper} create_or_update_user '${admin_user}' '${admin_mail}' '${admin_pass}' '${admin_name}' '${admin_keys}' \
         && ${remove_admin} \
         && rm ${initial_admin_pass_file}",
       notify => Class['Jenkins::Cli::Reload'],
+      unless => "test ! -e ${initial_admin_pass_file}",
     }
   }
 
   if $enabled {
     include ducktape::jenkins::autoload
   }
-
 }
