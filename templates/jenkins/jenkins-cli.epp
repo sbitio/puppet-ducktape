@@ -1,0 +1,28 @@
+#!/bin/bash
+
+if [ ${#@} -ge 2 ] && [ "$1" ==  "-auth" ]; then
+  AUTH="-auth $2"
+  shift 2
+else
+  AUTH="<%= $auth %>"
+fi
+
+COMMAND="<%= $command %> $AUTH"
+
+# Wait while Jenkins is getting ready to work ...
+READY=0
+for i in {0..15}; do
+  $COMMAND who-am-i </dev/null &>/dev/null
+  if [ $? -eq 0 ]; then
+    READY=1
+    break
+  fi
+  sleep 3
+done
+
+if [[ $READY -eq 0 ]]; then
+  echo "Error: Jenkins is not ready to work."
+  exit 1
+fi
+
+$COMMAND "$@"

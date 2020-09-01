@@ -1,0 +1,16 @@
+userName = '<%= $admin_user %>'
+tokenName = 'Puppet / jenkins-cli'
+
+import hudson.model.*
+import jenkins.model.*
+import jenkins.security.*
+import jenkins.security.apitoken.*
+
+user = User.get(userName, false)
+apiTokenProperty = user.getProperty(ApiTokenProperty.class)
+result = apiTokenProperty.tokenStore.generateNewToken(tokenName)
+user.save()
+
+token = result.plainValue
+
+'OUTPUT: '+userName+':'+token

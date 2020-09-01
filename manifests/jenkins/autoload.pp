@@ -44,11 +44,6 @@ class ducktape::jenkins::autoload (
       environment => [
         'JENKINS_CLI=/usr/local/bin/jenkins-cli groovy =',
       ],
-      subscribe => [
-        Exec['ducktape-jenkins-bootstrap-cmd'],
-        File['/usr/local/bin/jenkins-cli'],
-      ],
-      require =>  Class['jenkins::cli_helper'],
       logoutput => true,
     }
     create_resources('exec', $rogues, $rogue_main_defaults + $rogue_defaults)
