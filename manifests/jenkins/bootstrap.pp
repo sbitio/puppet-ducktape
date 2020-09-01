@@ -25,7 +25,6 @@ class ducktape::jenkins::bootstrap (
       && ${remove_admin} \
       && rm ${initial_admin_pass_file}",
     require => Class['jenkins::cli_helper'],
-    notify => Class['jenkins::cli::reload'],
     unless => "test ! -e ${initial_admin_pass_file}",
   }
 

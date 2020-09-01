@@ -4,6 +4,12 @@ class ducktape::jenkins (
 ) {
 
   if $enabled {
+    anchor {'ducktape-jenkins-start': } ->
+    Class['jenkins::cli_helper'] ->
+    File['/usr/local/bin/jenkins-cli'] ->
+    Class['ducktape::jenkins::autoload'] ->
+    anchor {'ducktape-jenkins-completed': }
+
     ### Create wrapper for jenkins cli
     $jenkins_cli = "/usr/bin/java -jar ${::jenkins::cli::jar} -s http://127.0.0.1:${jenkins::cli_helper::port}${jenkins::cli_helper::prefix}"
     file {'/usr/local/bin/jenkins-cli':
@@ -13,6 +19,10 @@ class ducktape::jenkins (
     }
 
     if $bootstrap {
+      Class['ducktape::jenkins::bootstrap'] ~>
+      Class['jenkins::cli::reload'] ->
+      Class['ducktape::jenkins::autoload']
+
       include ducktape::jenkins::bootstrap
     }
 
