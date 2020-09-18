@@ -1,6 +1,7 @@
 class ducktape::systemd::autoload (
   Boolean $load_dropin_files = true,
   Boolean $load_unit_files = true,
+  Boolean $load_timers = true,
 ) {
 
   validate_bool($load_dropin_files)
@@ -16,5 +17,9 @@ class ducktape::systemd::autoload (
     create_resources('::systemd::unit_file', hiera_hash('ducktape::systemd::unit_files', {}), $systemd_unit_files_defaults)
   }
 
+  if $load_timers {
+    $systemd_timers_defaults = hiera('ducktape::systemd::timers::defaults', {})
+    create_resources('::systemd::timer', hiera_hash('ducktape::systemd::timers', {}), $systemd_timers_defaults)
+  }
 }
 
