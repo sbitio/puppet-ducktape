@@ -1,6 +1,7 @@
 class ducktape::redis::external::munin_node_plugin(
-  $enabled = true,
+  Boolean $enabled = true,
 ) {
+
   if $enabled and $ducktape::munin::node::enabled and $ducktape::munin::node::manage_repo {
     # Dependencies.
     case $::osfamily {
@@ -30,10 +31,11 @@ class ducktape::redis::external::munin_node_plugin(
         * => $default_instance,
       }
     }
-    $::ducktape::redis::instances.each |$name, $instance| {
-      $_instance = merge(merge($default_instance, $instance_defaults), $instance)
+    $::redis::instances.each |$name, $instance| {
+      $_instance = merge($default_instance, $instance)
       ducktape::redis::external::munin_node_plugin::instance {$name:
-        * => $_instance,
+        bind => $_instance['bind'],
+        port => $_instance['port'],
       }
     }
   }
