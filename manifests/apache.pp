@@ -18,10 +18,7 @@ class ducktape::apache (
       include ::ducktape::apache::external::munin_node_plugin
     }
     # Autoincluded classes
-    include ::ducktape::apache::more_log_formats
-    include ::ducktape::apache::other_vhosts_log
     include ::ducktape::apache::shield_vhost
   }
 
 }
-
