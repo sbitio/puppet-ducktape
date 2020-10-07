@@ -13,9 +13,6 @@ class ducktape::varnish (
     if defined('::monit') and defined(Class['::monit']) {
       include ::ducktape::varnish::external::monit
     }
-    if defined('::apache') and defined(Class['::apache']) {
-      include ::ducktape::varnish::external::apache_log_formats_override
-    }
     # Restart varnish if the systemd unit has changed.
     # Note: system::dropin_file is available in systemd >= 1.0.0
     if defined('::systemd') and defined(Class['::systemd']) and defined(Resource['::systemd::dropin_file']) {
