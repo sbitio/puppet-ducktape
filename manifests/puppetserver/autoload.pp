@@ -1,6 +1,7 @@
 class ducktape::puppetserver::autoload() {
 
-  create_resources('ducktape::puppetserver::autoload::config::puppetserver', hiera_hash('ducktape::puppetserver::config::puppetserver', {'notify' => Service['puppetserver']}))
+  $defaults = {'notify' => Service['puppetserver']}
+  create_resources('ducktape::puppetserver::autoload::config::puppetserver', hiera_hash('ducktape::puppetserver::config::puppetserver', {}), $defaults)
 
 }
 
