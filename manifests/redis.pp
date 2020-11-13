@@ -7,7 +7,9 @@ class ducktape::redis (
     if defined('::munin::node') and defined(Class['::munin::node']) {
       include ::ducktape::redis::external::munin_node_plugin
     }
+    if defined('::monit') and defined(Class['::monit']) {
+      include ::ducktape::redis::external::monit
+    }
   }
 
 }
-
