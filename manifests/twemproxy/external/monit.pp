@@ -25,13 +25,13 @@ class ducktape::twemproxy::external::monit(
         action => 'restart',
       }
     }
-    else {
-      $connection_test = {}
-    }
     monit::check::service { 'nutcracker':
       matching     => 'nutcracker',
       init_system  => 'sysv',
-      tests        => [ $connection_test ],
+      tests        => $connection_test ? {
+        undef => undef,
+        default => [ $connection_test, ],
+      }
     }
   }
 }
