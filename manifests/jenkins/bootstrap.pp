@@ -43,6 +43,9 @@ class ducktape::jenkins::bootstrap (
       $generate_token_script = "${::jenkins::libdir}/puppet_ducktape-generate_token.groovy"
       file {$generate_token_script:
         content  => epp('ducktape/jenkins/generate-token.groovy', {'admin_user' => $admin_user}),
+        # Strictly speaking it should require the class that install te Jenkins package
+        # But the class name is dynamic, derived from the module params. So here we keep it simple.
+        require => Exec['ducktape-jenkins-bootstrap-cmd'],
       }
       exec { 'ducktape-jenkins-create-token':
         command => "/bin/cat $generate_token_script | /usr/local/bin/jenkins-cli -auth ${admin_user}:${admin_pass} groovysh 2>&1 | awk '/OUTPUT/ {print \$NF}' > ${::jenkins::cli_password_file}",
