@@ -3,9 +3,36 @@
 Ducktape is a helper module to extend other modules functionality, or to
 make them play together.
 
+There's a variety of extensions, with a common background:
+
+ * Allow for creating module resources from a hiera hash - for modules that doesn't provide this funcionality
+ * Defines monit tests for services - integrates with sbitio/monit
+ * Defines munin plugins - integrates with sbitio/munin
+
+ Other more specific extensions are:
+ 
+ * Jenkins bootstrap
+ * Probably other things we did add and forgot
+
 Every single functionality can be disabled by toggling its related
 `$enabled` param.
 
+## Usage
+
+This module heavily relies on Puppet's `defined()` function, so it must be
+included last to take effect.
+
+For example:
+
+```
+# manifests/00_globals.pp
+
+lookup('classes', {merge => unique}).include
+
+# The 'if defined' pattern requires ducktape class to be loaded
+# after the classes it integrates with.
+include ::ducktape
+```
 
 ## Supported modules
 
@@ -53,15 +80,6 @@ Those are the modules we work with at present:
 * [sbog/twemproxy](https://forge.puppet.com/sbog/twemproxy)
 * [claranet/varnish](https://forge.puppetlabs.com/claranet/varnish)
 * [puppetlabs/vcsrepo](https://forge.puppetlabs.com/puppetlabs/vcsrepo)
-
-
-## Requirements
-
-This module heavily relies on Puppet's `defined()` function, so it must be
-included after all supported modules lasses to take effect.
-
-Ideally you should include it the last one, as more integration may be
-added in a feature.
 
 
 ## TODO
