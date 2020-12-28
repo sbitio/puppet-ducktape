@@ -8,6 +8,8 @@ class ducktape::apache::external::monit(
   $vhost_prefix   = 'monit-test-',
   $vhost_suffix   = ".${::fqdn}",
   $conn_tolerance = { cycles => 1 },
+  $alerts         = undef,
+  $extra_tests    = [],
 ) {
 
   validate_bool($enabled)
@@ -79,10 +81,10 @@ class ducktape::apache::external::monit(
       init_system   => $init_system,
       pidfile       => $pidfile,
       program_start => $program_start,
-      tests         => [$connection_test, ],
+      alerts        => $alerts,
+      tests         => $extra_tests + [$connection_test],
       #TODO# if 5 restarts within 5 cycles then timeout
     }
   }
 
 }
-
