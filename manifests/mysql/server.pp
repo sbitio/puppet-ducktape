@@ -32,10 +32,7 @@ class ducktape::mysql::server inherits ducktape::mysql {
       Class['::mysql::server::install'] ->
     anchor { 'ducktape::mysql::server::end': }
 
-    # Declare configuration snippets.
-    $defaults = hiera('ducktape::mysql::conf::defaults', {})
-    $confs    = hiera_hash('ducktape::mysql::confs', {})
-    create_resources('::ducktape::mysql::conf', $confs, $defaults)
+    include ducktape::mysql::server::autoload
 
     # External checks.
     if defined('::monit') and defined(Class['::monit']) {
@@ -44,8 +41,6 @@ class ducktape::mysql::server inherits ducktape::mysql {
     if defined('::munin::node') and defined(Class['::munin::node']) {
       include ::ducktape::mysql::external::munin_node_plugin
     }
-
-    include ducktape::mysql::server::autoload
   }
-}
 
+}
