@@ -1,12 +1,16 @@
 class ducktape::mysql::server::autoload (
-  $load_plugins = true,
+  Boolean $conf            = true,
+  Hash    $conf_defaults   = {},
+  Hash    $confs           = {},
+  Boolean $plugin          = true,
+  Hash    $plugin_defaults = {},
+  Hash    $plugins         = {},
 ) {
 
-  validate_bool($load_plugins)
-
-  if $load_plugins {
-    $plugin_defaults = hiera('ducktape::mysql::server::plugins::defaults', {})
-    $plugins         = hiera_hash('ducktape::mysql::server::plugins', {})
+  if $conf {
+    create_resources('::ducktape::mysql::conf', $confs, $conf_defaults)
+  }
+  if $plugin {
     create_resources('mysql_plugin', $plugins, $plugin_defaults)
   }
 
