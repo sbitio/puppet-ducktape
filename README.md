@@ -10,7 +10,7 @@ There's a variety of extensions, with a common background:
  * Defines munin plugins - integrates with sbitio/munin
 
  Other more specific extensions are:
- 
+
  * Jenkins bootstrap
  * Probably other things we did add and forgot
 
@@ -48,6 +48,7 @@ Those are the modules we work with at present:
 * [alexharvey/firewall_multi](https://forge.puppet.com/alexharvey/firewall_multi)
 * [puppet/gluster](https://forge.puppetlabs.com/puppet/gluster)
 * [puppetlabs/haproxy](https://forge.puppetlabs.com/puppetlabs/haproxy)
+* [puppetlabs/inifile](https://forge.puppetlabs.com/puppetlabs/inifile)
 * [puppet/jenkins](https://forge.puppet.com/puppet/jenkins)
 * [elastic/kibana](https://forge.puppetlabs.com/elastic/kibana)
 * [datacentred/ldap](https://forge.puppet.com/datacentred/ldap)
@@ -101,4 +102,3 @@ Use contact form at http://sbit.io
 ## Support
 
 Please log tickets and issues on [GitHub](https://github.com/sbitio/puppet-ducktape)
-
