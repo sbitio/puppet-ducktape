@@ -23,6 +23,9 @@ class ducktape {
   if defined('::haproxy') and defined(Class['::haproxy']) {
     require ::ducktape::haproxy
   }
+  if defined('ini_setting') {
+    require ::ducktape::inifile
+  }
   if defined('::jenkins') and defined(Class['::jenkins']) {
     require ::ducktape::jenkins
   }
@@ -130,4 +133,3 @@ class ducktape {
   require ::ducktape::vcsrepo
 
 }
-
