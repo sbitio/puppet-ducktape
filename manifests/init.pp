@@ -83,6 +83,9 @@ class ducktape {
   if defined('::php') and defined(Class['::php']) {
     require ::ducktape::php
   }
+  if defined('::posix_acl::requirements') and defined(Class['::posix_acl::requirements']) {
+    require ::ducktape::posix_acl
+  }
   if defined('::postfix') and defined(Class['::postfix']) {
     require ::ducktape::postfix
   }
