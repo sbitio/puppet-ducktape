@@ -26,6 +26,12 @@ class ducktape::haproxy::autoload (
         mode => "2755",
       }
 
+      $file_args = {
+        ensure => directory,
+        owner => $http_edge_path_owner,
+        replace => false,
+      }
+
       $rules = $http_edge_domains_envs.map |$domain, $options| {
         $options['_envs'].map |$env| {
           $path_env = "${http_edge_path}/${env}"
@@ -36,13 +42,9 @@ class ducktape::haproxy::autoload (
             $parts = [$options['_domain_prefix'], $env, $options['_domain_suffix']].filter |$item| { !$item.empty }
             $domain_env = join($parts, '.')
           }
-          file { [$path_env,
-            "$path_env/current",
-            "$path_env/current/redirects"]:
-            ensure => directory,
-            owner => $http_edge_path_owner,
-            replace => false
-          }
+
+          ensure_resource('file', [$path_env, "$path_env/current", "$path_env/current/redirects"], $file_args)
+
           $http_edge_redirect_types.map |$type| {
             $map_file = "$path_env/current/redirects/$domain.$type.map"
             $map_func = "map_$type"
