@@ -107,13 +107,7 @@ class ducktape::mysql::external::munin_node_plugin(
       }
 
       # Based on makefile https://github.com/kjellm/munin-mysql/blob/master/Makefile
-      $kjellm_ensure = $ensure ? {
-        present => $::munin::node::ensure ? {
-          present => $::munin::node::ensure,
-          default => absent,
-        },
-        default => $ensure,
-      }
+      $kjellm_ensure = $ensure
       $lib_dir = "${::munin::node::params::imported_scripts_dir}/mysql_lib"
       file { $lib_dir :
         ensure => $kjellm_ensure ? {
@@ -157,7 +151,8 @@ class ducktape::mysql::external::munin_node_plugin(
       }
       case $::osfamily {
         debian : {
-          @munin::node::plugin::required_package { 'libmodule-pluggable-perl' :
+          $kjellm_required_packages = [ 'libmodule-pluggable-perl', 'libcache-cache-perl' ]
+          @munin::node::plugin::required_package { $kjellm_required_packages :
             ensure => $ensure,
             tag    => 'mysql',
           }
