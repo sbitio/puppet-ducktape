@@ -1,5 +1,10 @@
 class ducktape::redis::external::munin_node_plugin(
   Boolean $enabled = true,
+  Hash $instance_defaults = {
+      bind => $::redis::bind,
+      port => $::redis::port,
+  },
+  Hash $instances = $::redis::instances,
 ) {
 
   if $enabled and $ducktape::munin::node::enabled and $ducktape::munin::node::manage_repo {
@@ -22,20 +27,18 @@ class ducktape::redis::external::munin_node_plugin(
 
     # Declare a instance of the munin plugin for the redis default installation and each
     # redis instance declared via ducktape.
-    $default_instance = {
-      bind => $::redis::bind,
-      port => $::redis::port,
-    }
     if $::redis::default_install {
       ducktape::redis::external::munin_node_plugin::instance {'default':
-        * => $default_instance,
+        * => $instance_defaults,
       }
     }
-    $::redis::instances.each |$name, $instance| {
-      $_instance = merge($default_instance, $instance)
-      ducktape::redis::external::munin_node_plugin::instance {$name:
-        bind => $_instance['bind'],
-        port => $_instance['port'],
+    if $instances {
+      $instances.each |$name, $instance| {
+        $_instance = merge($instance_defaults, $instance)
+        ducktape::redis::external::munin_node_plugin::instance {$name:
+          bind => $_instance['bind'],
+          port => $_instance['port'],
+        }
       }
     }
   }
@@ -46,7 +49,7 @@ define ducktape::redis::external::munin_node_plugin::instance($bind, $port) {
     '0.0.0.0' => '127.0.0.1',
     default   => $bind,
   }
-  $prefix = regsubst("${ip}_${port}", '[^0-9]', '_', 'IG')
+  $prefix = regsubst($name, '[^0-9-az]', '_', 'IG')
 
   @munin::node::plugin {"${prefix}_redis_" :
     target => "${::ducktape::munin::node::contrib_plugins_path}/plugins/redis/redis_",
