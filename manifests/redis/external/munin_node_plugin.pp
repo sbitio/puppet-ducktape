@@ -49,7 +49,7 @@ define ducktape::redis::external::munin_node_plugin::instance($bind, $port) {
     '0.0.0.0' => '127.0.0.1',
     default   => $bind,
   }
-  $prefix = regsubst($name, '[^0-9-az]', '_', 'IG')
+  $prefix = regsubst($name, '[^0-9a-z]', '_', 'IG')
 
   @munin::node::plugin {"${prefix}_redis_" :
     target => "${::ducktape::munin::node::contrib_plugins_path}/plugins/redis/redis_",
