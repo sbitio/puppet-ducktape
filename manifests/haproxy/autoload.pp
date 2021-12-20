@@ -10,12 +10,14 @@ class ducktape::haproxy::autoload (
   Boolean $userlist           = true,
   Hash    $userlist_defaults  = {},
   Hash    $userlists          = {},
-  Boolean $http_edge                = true,
-  String  $http_edge_path           = '/opt/http-edge',
-  String  $http_edge_path_owner     = 'root',
-  String  $http_edge_frontend       = 'default_fe',
-  Array   $http_edge_redirect_types = [ 'str', 'beg', 'end', 'sub', 'dir', 'regm' ],
-  Hash    $http_edge_domains_envs   = {},
+  Boolean $http_edge                 = true,
+  String  $http_edge_path            = '/opt/http-edge',
+  String  $http_edge_path_owner      = 'root',
+  String  $http_edge_frontend        = 'default_fe',
+
+  String  $http_edge_redirect_marker = '###http-edge-redirects###',
+  Array   $http_edge_redirect_types  = [ 'str', 'beg', 'end', 'sub', 'dir', 'regm' ],
+  Hash    $http_edge_domains_envs    = {},
 ) {
 
   if $frontend {
@@ -32,7 +34,7 @@ class ducktape::haproxy::autoload (
         replace => false,
       }
 
-      $rules = $http_edge_domains_envs.map |$domain, $options| {
+      $http_edge_redirect_rules = flatten($http_edge_domains_envs.map |$domain, $options| {
         $options['_envs'].map |$env| {
           $path_env = "${http_edge_path}/${env}"
           if $options[$env] {
@@ -55,10 +57,19 @@ class ducktape::haproxy::autoload (
             "redirect location %[path,$map_func($map_file)] code 301 if { hdr(host) -i $domain_env } { path,$map_func($map_file) -m found } !{ path,$map_func($map_file) -m str haproxy-skip }"
           }
         }
+      })
+
+      # Insert http-edge redirect rules at the marker position, or at the end if no marker
+      $http_request_rules = $frontends[$http_edge_frontend]['options']['http-request']
+      if grep($http_request_rules, $http_edge_redirect_marker) == [] {
+        $http_request_rules_real = concat($http_request_rules, $http_edge_redirect_rules)
+      }
+      else {
+        $http_request_rules_real = split(regsubst(join($http_request_rules, "\n"), $http_edge_redirect_marker, join($http_edge_redirect_rules, "\n")), "\n")
       }
 
-      $http_request_rules = {$http_edge_frontend => {'options' => {'http-request' => concat($frontends[$http_edge_frontend]['options']['http-request'], flatten($rules))}}}
-      $frontends_real = deep_merge($frontends, $http_request_rules)
+      $http_request_rules_hash = {$http_edge_frontend => {'options' => {'http-request' => $http_request_rules_real}}}
+      $frontends_real = deep_merge($frontends, $http_request_rules_hash)
     }
     else {
       $frontends_real = $frontends
