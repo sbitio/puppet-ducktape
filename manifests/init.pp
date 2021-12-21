@@ -1,4 +1,10 @@
 class ducktape {
+  # Munin first because it is referenced in external checks.
+  if defined('::munin::node') and defined(Class['::munin::node']) {
+    require ::ducktape::munin::node
+  }
+
+
   if defined('::apache') and defined(Class['::apache']) {
     require ::ducktape::apache
   }
@@ -7,6 +13,9 @@ class ducktape {
   }
   if defined('::corosync') and defined(Class['::corosync']) {
     require ::ducktape::corosync
+  }
+  if defined('::docker') and defined(Class['::docker']) {
+    require ::ducktape::docker
   }
   if defined('::filebeat') and defined(Class['::filebeat']) {
     require ::ducktape::filebeat
@@ -49,9 +58,6 @@ class ducktape {
   }
   if defined('::memcached') and defined(Class['::memcached']) {
     require ::ducktape::memcached
-  }
-  if defined('::munin::node') and defined(Class['::munin::node']) {
-    require ::ducktape::munin::node
   }
   if defined('::mysql::client') and defined(Class['::mysql::client']) {
     require ::ducktape::mysql::client
@@ -132,7 +138,6 @@ class ducktape {
   require ::ducktape::alternatives
   require ::ducktape::anchors
   require ::ducktape::archive
-  require ::ducktape::docker::compose
   require ::ducktape::vcsrepo
 
 }
