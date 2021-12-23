@@ -35,6 +35,15 @@ class ducktape::haproxy::autoload (
       }
 
       $http_edge_redirect_rules = flatten($http_edge_domains_envs.map |$domain, $options| {
+        $match_type = pick($options['match_type'], 'str')
+        $hdr_match = $match_type ? {
+          'str' => 'hdr',
+          default => "hdr_${match_type}"
+        }
+        $domain_separator = $match_type ? {
+          'reg' => '\.',
+          default => '.',
+        }
         $options['_envs'].map |$env| {
           $path_env = "${http_edge_path}/${env}"
           if $options[$env] {
@@ -42,7 +51,7 @@ class ducktape::haproxy::autoload (
           }
           else {
             $parts = [$options['_domain_prefix'], $env, $options['_domain_suffix']].filter |$item| { !$item.empty }
-            $domain_env = join($parts, '.')
+            $domain_env = join($parts, $domain_separator)
           }
 
           ensure_resource('file', [$path_env, "$path_env/current", "$path_env/current/redirects"], $file_args)
@@ -54,7 +63,7 @@ class ducktape::haproxy::autoload (
               ensure => present,
               owner => $http_edge_path_owner,
             }
-            "redirect location %[path,$map_func($map_file)] code 301 if { hdr(host) -i $domain_env } { path,$map_func($map_file) -m found } !{ path,$map_func($map_file) -m str haproxy-skip }"
+            "redirect location %[path,$map_func($map_file)] code 301 if { ${hdr_match}(host) -i $domain_env } { path,$map_func($map_file) -m found } !{ path,$map_func($map_file) -m str haproxy-skip }"
           }
         }
       })
