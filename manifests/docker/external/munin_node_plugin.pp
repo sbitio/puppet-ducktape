@@ -1,7 +1,7 @@
 # See https://gallery.munin-monitoring.org/plugins/munin-contrib/docker_/
 class ducktape::docker::external::munin_node_plugin(
   Boolean $enabled = true,
-  String $exclude_container_name_regexp = '',
+  String $exclude_container_name_regexp = '^$',
 ) {
 
   if $enabled and $ducktape::munin::node::enabled and $ducktape::munin::node::manage_repo {
