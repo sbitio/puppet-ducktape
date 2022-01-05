@@ -1,6 +1,7 @@
 class ducktape::haproxy::external::monit(
   Boolean $enabled = true,
   String  $action  = 'restart',
+  Hash $conn_tolerance = { cycles => 1 },
 ) {
 
   if $enabled {
@@ -24,6 +25,7 @@ class ducktape::haproxy::external::monit(
       },
       port     => $port_hive['stats_fe']['ports'],
       action   => $action,
+      tolerance => $conn_tolerance,
     }
     monit::check::service { 'haproxy':
       init_system => $init_system,

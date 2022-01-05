@@ -1,6 +1,7 @@
 class ducktape::mysql::external::monit(
-  $enabled = true,
-  $action  = 'restart',
+  Boolean $enabled = true,
+  String  $action  = 'restart',
+  Hash $conn_tolerance = { cycles => 1 },
 ) {
 
   validate_bool($enabled)
@@ -22,6 +23,7 @@ class ducktape::mysql::external::monit(
       host   => '127.0.0.1',
       port   => 3306,
       action => $action,
+      tolerance => $conn_tolerance,
     }
     monit::check::service { $::mysql::server::service_name:
       init_system => $init_system,

@@ -1,7 +1,9 @@
 class ducktape::twemproxy::external::monit(
   Boolean $enabled = true,
+  String $action = 'restart',
+  Hash $conn_tolerance = { cycles => 1 },
   Boolean $test_redis = true,
-  Integer $test_redis_port = 22122
+  Integer $test_redis_port = 22122,
 ) {
 
   if $enabled {
@@ -22,7 +24,8 @@ class ducktape::twemproxy::external::monit(
             expect => '":1"',
           },
         ],
-        action => 'restart',
+        action    => $action,
+        tolerance => $conn_tolerance,
       }
     }
     monit::check::service { 'nutcracker':

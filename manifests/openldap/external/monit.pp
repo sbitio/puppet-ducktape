@@ -1,5 +1,7 @@
 class ducktape::openldap::external::monit(
-  $enabled = true,
+  Boolean $enabled = true,
+  String  $action  = 'restart',
+  Hash $conn_tolerance = { cycles => 1 },
 ) {
 
   validate_bool($enabled)
@@ -14,7 +16,8 @@ class ducktape::openldap::external::monit(
       type     => 'connection',
       protocol => 'ldap3',
       port     => 389,
-      action   => 'restart',
+      action   => $action,
+      tolerance => $conn_tolerance,
     }
     monit::check::service { $::openldap::server::service:
       pidfile => $pidfile,

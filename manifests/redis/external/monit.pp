@@ -1,5 +1,7 @@
 class ducktape::redis::external::monit(
   Boolean $enabled = true,
+  String  $action  = 'restart',
+  Hash $conn_tolerance = { cycles => 1 },
 ) {
 
   if $enabled {
@@ -18,7 +20,8 @@ class ducktape::redis::external::monit(
             expect => '":1|-CROSSSLOT .*"',
           },
         ],
-        action => 'restart',
+        action => $action,
+        tolerance => $conn_tolerance,
       }
       monit::check::service { 'redis-server':
         group   => 'redis',
