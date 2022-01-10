@@ -1,4 +1,4 @@
-class ducktape::openldap::external::monit(
+class ducktape::openldap::server::external::monit(
   Boolean $enabled = true,
   String  $action  = 'restart',
   Hash $conn_tolerance = { cycles => 1 },
@@ -27,4 +27,3 @@ class ducktape::openldap::external::monit(
   }
 
 }
-

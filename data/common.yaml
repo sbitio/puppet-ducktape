@@ -88,6 +88,23 @@ lookup_options:
     merge:
       strategy: deep
       knockout_prefix: --
+  ducktape::openldap::accesses:
+    merge:
+      strategy: deep
+      knockout_prefix: --
+  ducktape::openldap::modules:
+    merge:
+      strategy: deep
+      knockout_prefix: --
+  ducktape::openldap::overlays:
+    merge:
+      strategy: deep
+      knockout_prefix: --
+  ducktape::openldap::indexes:
+    merge:
+      strategy: deep
+      knockout_prefix: --
+  ducktape::openldap::schemas:
   ducktape::openvpn::servers:
     merge:
       strategy: deep

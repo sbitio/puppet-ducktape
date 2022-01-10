@@ -1,17 +1,24 @@
 class ducktape::openldap (
-  $enabled = true,
+  Boolean $enabled = true,
+  Hash $access_defaults = {},
+  Hash $accesses = {},
+  Hash $module_defaults = {},
+  Hash $modules = {},
+  Hash $overlay_defaults = {},
+  Hash $overlays = {},
+  Hash $index_defaults = {},
+  Hash $indexes = {},
+  Hash $schema_defaults = {},
+  Hash $schemas = {},
 ) {
 
-  validate_bool($enabled)
-
   if $enabled {
-    include ducktape::openldap::autoload
+    include ducktape::openldap::server::autoload
 
     # External checks.
     if defined('::monit') and defined(Class['::monit']) {
-      include ::ducktape::openldap::external::monit
+      include ::ducktape::openldap::server::external::monit
     }
   }
 
 }
-
