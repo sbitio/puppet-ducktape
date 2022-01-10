@@ -1,7 +1,10 @@
 class ducktape::inifile (
-  $enabled  = true,
-  $settings = {},
-  $defaults = {},
+  Boolean $enabled  = true,
+  Hash $settings = {},
+  Hash $defaults = {},
 ) {
-  create_resources('ini_setting', $settings, $defaults)
+
+  if $enabled {
+    require ducktape::inifile::autoload
+  }
 }
