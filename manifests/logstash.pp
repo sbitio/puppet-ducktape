@@ -1,8 +1,12 @@
 class ducktape::logstash (
-  $enabled = true,
+  Boolean $enabled = true,
+  Hash $configfile_defaults = {},
+  Hash $configfiles = {},
+  Hash $patternfile_defaults = {},
+  Hash $patternfiles = {},
+  Hash $plugin_defaults = {},
+  Hash $plugins = {},
 ) {
-
-  validate_bool($enabled)
 
   if $enabled {
     include ducktape::logstash::autoload
@@ -14,4 +18,3 @@ class ducktape::logstash (
   }
 
 }
-

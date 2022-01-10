@@ -1,9 +1,7 @@
 class ducktape::logstash::external::monit(
-  $enabled  = true,
-  $tests    = [],
+  Boolean $enabled  = true,
+  Array[String] $tests    = [],
 ) {
-
-  validate_bool($enabled)
 
   if $enabled {
 
@@ -17,4 +15,3 @@ class ducktape::logstash::external::monit(
   }
 
 }
-
