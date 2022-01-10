@@ -1,8 +1,6 @@
 class ducktape::haproxy::latest (
-  $enabled = true,
+  Boolean $enabled = true,
 ) {
-
-  validate_bool($enabled)
 
   if $enabled {
     case $::operatingsystem {
@@ -20,4 +18,3 @@ class ducktape::haproxy::latest (
   }
 
 }
-
