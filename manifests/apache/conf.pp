@@ -1,8 +1,8 @@
 define ducktape::apache::conf(
-  $ensure     = present,
-  $priority   = '010',
-  $directives = [],
-  $content    = undef,
+  Enum['present', 'absent'] $ensure = present,
+  String $priority   = '010',
+  Array[String] $directives = [],
+  Optional[String] $content    = undef,
 ) {
 
   validate_re($ensure, '^(present|absent)$',

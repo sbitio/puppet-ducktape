@@ -1,10 +1,10 @@
 class ducktape::apache::shield_vhost (
-  $enabled         = true,
-  $ensure          = present,
-  $port            = 80,
-  $docroot         = $::apache::docroot,
-  $priority        = '10',
-  $custom_fragment = undef,
+  Boolean $enabled = true,
+  Enum['present', 'absent'] $ensure = present,
+  Integer $port = 80,
+  Stdlib::Absolutepath $docroot = $::apache::docroot,
+  String $priority = '10',
+  String $custom_fragment = undef,
 ) {
 
   if $enabled {
@@ -53,4 +53,3 @@ class ducktape::apache::shield_vhost (
   }
 
 }
-

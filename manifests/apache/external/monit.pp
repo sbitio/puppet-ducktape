@@ -1,15 +1,15 @@
 class ducktape::apache::external::monit(
-  $enabled        = true,
-  $action         = 'restart',
-  $ip             = '127.0.0.1',
-  $port           = 80,
-  $vhost_priority = 99,
-  $vhost_seed     = 'monit-test',
-  $vhost_prefix   = 'monit-test-',
-  $vhost_suffix   = ".${::fqdn}",
-  $conn_tolerance = { cycles => 1 },
-  $alerts         = undef,
-  $extra_tests    = [],
+  Boolean $enabled = true,
+  String $action = 'restart',
+  String $ip = '127.0.0.1',
+  Integer $port = 80,
+  Integer $vhost_priority = 99,
+  String $vhost_seed = 'monit-test',
+  String $vhost_prefix = 'monit-test-',
+  String $vhost_suffix   = ".${::fqdn}",
+  Hash $conn_tolerance = { cycles => 1 },
+  Array[String] $alerts         = [],
+  Array[Hash] $extra_tests    = [],
 ) {
 
   validate_bool($enabled)
