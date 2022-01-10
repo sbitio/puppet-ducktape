@@ -1,6 +1,10 @@
 ---
 
 lookup_options:
+  ducktape::archive::archives:
+    merge:
+      strategy: deep
+      knockout_prefix: --
   ducktape::alternatives::alternatives:
     merge:
       strategy: deep
