@@ -1,12 +1,11 @@
 class ducktape::logrotate (
-  $enabled = true,
+  Boolean $enabled = true,
+  Hash $rule_defaults = {},
+  Hash $rules = {},
 ) {
-
-  validate_bool($enabled)
 
   if $enabled {
     include ducktape::logrotate::autoload
   }
 
 }
-
