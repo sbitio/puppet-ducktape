@@ -1,7 +1,7 @@
 define ducktape::php::conf(
-  $ensure   = present,
-  $priority = '99',
-  $config   = {},
+  Boolean $ensure   = present,
+  String $priority = '99',
+  Hash $config   = {},
 ) {
 #TODO# Add $sapi = [] param. If not empty, limit this config to the given SAPI list.
 
@@ -50,4 +50,3 @@ define ducktape::php::conf(
     Php::Config[$name] ~> Exec[$cmd]
   }
 }
-
