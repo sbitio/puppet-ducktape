@@ -1,8 +1,6 @@
 class ducktape::corosync (
-  $enabled = true,
+  Boolean $enabled = true,
 ) {
-
-  validate_bool($enabled)
 
   if $enabled {
     corosync::service { 'pacemaker':
@@ -28,4 +26,3 @@ class ducktape::corosync (
   }
 
 }
-

@@ -1,8 +1,6 @@
 class ducktape::corosync::external::monit(
-  $enabled = true,
+  Boolean $enabled = true,
 ) {
-
-  validate_bool($enabled)
 
   if $enabled {
     #TODO# Add network test
@@ -35,4 +33,3 @@ class ducktape::corosync::external::monit(
   }
 
 }
-
