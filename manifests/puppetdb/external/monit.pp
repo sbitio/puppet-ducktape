@@ -12,8 +12,8 @@ class ducktape::puppetdb::external::monit(
 
     monit::check::service { $::puppetdb::server::puppetdb_service:
       pidfile => $pidfile,
+      binary  => '/opt/puppetlabs/bin/puppetdb',
     }
   }
 
 }
-
