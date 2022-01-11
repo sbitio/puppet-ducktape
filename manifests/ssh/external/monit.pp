@@ -1,8 +1,6 @@
 class ducktape::ssh::external::monit(
-  $enabled = true,
+  Boolean $enabled = true,
 ) {
-
-  validate_bool($enabled)
 
   if $enabled {
     $pidfile = $::osfamily ? {
@@ -25,4 +23,3 @@ class ducktape::ssh::external::monit(
   }
 
 }
-
