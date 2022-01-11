@@ -21,7 +21,6 @@ lookup_options:
     merge:
       strategy: deep
       knockout_prefix: --
-<<<<<<< HEAD
   ducktape::firewall::rules:
     merge:
       strategy: deep
@@ -94,6 +93,10 @@ lookup_options:
       strategy: deep
       knockout_prefix: --
   ducktape::posix_acl::acls:
+    merge:
+      strategy: deep
+      knockout_prefix: --
+  ducktape::postfix::configs:
     merge:
       strategy: deep
       knockout_prefix: --
