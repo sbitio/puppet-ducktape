@@ -1,8 +1,6 @@
 class ducktape::filebeat(
-  $enabled = true,
+  Boolean $enabled = true,
 ) {
-
-  validate_bool($enabled)
 
   if $enabled {
     # External checks.
@@ -12,4 +10,3 @@ class ducktape::filebeat(
   }
 
 }
-

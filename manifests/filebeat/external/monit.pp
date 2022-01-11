@@ -1,8 +1,6 @@
 class ducktape::filebeat::external::monit(
-  $enabled = true,
+  Boolean $enabled = true,
 ) {
-
-  validate_bool($enabled)
   #TODO# Add more validations
 
   if $enabled {
@@ -14,4 +12,3 @@ class ducktape::filebeat::external::monit(
   }
 
 }
-
