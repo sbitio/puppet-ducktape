@@ -1,11 +1,8 @@
 class ducktape::munin(
-  $enabled = true,
+  Boolean $enabled = true,
 ) {
-
-  validate_bool($enabled)
 
   if $enabled {
   }
 
 }
-
