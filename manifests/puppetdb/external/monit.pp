@@ -7,7 +7,7 @@ class ducktape::puppetdb::external::monit(
   if $enabled {
     $pidfile = $::osfamily ? {
       'RedHat' => '/var/run/puppetdb/puppetdb',
-      'Debian' => '/var/run/puppetdb.pid',
+      'Debian' => '/run/puppetlabs/puppetdb/puppetdb.pid',
     }
 
     monit::check::service { $::puppetdb::server::puppetdb_service:
