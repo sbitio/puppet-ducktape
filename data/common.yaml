@@ -33,6 +33,21 @@ lookup_options:
     merge:
       strategy: deep
       knockout_prefix: --
+  ducktape::jenkins::cli_execs:
+    merge:
+      strategy: deep
+  ducktape::jenkins::credentials:
+    merge:
+      strategy: deep
+  ducktape::jenkins::native_credentials:
+    merge:
+      strategy: deep
+  ducktape::jenkins::rogues:
+    merge:
+      strategy: deep
+  ducktape::jenkins::users:
+    merge:
+      strategy: deep
   ducktape::ldap::entries:
     merge:
       strategy: deep
@@ -61,21 +76,10 @@ lookup_options:
     merge:
       strategy: deep
       knockout_prefix: --
-  ducktape::jenkins::cli_execs:
+  ducktape::vcsrepo::repos:
     merge:
       strategy: deep
-  ducktape::jenkins::credentials:
-    merge:
-      strategy: deep
-  ducktape::jenkins::native_credentials:
-    merge:
-      strategy: deep
-  ducktape::jenkins::rogues:
-    merge:
-      strategy: deep
-  ducktape::jenkins::users:
-    merge:
-      strategy: deep
+      knockout_prefix: --
 
 ducktape::firewall::chain::defaults: {}
 ducktape::firewall::chains: {}
