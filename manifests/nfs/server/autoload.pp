@@ -1,8 +1,6 @@
 class ducktape::nfs::server::autoload (
-  $load_exports = true,
+  Boolean $load_exports = true,
 ) {
-
-  validate_bool($load_exports)
 
   if $load_exports {
     $nfs_server_export_defaults = lookup('ducktape::nfs::server::export::defaults', {'default_value' => {}})
@@ -10,4 +8,3 @@ class ducktape::nfs::server::autoload (
   }
 
 }
-

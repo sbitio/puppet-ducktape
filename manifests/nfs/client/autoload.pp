@@ -1,11 +1,8 @@
 class ducktape::nfs::client::autoload (
-  $autorealize = true,
-  $nfstag      = 'nfs',
-  $load_mounts = true,
+  Boolean $autorealize = true,
+  String $nfstag      = 'nfs',
+  Boolean $load_mounts = true,
 ) {
-
-  validate_bool($autorealize)
-  validate_bool($load_mounts)
 
   if $load_mounts {
     $nfs_client_mount_defaults = hiera('ducktape::nfs::client::mount::defaults', {})
@@ -16,4 +13,3 @@ class ducktape::nfs::client::autoload (
   }
 
 }
-
