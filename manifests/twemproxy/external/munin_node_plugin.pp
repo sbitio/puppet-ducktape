@@ -1,5 +1,5 @@
 class ducktape::twemproxy::external::munin_node_plugin(
-  $enabled = true,
+  Boolean $enabled = true,
 ) {
   if $enabled and $ducktape::munin::node::enabled and $ducktape::munin::node::manage_repo {
     @munin::node::plugin { 'nutcracker_requests' :
