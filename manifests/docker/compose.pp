@@ -1,8 +1,6 @@
 class ducktape::docker::compose (
-  $enabled = true,
+  Boolean $enabled = true,
 ) {
-
-  validate_bool($enabled)
 
   if $enabled {
 
@@ -12,4 +10,3 @@ class ducktape::docker::compose (
   }
 
 }
-
