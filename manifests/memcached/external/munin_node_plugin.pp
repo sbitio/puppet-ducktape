@@ -1,9 +1,7 @@
 class ducktape::memcached::external::munin_node_plugin (
-  $enabled = true,
+  Boolean $enabled = true,
   $ensure  = $::memcached::package_ensure,
 ) {
-
-  validate_bool($enabled)
 
   if $enabled {
     require ::memcached::params

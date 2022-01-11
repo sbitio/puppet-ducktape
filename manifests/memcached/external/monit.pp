@@ -1,9 +1,7 @@
 class ducktape::memcached::external::monit(
-  $enabled = true,
-  $action  = 'restart',
+  Boolean $enabled = true,
+  String $action  = 'restart',
 ) {
-
-  validate_bool($enabled)
 
   if $enabled {
     $pidfile = $::osfamily ? {
@@ -48,4 +46,3 @@ class ducktape::memcached::external::monit(
   }
 
 }
-
