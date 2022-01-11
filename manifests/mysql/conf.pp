@@ -1,7 +1,7 @@
 define ducktape::mysql::conf(
-  $ensure     = present,
-  $priority   = '010',
-  $section    = 'mysqld',
+  Boolean $ensure     = present,
+  String $priority   = '010',
+  String $section    = 'mysqld',
   $directives = {},
   $content    = undef,
 ) {
@@ -32,4 +32,3 @@ define ducktape::mysql::conf(
     notify  => Class['::mysql::server::service'],
   }
 }
-

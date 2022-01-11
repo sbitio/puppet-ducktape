@@ -1,16 +1,16 @@
 class ducktape::mysql::external::munin_node_plugin(
-  $enabled            = true,
-  $ensure             = present,
-  $old_plugin         = false,
+  Boolean $enabled            = true,
+  Boolean $ensure             = present,
+  Boolean $old_plugin         = false,
   # No mysql_innodb and no mysql_isam_space_
-  $old_plugins        = [
+  Array[String] $old_plugins        = [
     'mysql_bytes',
     'mysql_queries',
     'mysql_slowqueries',
     'mysql_threads',
   ],
-  $new_plugin         = false,
-  $new_plugin_sufixes = [
+  Boolean $new_plugin         = false,
+  Array[String] $new_plugin_sufixes = [
     'bin_relay_log',
     'commands',
     'connections',
@@ -35,18 +35,18 @@ class ducktape::mysql::external::munin_node_plugin(
     'table_locks',
     'tmp_tables',
   ],
-  $kjellm_plugin      = true,
-  $kjellm_plugins     = [
+  Boolean $kjellm_plugin      = true,
+  Array[String] $kjellm_plugins     = [
     'InnoDB.pm',
     'MyISAM.pm',
     'QueryCache.pm',
     'ReplicationSlave.pm',
     'Standard.pm',
   ],
-  $kjellm_contribs    = [
+  Array[String] $kjellm_contribs    = [
     'CacheEfficiency.pm',
   ],
-  $kjellm_repo_dst    = '/opt/kjellm-munin-mysql'
+  Stdlib::Absolutepath $kjellm_repo_dst = '/opt/kjellm-munin-mysql'
 ) {
 
   validate_bool($enabled)
