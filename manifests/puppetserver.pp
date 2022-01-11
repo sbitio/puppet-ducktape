@@ -1,8 +1,6 @@
 class ducktape::puppetserver(
-  $enabled = true,
+  Boolean $enabled = true,
 ) {
-
-  validate_bool($enabled)
 
   if $enabled {
     include ducktape::puppetserver::autoload
@@ -24,4 +22,3 @@ class ducktape::puppetserver(
   }
 
 }
-
