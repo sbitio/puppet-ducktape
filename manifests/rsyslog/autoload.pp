@@ -1,12 +1,9 @@
 class ducktape::rsyslog::autoload (
-  Boolean $snippet           = true,
-  Hash    $snippet_defaults  = {},
-  Hash    $snippets          = {},
+  Boolean $snippet = true,
 ) {
 
   if $snippet {
-    create_resources('rsyslog::snippet', $snippets, $snippet_defaults)
+    create_resources('rsyslog::snippet', $ducktape::rsyslog::snippets, $ducktape::rsyslog::snippet_defaults)
   }
 
 }
-
