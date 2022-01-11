@@ -1,5 +1,5 @@
 class ducktape::sudo::autoload (
-  $autoload             = true,
+  Boolean $autoload = true,
   $hiera_merge_strategy = hiera_hash,
 ) {
 
@@ -17,4 +17,3 @@ class ducktape::sudo::autoload (
   }
 
 }
-

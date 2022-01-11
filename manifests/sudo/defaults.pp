@@ -1,9 +1,9 @@
 class ducktape::sudo::defaults (
-  $enabled         = true,
-  $passwd_policy   = 'PASSWD',
-  $hiera_mode      = 'array',
-  $ansible_enabled = true,
-  $ansible_user    = 'ansible',
+  Boolean $enabled         = true,
+  String $passwd_policy   = 'PASSWD',
+  String $hiera_mode      = 'array',
+  Boolean $ansible_enabled = true,
+  String $ansible_user    = 'ansible',
   $vagrant_enabled = (defined('$::is_vagrant') and ($::is_vagrant)),
   $amazon_enabled  = (defined('$::ec2_ami_id') and ($::ec2_ami_id != '')),
 ) {
