@@ -13,6 +13,10 @@ lookup_options:
     merge:
       strategy: deep
       knockout_prefix: --
+  ducktape::posix_acl::acls:
+    merge:
+      strategy: deep
+      knockout_prefix: --
   ducktape::rsyslog::autoload::snippets:
     merge:
       strategy: deep
