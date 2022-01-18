@@ -21,6 +21,18 @@ lookup_options:
     merge:
       strategy: deep
       knockout_prefix: --
+  ducktape::haproxy::backends:
+    merge:
+      strategy: deep
+      knockout_prefix: --
+  ducktape::haproxy::frontends:
+    merge:
+      strategy: deep
+      knockout_prefix: --
+  ducktape::haproxy::userlists:
+    merge:
+      strategy: deep
+      knockout_prefix: --
   ducktape::posix_acl::acls:
     merge:
       strategy: deep
