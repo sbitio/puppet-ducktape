@@ -1,11 +1,15 @@
 ---
 
 lookup_options:
-  ducktape::firewall::rules:
+  ducktape::alternatives::alternatives:
     merge:
       strategy: deep
       knockout_prefix: --
   ducktape::firewall::chains:
+    merge:
+      strategy: deep
+      knockout_prefix: --
+  ducktape::firewall::rules:
     merge:
       strategy: deep
       knockout_prefix: --
@@ -14,7 +18,7 @@ lookup_options:
       strategy: deep
       knockout_prefix: --
 
-ducktape::firewall::rules::defaults: {}
-ducktape::firewall::rules: {}
 ducktape::firewall::chain::defaults: {}
 ducktape::firewall::chains: {}
+ducktape::firewall::rules::defaults: {}
+ducktape::firewall::rules: {}
