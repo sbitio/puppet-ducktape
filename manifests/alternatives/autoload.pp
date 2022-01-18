@@ -3,7 +3,7 @@ class ducktape::alternatives::autoload (
 ) {
 
   if $load_alternatives {
-    create_resources('alternatives', $ducktape::alternatives::alternatives, $ducktape::alternatives::defaults)
+    create_resources('alternatives', $ducktape::alternatives::alternatives, $ducktape::alternative_defaults)
   }
 
 }

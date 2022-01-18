@@ -1,6 +1,6 @@
 class ducktape::alternatives (
   Boolean $enabled = true,
-  Hash $defaults = {},
+  Hash $alternative_defaults = {},
   Hash $alternatives = {},
 ) {
 
