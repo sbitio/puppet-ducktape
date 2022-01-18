@@ -1,13 +1,11 @@
 class ducktape::posix_acl (
   Boolean $enabled = true,
-  Hash $defaults = {},
+  Hash $acl_defaults = {},
   Hash $acls = {},
 ) {
 
   if $enabled {
-
-    require ::ducktape::posix_acl::autoload
-
+    contain ducktape::posix_acl::autoload
   }
 
 }

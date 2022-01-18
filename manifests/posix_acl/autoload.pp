@@ -1,11 +1,9 @@
 class ducktape::posix_acl::autoload (
-  Boolean $autoload = true,
+  Boolean $load_acls = true,
 ) {
 
-  if $autoload {
-
-    create_resources('posix_acl', $ducktape::posix_acl::acls, $ducktape::posix_acl::defaults)
-
+  if $load_acls {
+    create_resources('posix_acl', $ducktape::posix_acl::acls, $ducktape::posix_acl::acl_defaults)
   }
 
 }
