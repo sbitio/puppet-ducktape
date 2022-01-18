@@ -86,7 +86,7 @@ class ducktape::haproxy::autoload (
   }
 
   if $load_peers {
-    if $peers != {} {
+    if $ducktape::haproxy::peers != {} {
       haproxy::peers { 'peerlist': }
       $peer_defaults = {
         peers_name => 'peerlist'

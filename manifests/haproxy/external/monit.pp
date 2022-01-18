@@ -5,7 +5,7 @@ class ducktape::haproxy::external::monit(
 ) {
 
   if $enabled {
-    require ::ducktape::haproxy::autoload
+    contain ducktape::haproxy::autoload
     #TODO# create a connection test for each frontend
 
     $init_system = $::operatingsystem ? {
@@ -15,7 +15,7 @@ class ducktape::haproxy::external::monit(
       },
       default  => undef,
     }
-    $port_hive = $::ducktape::haproxy::autoload::frontends
+    $port_hive = $ducktape::haproxy::frontends
     $connection_test = {
       type     => 'connection',
       protocol => 'http',
