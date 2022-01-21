@@ -12,7 +12,7 @@ class ducktape::firewall::autoload (
     }
   }
   if $load_chains {
-    $chains.each |String $name, Variant[Hash,String] $params| {
+    $ducktape::firewall::chains.each |String $name, Variant[Hash,String] $params| {
       if $ducktape::firewall::params != '' {
         firewallchain { $name:
           * => deep_merge($ducktape::firewall::chain_defaults, $params),
