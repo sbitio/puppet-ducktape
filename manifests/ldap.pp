@@ -1,8 +1,8 @@
 class ducktape::ldap (
-  $enabled = true,
+  Boolean $enabled = true,
+  Hash $entry_defaults = {},
+  Hash $entries = {},
 ) {
-
-  validate_bool($enabled)
 
   if $enabled {
     include ducktape::ldap::autoload
