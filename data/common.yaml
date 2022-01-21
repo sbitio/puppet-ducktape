@@ -21,7 +21,6 @@ lookup_options:
     merge:
       strategy: deep
       knockout_prefix: --
-<<<<<<< HEAD
   ducktape::firewall::rules:
     merge:
       strategy: deep
@@ -102,6 +101,22 @@ lookup_options:
       strategy: deep
       knockout_prefix: --
   ducktape::rsyslog::autoload::snippets:
+    merge:
+      strategy: deep
+      knockout_prefix: --
+  ducktape::systemd::dropin_files:
+    merge:
+      strategy: deep
+      knockout_prefix: --
+  ducktape::systemd::unit_files:
+    merge:
+      strategy: deep
+      knockout_prefix: --
+  ducktape::systemd::timers:
+    merge:
+      strategy: deep
+      knockout_prefix: --
+  ducktape::systemd::networks:
     merge:
       strategy: deep
       knockout_prefix: --

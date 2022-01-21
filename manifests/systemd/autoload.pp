@@ -5,26 +5,19 @@ class ducktape::systemd::autoload (
   Boolean $load_networks = true,
 ) {
 
-  validate_bool($load_dropin_files)
-  validate_bool($load_unit_files)
-
   if $load_dropin_files {
-    $systemd_dropin_files_defaults = hiera('ducktape::systemd::dropin_files::defaults', {})
-    create_resources('::systemd::dropin_file', hiera_hash('ducktape::systemd::dropin_files', {}), $systemd_dropin_files_defaults)
+    create_resources('::systemd::dropin_file', $ducktape::systemd::dropin_files, $ducktape::systemd::dropin_file_defaults)
   }
 
   if $load_unit_files {
-    $systemd_unit_files_defaults = hiera('ducktape::systemd::unit_files::defaults', {})
-    create_resources('::systemd::unit_file', hiera_hash('ducktape::systemd::unit_files', {}), $systemd_unit_files_defaults)
+    create_resources('::systemd::unit_file', $ducktape::systemd::unit_files, $ducktape::systemd::unit_file_defaults)
   }
 
   if $load_timers {
-    $systemd_timers_defaults = hiera('ducktape::systemd::timers::defaults', {})
-    create_resources('::systemd::timer', hiera_hash('ducktape::systemd::timers', {}), $systemd_timers_defaults)
+    create_resources('::systemd::timer', $ducktape::systemd::timers, $ducktape::systemd::timer_defaults)
   }
 
   if $load_networks {
-    $systemd_networks_defaults = hiera('ducktape::systemd::networks::defaults', {})
-    create_resources('::systemd::network', hiera_hash('ducktape::systemd::networks', {}), $systemd_networks_defaults)
+    create_resources('::systemd::network', $ducktape::systemd::networks, $ducktape::systemd::network_defaults)
   }
 }
