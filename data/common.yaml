@@ -45,6 +45,14 @@ lookup_options:
     merge:
       strategy: deep
       knockout_prefix: --
+  ducktape::opendkim::domains:
+    merge:
+      strategy: deep
+      knockout_prefix: --
+  ducktape::opendkim::trusteds:
+    merge:
+      strategy: deep
+      knockout_prefix: --
   ducktape::posix_acl::acls:
     merge:
       strategy: deep
