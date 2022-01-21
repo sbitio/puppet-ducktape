@@ -1,8 +1,6 @@
 class ducktape::logcheck (
-  $enabled = true,
+  Boolean $enabled = true,
 ) {
-
-  validate_bool($enabled)
 
   if $enabled {
     # Workaround packaging bug https://bugzilla.redhat.com/show_bug.cgi?id=678436
@@ -39,4 +37,3 @@ class ducktape::logcheck (
   }
 
 }
-

@@ -1,8 +1,6 @@
 class ducktape::php (
-  $enabled = true,
+  Boolean $enabled = true,
 ) {
-
-  validate_bool($enabled)
 
   if $enabled {
     $defaults = hiera('ducktape::php::conf::defaults', {})
@@ -12,4 +10,3 @@ class ducktape::php (
   }
 
 }
-

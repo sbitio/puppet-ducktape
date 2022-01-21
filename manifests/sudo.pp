@@ -1,8 +1,8 @@
 class ducktape::sudo (
-  $enabled = true,
+  Boolean $enabled = true,
+  Hash $conf_defaults = {},
+  Hash $confs = {},
 ) {
-
-  validate_bool($enabled)
 
   if $enabled {
     require ::ducktape::sudo::defaults

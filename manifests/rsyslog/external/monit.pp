@@ -1,8 +1,6 @@
 class ducktape::rsyslog::external::monit(
-  $enabled = true,
+  Boolean $enabled = true,
 ) {
-
-  validate_bool($enabled)
 
   if $enabled {
     $binary = $::osfamily ? {

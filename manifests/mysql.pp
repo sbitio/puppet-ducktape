@@ -1,16 +1,5 @@
 class ducktape::mysql (
-  $enabled = true,
-  $flavour = undef,
+  Boolean $enabled = true,
 ) {
 
-  validate_bool($enabled)
-  validate_string($flavour)
-
-  if $enabled {
-    class { '::ducktape::mysql::flavour' :
-      flavour => $flavour,
-    }
-  }
-
 }
-

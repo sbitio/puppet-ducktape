@@ -1,8 +1,6 @@
 class ducktape::newrelic (
-  $enabled = true,
+  Boolean $enabled = true,
 ) {
-
-  validate_bool($enabled)
 
   if $enabled {
     # Ensure newrelic extension is installed to all php apis.
@@ -29,4 +27,3 @@ class ducktape::newrelic (
   }
 
 }
-

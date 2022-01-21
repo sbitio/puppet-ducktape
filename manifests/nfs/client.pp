@@ -1,8 +1,6 @@
 class ducktape::nfs::client (
-  $enabled = true,
+  Boolean $enabled = true,
 ) {
-
-  validate_bool($enabled)
 
   if $enabled {
     include ducktape::nfs::client::autoload
@@ -14,4 +12,3 @@ class ducktape::nfs::client (
   }
 
 }
-

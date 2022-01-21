@@ -1,9 +1,7 @@
 class ducktape::openvpn::external::monit(
-  $enabled = true,
+  Boolean $enabled = true,
   $pidfile,
 ) {
-
-  validate_bool($enabled)
 
   if $enabled {
     #TODO# Add network test

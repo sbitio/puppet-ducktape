@@ -1,8 +1,6 @@
 class ducktape::postgresql::external::monit(
-  $enabled = true,
+  Boolean $enabled = true,
 ) {
-
-  validate_bool($enabled)
 
   if $enabled {
     #TODO# Add network test
@@ -11,4 +9,3 @@ class ducktape::postgresql::external::monit(
   }
 
 }
-

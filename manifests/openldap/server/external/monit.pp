@@ -4,8 +4,6 @@ class ducktape::openldap::server::external::monit(
   Hash $conn_tolerance = { cycles => 1 },
 ) {
 
-  validate_bool($enabled)
-
   if $enabled {
     #TODO# Add support for RedHat family.
     $pidfile = $::osfamily ? {

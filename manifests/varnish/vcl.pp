@@ -1,13 +1,10 @@
 class ducktape::varnish::vcl (
-  $enabled    = true,
-  $vcl_name   = puppet,
+  Boolean $enabled    = true,
+  String $vcl_name   = 'puppet',
   $vcl_source = undef,
 ) {
 
 #TODO# try to move this to upstream module
-
-  validate_bool($enabled)
-  validate_string($vcl_name)
 
   if $enabled {
     if $vcl_source != undef {

@@ -1,12 +1,9 @@
 class ducktape::opendkim::external::postfix(
-  $enabled = true,
-  $port    = $::ducktape::opendkim::port,
+  Boolean $enabled = true,
 ) {
 
-  validate_bool($enabled)
-
   if $enabled {
-    $socket_postfix_def = "inet:127.0.0.1:${port}"
+    $socket_postfix_def = "inet:127.0.0.1:${$ducktape::opendkim::port}"
     postfix::config {
       "smtpd_milters"         : value => $socket_postfix_def;
       "non_smtpd_milters"     : value => $socket_postfix_def;

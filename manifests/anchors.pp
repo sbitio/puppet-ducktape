@@ -1,5 +1,5 @@
 class ducktape::anchors(
-  $enabled = true,
+  Boolean $enabled = true,
 ) {
 
   if $enabled {

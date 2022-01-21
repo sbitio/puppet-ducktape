@@ -4,8 +4,6 @@ class ducktape::mysql::external::monit(
   Hash $conn_tolerance = { cycles => 1 },
 ) {
 
-  validate_bool($enabled)
-
   if $enabled {
     $init_system = $::operatingsystem ? {
       'Ubuntu' => $::lsbmajdistrelease ? {

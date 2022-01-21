@@ -1,5 +1,5 @@
 class ducktape::postfix(
-  boolean $enabled = true,
+  Boolean $enabled = true,
   Hash $config_defaults = {},
   Hash $configs = {},
 ) {

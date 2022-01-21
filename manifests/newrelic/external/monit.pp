@@ -1,8 +1,6 @@
 class ducktape::newrelic::external::monit(
-  $enabled = true,
+  Boolean $enabled = true,
 ) {
-
-  validate_bool($enabled)
 
   if $enabled {
     if $::newrelic::enable_php_agent {
