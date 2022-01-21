@@ -1,6 +1,16 @@
 class ducktape::jenkins (
   Boolean $enabled    = true,
   Boolean $bootstrap  = true,
+  Hash    $cli_exec_defaults          = {},
+  Hash    $cli_execs                  = {},
+  Hash    $credential_defaults        = {},
+  Hash    $credentials                = {},
+  Hash    $native_credential_defaults = {},
+  Hash    $native_credentials         = {},
+  Hash    $rogue_defaults             = {},
+  Hash    $rogues                     = {},
+  Hash    $user_defaults              = {},
+  Hash    $users                      = {},
 ) {
 
   if $enabled {
