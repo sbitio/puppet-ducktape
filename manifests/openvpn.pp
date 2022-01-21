@@ -1,8 +1,12 @@
 class ducktape::openvpn (
-  $enabled  = true,
+  Boolean $enabled  = true,
+  Hash $server_defaults = {},
+  Hash $servers = {},
+  Hash $client_defaults = {},
+  Hash $clients = {},
+  Hash $revoke_defaults = {},
+  Hash $revokes = {},
 ) {
-
-  validate_bool($enabled)
 
   if $enabled {
     include ::ducktape::openvpn::autoload
@@ -14,4 +18,3 @@ class ducktape::openvpn (
   }
 
 }
-

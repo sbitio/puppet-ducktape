@@ -76,6 +76,18 @@ lookup_options:
     merge:
       strategy: deep
       knockout_prefix: --
+  ducktape::openvpn::servers:
+    merge:
+      strategy: deep
+      knockout_prefix: --
+  ducktape::openvpn::clients:
+    merge:
+      strategy: deep
+      knockout_prefix: --
+  ducktape::openvpn::revokes:
+    merge:
+      strategy: deep
+      knockout_prefix: --
   ducktape::posix_acl::acls:
     merge:
       strategy: deep
