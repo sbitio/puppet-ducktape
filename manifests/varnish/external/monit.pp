@@ -5,8 +5,6 @@ class ducktape::varnish::external::monit(
   String $varnish_host = 'health.varnish',
 ) {
 
-  validate_bool($enabled)
-
   if $enabled {
     $pidfile = $::osfamily ? {
       'Debian' => $::lsbdistcodename ? {

@@ -12,9 +12,6 @@ class ducktape::apache::external::monit(
   Array[Hash] $extra_tests    = [],
 ) {
 
-  validate_bool($enabled)
-  #TODO# Add more validations
-
   if $enabled {
     $rand_fragment = fqdn_rand(1000000, $vhost_seed)
     $servername    = "${vhost_prefix}${rand_fragment}${vhost_suffix}"

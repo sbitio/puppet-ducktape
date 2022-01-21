@@ -1,8 +1,6 @@
 class ducktape::rabbitmq::external::monit(
-  $enabled = true,
+  Boolean $enabled = true,
 ) {
-
-  validate_bool($enabled)
 
   if $enabled {
     monit::check::service { 'rabbitmq-server':

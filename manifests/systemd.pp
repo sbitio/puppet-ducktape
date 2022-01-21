@@ -20,8 +20,6 @@ class ducktape::systemd (
   Hash $networks = {},
 ) {
 
-  validate_bool($enabled)
-
   if $enabled {
     include ducktape::systemd::autoload
 

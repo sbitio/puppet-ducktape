@@ -1,6 +1,6 @@
 class ducktape::mysql::external::munin_node_plugin(
   Boolean $enabled            = true,
-  Boolean $ensure             = present,
+  Enum['present', 'absent'] $ensure = 'present',
   Boolean $old_plugin         = false,
   # No mysql_innodb and no mysql_isam_space_
   Array[String] $old_plugins        = [
@@ -48,9 +48,6 @@ class ducktape::mysql::external::munin_node_plugin(
   ],
   Stdlib::Absolutepath $kjellm_repo_dst = '/opt/kjellm-munin-mysql'
 ) {
-
-  validate_bool($enabled)
-  #TODO# Add more validations
 
   if $enabled and defined('::munin::node') and defined(Class['::munin::node']) {
 
