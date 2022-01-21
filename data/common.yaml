@@ -17,6 +17,7 @@ lookup_options:
     merge:
       strategy: deep
       knockout_prefix: --
+<<<<<<< HEAD
   ducktape::firewall::rules:
     merge:
       strategy: deep
@@ -30,6 +31,10 @@ lookup_options:
       strategy: deep
       knockout_prefix: --
   ducktape::haproxy::userlists:
+    merge:
+      strategy: deep
+      knockout_prefix: --
+  ducktape::inifile::settings:
     merge:
       strategy: deep
       knockout_prefix: --
