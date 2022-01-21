@@ -1,6 +1,6 @@
 class ducktape::mysql (
   Boolean $enabled = true,
-  String $flavour = undef,
+  Optional[String] $flavour = undef,
 ) {
 
   if $enabled {

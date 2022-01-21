@@ -4,7 +4,7 @@ class ducktape::apache::shield_vhost (
   Integer $port = 80,
   Stdlib::Absolutepath $docroot = $::apache::docroot,
   String $priority = '10',
-  String $custom_fragment = undef,
+  Optional[String] $custom_fragment = undef,
 ) {
 
   if $enabled {
