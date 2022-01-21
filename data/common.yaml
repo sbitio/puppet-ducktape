@@ -25,6 +25,10 @@ lookup_options:
     merge:
       strategy: deep
       knockout_prefix: --
+  ducktape::gluster::mounts:
+    merge:
+      strategy: deep
+      knockout_prefix: --
   ducktape::haproxy::backends:
     merge:
       strategy: deep

@@ -1,8 +1,8 @@
 class ducktape::gluster (
-  $enabled = true,
+  Boolean $enabled = true,
+  Hash $mount_defaults = {},
+  Hash $mounts = {},
 ) {
-
-  validate_bool($enabled)
 
   if $enabled {
     include ducktape::gluster::autoload
@@ -19,4 +19,3 @@ class ducktape::gluster (
   }
 
 }
-
