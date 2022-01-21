@@ -72,6 +72,26 @@ lookup_options:
     merge:
       strategy: deep
       knockout_prefix: --
+  ducktape::rabbitmq::vhosts:
+    merge:
+      strategy: deep
+      knockout_prefix: --
+  ducktape::rabbitmq::exchanges:
+    merge:
+      strategy: deep
+      knockout_prefix: --
+  ducktape::rabbitmq::queues:
+    merge:
+      strategy: deep
+      knockout_prefix: --
+  ducktape::rabbitmq::users:
+    merge:
+      strategy: deep
+      knockout_prefix: --
+  ducktape::rabbitmq::user_permissions:
+    merge:
+      strategy: deep
+      knockout_prefix: --
   ducktape::rsyslog::autoload::snippets:
     merge:
       strategy: deep
