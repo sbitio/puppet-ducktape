@@ -149,6 +149,10 @@ lookup_options:
     merge:
       strategy: deep
       knockout_prefix: --
+  ducktape::sudo::confs:
+    merge:
+      strategy: deep
+      knockout_prefix: --
   ducktape::systemd::dropin_files:
     merge:
       strategy: deep

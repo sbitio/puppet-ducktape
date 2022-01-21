@@ -1,7 +1,4 @@
 # MANAGED BY PUPPET!
-# defaults_sudo_groups
-<% if @sudo_groups -%>
-<% @sudo_groups.each do |group| -%>
-%<%= group %> ALL=(ALL) <%= @passwd_policy %>: ALL
-<% end -%>
+<% @groups.each do |group| -%>
+%<%= group %> ALL=(ALL) <%= @group_passwd_policy %>: ALL
 <% end -%>
