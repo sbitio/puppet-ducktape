@@ -1,5 +1,7 @@
 class ducktape::nfs::server (
   Boolean $enabled = true,
+  Hash $exports = {},
+  Hash $export_defaults = {},
 ) {
 
   if $enabled {
