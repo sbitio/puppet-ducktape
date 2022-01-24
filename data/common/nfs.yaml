@@ -1,0 +1,20 @@
+---
+
+lookup_options:
+  ducktape::nfs::client::mounts:
+    merge:
+      strategy: deep
+      knockout_prefix: --
+  ducktape::nfs::server::exports:
+    merge:
+      strategy: deep
+      knockout_prefix: --
+  ducktape::nfs::server::export::defaults:
+    merge:
+      strategy: deep
+      knockout_prefix: --
+
+ducktape::nfs::client::mounts: {}
+ducktape::nfs::client::mount_defaults: {}
+ducktape::nfs::server::exports: {}
+ducktape::nfs::server::export_defaults: {}

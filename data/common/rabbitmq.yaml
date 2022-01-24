@@ -1,0 +1,34 @@
+---
+
+lookup_options:
+  ducktape::rabbitmq::vhosts:
+    merge:
+      strategy: deep
+      knockout_prefix: --
+  ducktape::rabbitmq::exchanges:
+    merge:
+      strategy: deep
+      knockout_prefix: --
+  ducktape::rabbitmq::queues:
+    merge:
+      strategy: deep
+      knockout_prefix: --
+  ducktape::rabbitmq::users:
+    merge:
+      strategy: deep
+      knockout_prefix: --
+  ducktape::rabbitmq::user_permissions:
+    merge:
+      strategy: deep
+      knockout_prefix: --
+
+ducktape::rabbitmq::vhosts: {}
+ducktape::rabbitmq::vhost_defaults: {}
+ducktape::rabbitmq::exchanges: {}
+ducktape::rabbitmq::exchange_defaults: {}
+ducktape::rabbitmq::queues: {}
+ducktape::rabbitmq::queue_defaults: {}
+ducktape::rabbitmq::users: {}
+ducktape::rabbitmq::user_defaults: {}
+ducktape::rabbitmq::user_permissions: {}
+ducktape::rabbitmq::user_permissions_defaults: {}

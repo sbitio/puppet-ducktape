@@ -1,0 +1,10 @@
+---
+
+lookup_options:
+  ducktape::inifile::settings:
+    merge:
+      strategy: deep
+      knockout_prefix: --
+
+ducktape::inifile::settings: {}
+ducktape::inifile::defaults: {}

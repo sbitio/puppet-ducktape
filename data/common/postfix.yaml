@@ -1,0 +1,10 @@
+---
+
+lookup_options:
+  ducktape::postfix::configs:
+    merge:
+      strategy: deep
+      knockout_prefix: --
+
+ducktape::postfix::configs: {}
+ducktape::postfix::config_defaults: {}

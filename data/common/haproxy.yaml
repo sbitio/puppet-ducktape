@@ -1,0 +1,27 @@
+---
+
+lookup_options:
+  ducktape::haproxy::backends:
+    merge:
+      strategy: deep
+      knockout_prefix: --
+  ducktape::haproxy::frontends:
+    merge:
+      strategy: deep
+      knockout_prefix: --
+  ducktape::haproxy::userlists:
+    merge:
+      strategy: deep
+      knockout_prefix: --
+  ducktape::haproxy::peers:
+    merge:
+      strategy: deep
+      knockout_prefix: --
+
+ducktape::haproxy::frontends: {}
+ducktape::haproxy::frontend_defaults: {}
+ducktape::haproxy::backends: {}
+ducktape::haproxy::backend_defaults: {}
+ducktape::haproxy::userlists: {}
+ducktape::haproxy::userlist_defaults: {}
+ducktape::haproxy::peers: {}

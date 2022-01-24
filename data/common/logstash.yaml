@@ -1,0 +1,22 @@
+---
+
+lookup_options:
+  ducktape::logstash::configfiles:
+    merge:
+      strategy: deep
+      knockout_prefix: --
+  ducktape::logstash::patternfiles:
+    merge:
+      strategy: deep
+      knockout_prefix: --
+  ducktape::logstash::plugins:
+    merge:
+      strategy: deep
+      knockout_prefix: --
+
+ducktape::logstash::configfiles: {}
+ducktape::logstash::configfile_defaults: {}
+ducktape::logstash::patternfiles: {}
+ducktape::logstash::patternfile_defaults: {}
+ducktape::logstash::plugins: {}
+ducktape::logstash::plugin_defaults: {}

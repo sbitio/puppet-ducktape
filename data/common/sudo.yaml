@@ -1,0 +1,10 @@
+---
+
+lookup_options:
+  ducktape::sudo::confs:
+    merge:
+      strategy: deep
+      knockout_prefix: --
+
+ducktape::sudo::confs: {}
+ducktape::sudo::conf_defaults: {}

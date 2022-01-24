@@ -1,0 +1,28 @@
+---
+
+lookup_options:
+  ducktape::systemd::dropin_files:
+    merge:
+      strategy: deep
+      knockout_prefix: --
+  ducktape::systemd::unit_files:
+    merge:
+      strategy: deep
+      knockout_prefix: --
+  ducktape::systemd::timers:
+    merge:
+      strategy: deep
+      knockout_prefix: --
+  ducktape::systemd::networks:
+    merge:
+      strategy: deep
+      knockout_prefix: --
+
+ducktape::systemd::dropin_files: {}
+ducktape::systemd::dropin_file_defaults: {}
+ducktape::systemd::unit_files: {}
+ducktape::systemd::unit_file_defaults: {}
+ducktape::systemd::timers: {}
+ducktape::systemd::timer_defaults: {}
+ducktape::systemd::networks: {}
+ducktape::systemd::network_defaults: {}

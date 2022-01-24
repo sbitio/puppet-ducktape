@@ -1,0 +1,10 @@
+---
+
+lookup_options:
+  ducktape::alternatives::alternatives:
+    merge:
+      strategy: deep
+      knockout_prefix: --
+
+ducktape::alternatives::alternatives: {}
+ducktape::alternatives::alternative_defaults: {}

@@ -1,0 +1,16 @@
+---
+
+lookup_options:
+  ducktape::apt::keys:
+    merge:
+      strategy: deep
+      knockout_prefix: --
+  ducktape::apt::sources:
+    merge:
+      strategy: deep
+      knockout_prefix: --
+
+ducktape::apt::keys: {}
+ducktape::apt::key_defaults: {}
+ducktape::apt::sources: {}
+ducktape::apt::source_defaults: {}

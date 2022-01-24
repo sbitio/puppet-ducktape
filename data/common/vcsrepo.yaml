@@ -1,0 +1,10 @@
+---
+
+lookup_options:
+  ducktape::vcsrepo::repos:
+    merge:
+      strategy: deep
+      knockout_prefix: --
+
+ducktape::vcsrepo::repos: {}
+ducktape::vcsrepo::repo_defaults: {}

@@ -1,0 +1,6 @@
+---
+
+lookup_options:
+  ducktape::mysql::server::autoload::confs:
+    merge:
+      strategy: deep

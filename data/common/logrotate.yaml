@@ -1,0 +1,10 @@
+---
+
+lookup_options:
+  ducktape::logrotate::rules:
+    merge:
+      strategy: deep
+      knockout_prefix: --
+
+ducktape::logrotate::rules: {}
+ducktape::logrotate::rule_defaults: {}

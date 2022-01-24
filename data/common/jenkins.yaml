@@ -1,0 +1,29 @@
+---
+
+lookup_options:
+  ducktape::jenkins::cli_execs:
+    merge:
+      strategy: deep
+  ducktape::jenkins::credentials:
+    merge:
+      strategy: deep
+  ducktape::jenkins::native_credentials:
+    merge:
+      strategy: deep
+  ducktape::jenkins::rogues:
+    merge:
+      strategy: deep
+  ducktape::jenkins::users:
+    merge:
+      strategy: deep
+
+ducktape::jenkins::cli_execs: {}
+ducktape::jenkins::cli_exec_defaults: {}
+ducktape::jenkins::credentials: {}
+ducktape::jenkins::credential_defaults: {}
+ducktape::jenkins::native_credentials: {}
+ducktape::jenkins::native_credential_defaults: {}
+ducktape::jenkins::users: {}
+ducktape::jenkins::user_defaults: {}
+ducktape::jenkins::rogues: {}
+ducktape::jenkins::rogue_defaults: {}

@@ -1,0 +1,10 @@
+---
+
+lookup_options:
+  ducktape::posix_acl::acls:
+    merge:
+      strategy: deep
+      knockout_prefix: --
+
+ducktape::posix_acl::acls: {}
+ducktape::posix_acl::acl_defaults: {}
