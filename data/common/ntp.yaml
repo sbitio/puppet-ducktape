@@ -1,0 +1,6 @@
+---
+
+ducktape::ntp::enabled: true
+
+ducktape::ntp::external::monit::enabled: true
+ducktape::ntp::external::monit::action: 'restart'

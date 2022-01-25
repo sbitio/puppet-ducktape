@@ -8,3 +8,5 @@ lookup_options:
 
 ducktape::alternatives::alternatives: {}
 ducktape::alternatives::alternative_defaults: {}
+ducktape::alternatives::enabled: true
+ducktape::alternatives::autoload::load_alternatives: true

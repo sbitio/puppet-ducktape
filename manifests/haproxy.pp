@@ -1,13 +1,13 @@
 class ducktape::haproxy (
-  Boolean $enabled = true,
-  Optional[Array[String]] $package_install_options = undef,
-  Hash    $backend_defaults   = {},
-  Hash    $backends           = {},
-  Hash    $frontend_defaults  = {},
-  Hash    $frontends          = {},
-  Hash    $peers              = {},
-  Hash    $userlist_defaults  = {},
-  Hash    $userlists          = {},
+  Boolean $enabled,
+  Optional[Array[String]] $package_install_options,
+  Hash    $backend_defaults,
+  Hash    $backends,
+  Hash    $frontend_defaults,
+  Hash    $frontends,
+  Hash    $peers,
+  Hash    $userlist_defaults,
+  Hash    $userlists,
 ) {
 
   if $enabled {

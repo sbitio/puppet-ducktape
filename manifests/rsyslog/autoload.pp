@@ -1,5 +1,5 @@
 class ducktape::rsyslog::autoload (
-  Boolean $snippet = true,
+  Boolean $snippet,
 ) {
 
   if $snippet {

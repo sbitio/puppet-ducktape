@@ -1,7 +1,7 @@
 class ducktape::alternatives (
-  Boolean $enabled = true,
-  Hash $alternative_defaults = {},
-  Hash $alternatives = {},
+  Boolean $enabled,
+  Hash $alternative_defaults,
+  Hash $alternatives,
 ) {
 
   if $enabled {

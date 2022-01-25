@@ -32,3 +32,14 @@ ducktape::rabbitmq::users: {}
 ducktape::rabbitmq::user_defaults: {}
 ducktape::rabbitmq::user_permissions: {}
 ducktape::rabbitmq::user_permissions_defaults: {}
+ducktape::rabbitmq::enabled: true
+
+ducktape::rabbitmq::autoload::load_vhosts: true
+ducktape::rabbitmq::autoload::load_exchanges: true
+ducktape::rabbitmq::autoload::load_queues: true
+ducktape::rabbitmq::autoload::load_users: true
+ducktape::rabbitmq::autoload::load_user_permissions: true
+
+ducktape::rabbitmq::external::monit::enabled: true
+
+ducktape::rabbitmq::external::munin_node_plugin::enabled: true

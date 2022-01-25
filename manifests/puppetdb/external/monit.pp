@@ -1,5 +1,5 @@
 class ducktape::puppetdb::external::monit(
-  Boolean $enabled = true,
+  Boolean $enabled,
 ) {
 
   if $enabled {

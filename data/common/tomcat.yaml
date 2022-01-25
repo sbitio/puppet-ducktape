@@ -1,0 +1,7 @@
+---
+
+ducktape::tomcat::enabled: true
+ducktape::tomcat::external::monit::enabled: true
+ducktape::tomcat::external::monit::action: 'restart'
+ducktape::tomcat::external::monit::conn_tolerance:
+  cycles: 1

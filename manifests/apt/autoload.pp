@@ -1,6 +1,6 @@
 class ducktape::apt::autoload(
-  Boolean $load_keys = true,
-  Boolean $load_sources = true,
+  Boolean $load_keys,
+  Boolean $load_sources,
 ) {
 
   if $load_keys {

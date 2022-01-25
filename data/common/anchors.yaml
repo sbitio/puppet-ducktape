@@ -8,3 +8,4 @@ lookup_options:
 
 ducktape::anchors::anchors: {}
 ducktape::anchors::anchor_defaults: {}
+ducktape::anchors::enabled: true

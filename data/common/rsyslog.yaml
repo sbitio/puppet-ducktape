@@ -8,3 +8,8 @@ lookup_options:
 
 ducktape::rsyslog::snippets: {}
 ducktape::rsyslog::snippet_defaults: {}
+ducktape::rsyslog::enabled: true
+
+ducktape::rsyslog::autoload::snippet: true
+
+ducktape::rsyslog::external::monit::enabled: true

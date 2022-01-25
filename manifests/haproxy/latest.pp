@@ -1,5 +1,5 @@
 class ducktape::haproxy::latest (
-  Boolean $enabled = true,
+  Boolean $enabled,
 ) {
 
   if $enabled {

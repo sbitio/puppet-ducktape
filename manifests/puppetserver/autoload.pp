@@ -5,9 +5,9 @@ class ducktape::puppetserver::autoload() {
 }
 
 define ducktape::puppetserver::autoload::config::puppetserver(
-  String $file = 'puppetserver.conf',
-  $value,
-  $setting_type = undef,
+  String                         $file         = 'puppetserver.conf',
+  Variant[Array[String], String] $value,
+  Optional[String]               $setting_type = undef,
 ) {
 
   $setting = "${file}/${title}";

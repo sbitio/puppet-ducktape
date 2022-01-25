@@ -1,5 +1,5 @@
 class ducktape::posix_acl::autoload (
-  Boolean $load_acls = true,
+  Boolean $load_acls,
 ) {
 
   if $load_acls {

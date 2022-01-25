@@ -26,3 +26,9 @@ ducktape::systemd::timers: {}
 ducktape::systemd::timer_defaults: {}
 ducktape::systemd::networks: {}
 ducktape::systemd::network_defaults: {}
+ducktape::systemd::enabled: true
+
+ducktape::systemd::autoload::load_dropin_files: true
+ducktape::systemd::autoload::load_timers: true
+ducktape::systemd::autoload::load_unit_files: true
+ducktape::systemd::autoload::load_networks: true

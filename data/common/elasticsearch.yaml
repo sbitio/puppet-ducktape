@@ -1,0 +1,7 @@
+---
+
+ducktape::elasticsearch::enabled: true
+
+ducktape::elasticsearch::external::monit::enabled: true
+ducktape::elasticsearch::external::monit::systemd_file: '/lib/systemd/system/elasticsearch-es01.service'
+ducktape::elasticsearch::external::monit::tests: []

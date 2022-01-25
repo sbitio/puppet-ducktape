@@ -8,3 +8,6 @@ lookup_options:
 
 ducktape::php::confs: {}
 ducktape::php::defaults: {}
+ducktape::php::enabled: true
+
+ducktape::php::autoload::autoload: true

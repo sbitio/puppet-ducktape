@@ -8,3 +8,9 @@ lookup_options:
 
 ducktape::postfix::configs: {}
 ducktape::postfix::config_defaults: {}
+ducktape::postfix::enabled: true
+
+ducktape::postfix::autoload::load_configs: true
+
+ducktape::postfix::external::monit::enabled: true
+ducktape::postfix::external::monit::action: 'restart'

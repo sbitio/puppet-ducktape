@@ -1,5 +1,5 @@
 class ducktape::docker::compose (
-  Boolean $enabled = true,
+  Boolean $enabled,
 ) {
 
   if $enabled {

@@ -1,8 +1,8 @@
 class ducktape::systemd::autoload (
-  Boolean $load_dropin_files = true,
-  Boolean $load_unit_files = true,
-  Boolean $load_timers = true,
-  Boolean $load_networks = true,
+  Boolean $load_dropin_files,
+  Boolean $load_unit_files,
+  Boolean $load_timers,
+  Boolean $load_networks,
 ) {
 
   if $load_dropin_files {

@@ -1,17 +1,17 @@
 class ducktape::haproxy::autoload (
-  Boolean $load_frontends = true,
-  Boolean $load_backends  = true,
-  Boolean $load_peers     = true,
-  Boolean $load_userlists = true,
+  Boolean $load_frontends,
+  Boolean $load_backends,
+  Boolean $load_peers,
+  Boolean $load_userlists,
 
-  Boolean $http_edge                 = true,
-  String  $http_edge_path            = '/opt/http-edge',
-  String  $http_edge_path_owner      = 'root',
-  String  $http_edge_frontend        = 'default_fe',
+  Boolean $http_edge,
+  String  $http_edge_path,
+  String  $http_edge_path_owner,
+  String  $http_edge_frontend,
 
-  String  $http_edge_redirect_marker = '###http-edge-redirects###',
-  Array   $http_edge_redirect_types  = [ 'str', 'beg', 'end', 'sub', 'dir', 'regm' ],
-  Hash    $http_edge_domains_envs    = {},
+  String  $http_edge_redirect_marker,
+  Array   $http_edge_redirect_types,
+  Hash    $http_edge_domains_envs,
 ) {
 
   if $load_frontends {

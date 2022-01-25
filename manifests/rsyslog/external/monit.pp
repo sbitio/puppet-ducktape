@@ -1,5 +1,5 @@
 class ducktape::rsyslog::external::monit(
-  Boolean $enabled = true,
+  Boolean $enabled,
 ) {
 
   if $enabled {
@@ -33,4 +33,3 @@ class ducktape::rsyslog::external::monit(
   }
 
 }
-

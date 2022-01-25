@@ -1,5 +1,5 @@
 class ducktape::apache::autoload (
-  Boolean $autoload = true,
+  Boolean $autoload,
 ) {
 
   if $autoload {

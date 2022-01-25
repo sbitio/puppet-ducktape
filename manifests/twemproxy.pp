@@ -1,5 +1,5 @@
 class ducktape::twemproxy (
-  Boolean $enabled = true,
+  Boolean $enabled,
 ) {
 
   if $enabled {

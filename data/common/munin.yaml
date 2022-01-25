@@ -1,0 +1,13 @@
+---
+
+ducktape::munin::enabled: true
+
+ducktape::munin::node::enabled: true
+ducktape::munin::node::manage_repo: true
+ducktape::munin::node::repo_ensure: 'latest'
+ducktape::munin::node::repo_source: 'https://github.com/munin-monitoring/contrib.git'
+ducktape::munin::node::repo_provider: 'git'
+ducktape::munin::node::repo_revision: 'master'
+ducktape::munin::node::contrib_plugins_path: '/opt/munin-monitoring'
+
+ducktape::munin::external::monit::enabled: true

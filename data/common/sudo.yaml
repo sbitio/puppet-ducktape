@@ -8,3 +8,13 @@ lookup_options:
 
 ducktape::sudo::confs: {}
 ducktape::sudo::conf_defaults: {}
+ducktape::sudo::enabled: true
+
+ducktape::sudo::autoload::autoload: true
+
+ducktape::sudo::defaults::enabled: true
+ducktape::sudo::defaults::passwd_policy: 'PASSWD'
+ducktape::sudo::defaults::groups: []
+ducktape::sudo::defaults::group_passwd_policy: 'NOPASSWD'
+ducktape::sudo::defaults::ansible_enabled: true
+ducktape::sudo::defaults::ansible_user: 'ansible'

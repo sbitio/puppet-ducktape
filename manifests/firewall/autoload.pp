@@ -1,6 +1,6 @@
 class ducktape::firewall::autoload (
-  Boolean $load_rules = true,
-  Boolean $load_chains = true,
+  Boolean $load_rules,
+  Boolean $load_chains,
 ) {
 
   if $load_rules {

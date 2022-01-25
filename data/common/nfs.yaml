@@ -16,5 +16,12 @@ lookup_options:
 
 ducktape::nfs::client::mounts: {}
 ducktape::nfs::client::mount_defaults: {}
+ducktape::nfs::client::enabled: true
+ducktape::nfs::client::autoload::autorealize: true
+ducktape::nfs::client::autoload::nfstag: 'nfs'
+ducktape::nfs::client::autoload::load_mounts: true
+
 ducktape::nfs::server::exports: {}
 ducktape::nfs::server::export_defaults: {}
+ducktape::nfs::server::enabled: true
+ducktape::nfs::server::autoload::load_exports: true

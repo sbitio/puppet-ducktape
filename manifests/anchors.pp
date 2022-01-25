@@ -1,11 +1,11 @@
 class ducktape::anchors(
   Boolean $enabled = true,
-  Hash $anchors = {},
-  Hash $anchor_defaults = {},
+  Hash $anchors,
+  Hash $anchor_defaults,
 ) {
 
   if $enabled {
-    
+
     $anchors.each |$anchor_name, $_config| {
       $config = merge($anchor_defaults, $_config)
       $before = $config['before'];

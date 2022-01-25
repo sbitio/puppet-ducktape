@@ -8,3 +8,6 @@ lookup_options:
 
 ducktape::inifile::settings: {}
 ducktape::inifile::defaults: {}
+ducktape::inifile::enabled: true
+
+ducktape::inifile::autoload::autoload: true

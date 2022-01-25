@@ -1,11 +1,11 @@
 class ducktape::apache::external::munin_node_plugin (
-  Boolean $enabled        = true,
-  String $ip             = '127.0.0.1',
-  Integer $port           = 80,
-  Integer $vhost_priority = 99,
-  String $vhost_seed     = 'munin-apache',
-  String $vhost_prefix   = 'munin-apache-',
-  String $vhost_suffix   = ".${::fqdn}",
+  Boolean $enabled,
+  String $ip,
+  Integer $port,
+  Integer $vhost_priority,
+  String $vhost_seed,
+  String $vhost_prefix,
+  String $vhost_suffix,
 ) {
   #TODO# Add more validations
 

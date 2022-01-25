@@ -32,3 +32,15 @@ ducktape::openldap::indexes: {}
 ducktape::openldap::index_defaults: {}
 ducktape::openldap::schemas: {}
 ducktape::openldap::schema_defaults: {}
+ducktape::openldap::enabled: true
+
+ducktape::openldap::server::autoload::load_accesses: true
+ducktape::openldap::server::autoload::load_indexes: true
+ducktape::openldap::server::autoload::load_modules: true
+ducktape::openldap::server::autoload::load_overlays: true
+ducktape::openldap::server::autoload::load_schemas: true
+
+ducktape::openldap::server::external::monit::enabled: true
+ducktape::openldap::server::external::monit::action: 'restart'
+ducktape::openldap::server::external::monit::conn_tolerance:
+  cycles: 1

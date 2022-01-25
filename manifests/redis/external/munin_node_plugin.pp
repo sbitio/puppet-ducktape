@@ -1,5 +1,5 @@
 class ducktape::redis::external::munin_node_plugin(
-  Boolean $enabled = true,
+  Boolean $enabled,
   Hash $instance_defaults = {
       bind => $::redis::bind,
       port => $::redis::port,

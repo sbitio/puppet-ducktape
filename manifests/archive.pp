@@ -1,7 +1,7 @@
 class ducktape::archive (
-  Boolean $enabled = true,
-  Hash $defaults = {},
-  Hash $archives = {},
+  Boolean $enabled,
+  Hash $defaults,
+  Hash $archives,
 ) {
 
   if $enabled {

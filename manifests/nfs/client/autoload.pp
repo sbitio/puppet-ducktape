@@ -1,7 +1,7 @@
 class ducktape::nfs::client::autoload (
-  Boolean $autorealize = true,
-  String $nfstag      = 'nfs',
-  Boolean $load_mounts = true,
+  Boolean $autorealize,
+  String $nfstag,
+  Boolean $load_mounts,
 ) {
 
   if $load_mounts {

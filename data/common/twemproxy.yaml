@@ -1,0 +1,12 @@
+---
+
+ducktape::twemproxy::enabled: true
+
+ducktape::twemproxy::external::monit::enabled: true
+ducktape::twemproxy::external::monit::action: 'restart'
+ducktape::twemproxy::external::monit::conn_tolerance:
+  cycles: 1
+ducktape::twemproxy::external::monit::test_redis: true
+ducktape::twemproxy::external::monit::test_redis_port: 22122
+
+ducktape::twemproxy::external::munin_node_plugin::enabled: true

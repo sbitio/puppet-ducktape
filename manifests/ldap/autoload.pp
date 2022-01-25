@@ -1,5 +1,5 @@
 class ducktape::ldap::autoload(
-  Boolean $entry = true,
+  Boolean $entry,
 ) {
 
   if $entry {

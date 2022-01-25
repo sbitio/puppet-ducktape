@@ -1,5 +1,5 @@
 class ducktape::openvpn::external::monit(
-  Boolean $enabled = true,
+  Boolean $enabled,
   $pidfile,
 ) {
 
@@ -11,4 +11,3 @@ class ducktape::openvpn::external::monit(
   }
 
 }
-

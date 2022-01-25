@@ -1,8 +1,8 @@
 define ducktape::apache::conf(
-  Enum['present', 'absent'] $ensure = 'present',
-  String $priority   = '010',
-  Array[String] $directives = [],
-  Optional[String] $content    = undef,
+  Enum['present', 'absent'] $ensure     = 'present',
+  String                    $priority   = '010',
+  Array[String]             $directives = [],
+  Optional[String]          $content    = undef,
 ) {
 
   $file = "${::apache::confd_dir}/${priority}-${name}.conf"

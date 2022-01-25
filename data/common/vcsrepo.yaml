@@ -8,3 +8,6 @@ lookup_options:
 
 ducktape::vcsrepo::repos: {}
 ducktape::vcsrepo::repo_defaults: {}
+ducktape::vcsrepo::enabled: true
+
+ducktape::vcsrepo::autoload::autoload: true

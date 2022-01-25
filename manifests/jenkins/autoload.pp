@@ -1,9 +1,9 @@
 class ducktape::jenkins::autoload (
-  Boolean $cli_exec                   = true,
-  Boolean $credential                 = true,
-  Boolean $native_credential          = true,
-  Boolean $rogue                      = true,
-  Boolean $user                       = true,
+  Boolean $cli_exec,
+  Boolean $credential,
+  Boolean $native_credential,
+  Boolean $rogue,
+  Boolean $user,
 ) {
 
   if $cli_exec {

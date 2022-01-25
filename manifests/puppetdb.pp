@@ -1,5 +1,5 @@
 class ducktape::puppetdb(
-  Boolean $enabled = true,
+  Boolean $enabled,
 ) {
 
   if $enabled {

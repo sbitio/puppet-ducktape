@@ -1,10 +1,10 @@
 class ducktape::mysql::server::autoload (
-  Boolean $conf            = true,
-  Hash    $conf_defaults   = {},
-  Hash    $confs           = {},
-  Boolean $plugin          = true,
-  Hash    $plugin_defaults = {},
-  Hash    $plugins         = {},
+  Boolean $conf,
+  Hash    $conf_defaults,
+  Hash    $confs,
+  Boolean $plugin,
+  Hash    $plugin_defaults,
+  Hash    $plugins,
 ) {
 
   if $conf {

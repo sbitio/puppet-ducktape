@@ -1,0 +1,15 @@
+---
+
+ducktape::varnish::enabled: true
+
+ducktape::varnish::vcl::enabled: true
+ducktape::varnish::vcl::vcl_name: 'puppet'
+ducktape::varnish::vcl::vcl_source: ~
+
+ducktape::varnish::external::monit::enabled: true
+ducktape::varnish::external::monit::action: 'restart'
+ducktape::varnish::external::monit::conn_tolerance:
+  cycles: 1
+ducktape::varnish::external::monit::varnish_host: 'health.varnish'
+
+ducktape::varnish::external::munin_node_plugin::enabled: true

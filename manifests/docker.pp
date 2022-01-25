@@ -1,7 +1,7 @@
 class ducktape::docker (
-  Boolean $enabled = true,
-  Hash $compose = {},
-  Hash $compose_defaults = {},
+  Boolean $enabled,
+  Hash $compose,
+  Hash $compose_defaults,
 ) {
 
   require ::ducktape::docker::compose

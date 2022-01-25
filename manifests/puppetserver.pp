@@ -1,7 +1,7 @@
 class ducktape::puppetserver(
-  Boolean $enabled = true,
-  Hash $puppetserver_config = {},
-  Hash $defaults = {'notify' => Service['puppetserver']},
+  Boolean $enabled,
+  Hash $puppetserver_config,
+  Hash $defaults,
 ) {
 
   if $enabled {

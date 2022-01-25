@@ -1,7 +1,7 @@
 class ducktape::openvpn::autoload (
-  Boolean $load_servers = true,
-  Boolean $load_clients = true,
-  Boolean $load_revokes = true,
+  Boolean $load_servers,
+  Boolean $load_clients,
+  Boolean $load_revokes,
 ) {
 
   if $load_servers {

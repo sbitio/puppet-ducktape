@@ -14,3 +14,8 @@ ducktape::firewall::chain::defaults: {}
 ducktape::firewall::chains: {}
 ducktape::firewall::rules::defaults: {}
 ducktape::firewall::rules: {}
+ducktape::firewall::enabled: true
+ducktape::firewall::purge_firewall: false
+ducktape::firewall::purge_firewallchain: false
+ducktape::firewall::autoload::load_rules: true
+ducktape::firewall::autoload::load_chains: true

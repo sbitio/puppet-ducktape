@@ -1,5 +1,5 @@
 class ducktape::logrotate::autoload (
-  Boolean $load_rules = true,
+  Boolean $load_rules,
 ) {
 
   if $load_rules {

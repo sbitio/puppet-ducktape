@@ -1,5 +1,5 @@
 class ducktape::vcsrepo::autoload (
-  Boolean $autoload = true,
+  Boolean $autoload,
 ) {
 
   if $autoload {

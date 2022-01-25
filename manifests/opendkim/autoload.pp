@@ -1,6 +1,6 @@
 class ducktape::opendkim::autoload (
-  Boolean $load_domains  = true,
-  Boolean $load_trusteds = true,
+  Boolean $load_domains,
+  Boolean $load_trusteds,
 ) {
 
   if $load_domains {

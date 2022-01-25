@@ -14,3 +14,13 @@ ducktape::opendkim::domains: {}
 ducktape::opendkim::domain_defaults: {}
 ducktape::opendkim::trusteds: {}
 ducktape::opendkim::trusted_defaults: {}
+ducktape::opendkim::enabled: true
+ducktape::opendkim::port: 8891
+
+ducktape::opendkim::autoload::load_domains: true
+ducktape::opendkim::autoload::load_trusteds: true
+
+ducktape::opendkim::external::monit::enabled: true
+ducktape::opendkim::external::monit::action: 'restart'
+
+ducktape::opendkim::external::postfix::enabled: true

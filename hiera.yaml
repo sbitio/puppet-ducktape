@@ -19,7 +19,7 @@ hierarchy:
     path: '%{facts.os.family}-family.yaml'
 
   - name: 'Per inventory common data glob'
-    path: 'common/*.yaml'
+    glob: "common/*.yaml"
 
   - name: 'common'
     path: 'common.yaml'

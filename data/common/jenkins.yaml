@@ -27,3 +27,18 @@ ducktape::jenkins::users: {}
 ducktape::jenkins::user_defaults: {}
 ducktape::jenkins::rogues: {}
 ducktape::jenkins::rogue_defaults: {}
+ducktape::jenkins::enabled: true
+ducktape::jenkins::bootstrap: true
+
+ducktape::jenkins::autoload::cli_exec: true
+ducktape::jenkins::autoload::credential: true
+ducktape::jenkins::autoload::native_credential: true
+ducktape::jenkins::autoload::rogue: true
+ducktape::jenkins::autoload::user: true
+
+ducktape::jenkins::bootstrap::admin_user: 'admin'
+ducktape::jenkins::bootstrap::admin_pass: ''
+ducktape::jenkins::bootstrap::admin_mail: 'root@localhost'
+ducktape::jenkins::bootstrap::admin_name: "%{lookup('ducktape::jenkins::bootstrap::admin_user')}"
+ducktape::jenkins::bootstrap::admin_keys: ''
+ducktape::jenkins::bootstrap::create_password_file: false

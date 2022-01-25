@@ -1,9 +1,9 @@
 class ducktape::twemproxy::external::monit(
-  Boolean $enabled = true,
-  String $action = 'restart',
-  Hash $conn_tolerance = { cycles => 1 },
-  Boolean $test_redis = true,
-  Integer $test_redis_port = 22122,
+  Boolean $enabled,
+  String $action,
+  Hash $conn_tolerance,
+  Boolean $test_redis,
+  Integer $test_redis_port,
 ) {
 
   if $enabled {

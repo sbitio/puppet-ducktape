@@ -1,5 +1,5 @@
 class ducktape::postfix::autoload (
-  Boolean $load_configs = true,
+  Boolean $load_configs,
 ) {
 
   if $load_configs {

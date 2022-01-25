@@ -1,5 +1,5 @@
 class ducktape::varnish::external::munin_node_plugin(
-  $enabled = true,
+  $enabled,
 ) {
   if $enabled {
     case $::osfamily {
@@ -55,4 +55,3 @@ class ducktape::varnish::external::munin_node_plugin(
     }
   }
 }
-

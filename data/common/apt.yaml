@@ -14,3 +14,6 @@ ducktape::apt::keys: {}
 ducktape::apt::key_defaults: {}
 ducktape::apt::sources: {}
 ducktape::apt::source_defaults: {}
+ducktape::apt::enabled: true
+ducktape::apt::autoload::load_keys: true
+ducktape::apt::autoload::load_sources: true

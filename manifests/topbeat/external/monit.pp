@@ -1,5 +1,5 @@
 class ducktape::topbeat::external::monit(
-  Boolean $enabled = true,
+  Boolean $enabled,
 ) {
   #TODO# Add more validations
 

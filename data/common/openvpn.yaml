@@ -20,3 +20,10 @@ ducktape::openvpn::clients: {}
 ducktape::openvpn::client_defaults: {}
 ducktape::openvpn::revokes: {}
 ducktape::openvpn::revoke_defaults: {}
+ducktape::openvpn::enabled: true
+
+ducktape::openvpn::autoload::load_servers: true
+ducktape::openvpn::autoload::load_clients: true
+ducktape::openvpn::autoload::load_revokes: true
+
+ducktape::openvpn::external::monit::enabled: true

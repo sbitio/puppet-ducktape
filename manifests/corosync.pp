@@ -1,5 +1,5 @@
 class ducktape::corosync (
-  Boolean $enabled = true,
+  Boolean $enabled,
 ) {
 
   if $enabled {

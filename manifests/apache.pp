@@ -1,7 +1,7 @@
 class ducktape::apache (
-  $enabled = true,
-  Hash $conf_defaults = {},
-  Hash $confs = {},
+  Boolean $enabled = true,
+  Hash $conf_defaults,
+  Hash $confs,
 ) {
 
   if $enabled {

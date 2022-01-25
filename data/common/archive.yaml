@@ -8,3 +8,5 @@ lookup_options:
 
 ducktape::archive::archives: {}
 ducktape::archive::defaults: {}
+ducktape::archive::enabled: true
+ducktape::archive::autoload::autoload: true

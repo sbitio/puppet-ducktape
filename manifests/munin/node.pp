@@ -1,11 +1,11 @@
 class ducktape::munin::node (
-  Boolean $enabled = true,
-  Boolean $manage_repo = true,
-  String $repo_ensure = 'latest',
-  String $repo_source = 'https://github.com/munin-monitoring/contrib.git',
-  String $repo_provider = 'git',
-  String $repo_revision = 'master',
-  Stdlib::Absolutepath $contrib_plugins_path = '/opt/munin-monitoring',
+  Boolean $enabled ,
+  Boolean $manage_repo ,
+  String $repo_ensure ,
+  String $repo_source ,
+  String $repo_provider ,
+  String $repo_revision ,
+  Stdlib::Absolutepath $contrib_plugins_path ,
 ) {
 
   if $enabled {

@@ -1,0 +1,8 @@
+---
+
+ducktape::memcached::enabled: true
+
+ducktape::memcached::external::monit::enabled: true
+ducktape::memcached::external::monit::action: 'restart'
+
+ducktape::memcached::external::munin_node_plugin::enabled: true

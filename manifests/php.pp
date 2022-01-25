@@ -1,7 +1,7 @@
 class ducktape::php (
-  Boolean $enabled = true,
-  Hash $confs = {},
-  Hash $defaults = {},
+  Boolean $enabled,
+  Hash $confs,
+  Hash $defaults,
 ) {
 
   if $enabled {

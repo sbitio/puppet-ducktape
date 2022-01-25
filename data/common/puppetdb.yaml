@@ -1,0 +1,5 @@
+---
+
+ducktape::puppetdb::enabled: true
+
+ducktape::puppetdb::external::monit::enabled: true

@@ -1,5 +1,5 @@
 class ducktape::kibana::external::monit(
-  Boolean $enabled  = true,
+  Boolean $enabled,
 ) {
 
   if $enabled {

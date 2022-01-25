@@ -1,5 +1,5 @@
 class ducktape::nfs::server::autoload (
-  Boolean $load_exports = true,
+  Boolean $load_exports,
 ) {
 
   if $load_exports {
