@@ -1,0 +1,13 @@
+---
+
+lookup_options:
+  ducktape::logrotate::rules:
+    merge:
+      strategy: deep
+      knockout_prefix: --
+
+ducktape::logrotate::rules: {}
+ducktape::logrotate::rule_defaults: {}
+ducktape::logrotate::enabled: true
+
+ducktape::logrotate::autoload::load_rules: true

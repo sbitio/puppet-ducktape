@@ -1,5 +1,5 @@
 class ducktape::systemd (
-  Boolean $enabled = true,
+  Boolean $enabled,
   Optional[Enum[
     'emerg',
     'alert',
@@ -10,14 +10,14 @@ class ducktape::systemd (
     'info',
     'debug'
     ]] $logging_level,
-  Hash $dropin_file_defaults = {},
-  Hash $dropin_files = {},
-  Hash $unit_file_defaults = {},
-  Hash $unit_files = {},
-  Hash $timer_defaults = {},
-  Hash $timers = {},
-  Hash $network_defaults = {},
-  Hash $networks = {},
+  Hash $dropin_file_defaults,
+  Hash $dropin_files,
+  Hash $unit_file_defaults,
+  Hash $unit_files,
+  Hash $timer_defaults,
+  Hash $timers,
+  Hash $network_defaults,
+  Hash $networks,
 ) {
 
   if $enabled {

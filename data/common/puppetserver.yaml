@@ -1,0 +1,12 @@
+---
+
+lookup_options:
+  ducktape::puppetserver::puppetserver_config:
+    merge:
+      strategy: deep
+      knockout_prefix: --
+
+ducktape::puppetserver::puppetserver_config: {}
+ducktape::puppetserver::defaults:
+  notify: "Service['puppetserver']"
+ducktape::puppetserver::enabled: true

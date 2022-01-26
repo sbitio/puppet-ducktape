@@ -1,0 +1,71 @@
+---
+
+lookup_options:
+  ducktape::mysql::server::autoload::confs:
+    merge:
+      strategy: deep
+  ducktape::mysql::server::autoload::plugins:
+    merge:
+      strategy: deep
+
+ducktape::mysql::enabled: true
+
+ducktape::mysql::server::autoload::conf: true
+ducktape::mysql::server::autoload::conf_defaults: {}
+ducktape::mysql::server::autoload::confs: {}
+ducktape::mysql::server::autoload::plugin: true
+ducktape::mysql::server::autoload::plugin_defaults: {}
+ducktape::mysql::server::autoload::plugins: {}
+
+ducktape::mysql::external::monit::enabled: true
+ducktape::mysql::external::monit::action: 'restart'
+ducktape::mysql::external::monit::conn_tolerance:
+  cycles: 1
+
+ducktape::mysql::external::munin_node_plugin::enabled: true
+ducktape::mysql::external::munin_node_plugin::ensure: 'present'
+ducktape::mysql::external::munin_node_plugin::old_plugin: false
+ducktape::mysql::external::munin_node_plugin::old_plugins:
+  - 'mysql_bytes'
+  - 'mysql_queries'
+  - 'mysql_slowqueries'
+  - 'mysql_threads'
+
+ducktape::mysql::external::munin_node_plugin::new_plugin: false
+ducktape::mysql::external::munin_node_plugin::new_plugin_sufixes:
+  - 'bin_relay_log'
+  - 'commands'
+  - 'connections'
+  - 'files_tables'
+  - 'innodb_bpool'
+  - 'innodb_bpool_act'
+  - 'innodb_insert_buf'
+  - 'innodb_io'
+  - 'innodb_io_pend'
+  - 'innodb_log'
+  - 'innodb_rows'
+  - 'innodb_semaphores'
+  - 'innodb_tnx'
+  - 'myisam_indexes'
+  - 'network_traffic'
+  - 'qcache'
+  - 'qcache_mem'
+  - 'replication'
+  - 'select_types'
+  - 'slow'
+  - 'sorts'
+  - 'table_locks'
+  - 'tmp_tables'
+
+ducktape::mysql::external::munin_node_plugin::kjellm_plugin: true
+ducktape::mysql::external::munin_node_plugin::kjellm_plugins:
+  - 'InnoDB.pm'
+  - 'MyISAM.pm'
+  - 'QueryCache.pm'
+  - 'ReplicationSlave.pm'
+  - 'Standard.pm'
+
+ducktape::mysql::external::munin_node_plugin::kjellm_contribs:
+  - 'CacheEfficiency.pm'
+
+ducktape::mysql::external::munin_node_plugin::kjellm_repo_dst: '/opt/kjellm-munin-mysql'

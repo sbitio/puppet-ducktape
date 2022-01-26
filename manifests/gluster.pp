@@ -1,7 +1,7 @@
 class ducktape::gluster (
   Boolean $enabled = true,
-  Hash $mount_defaults = {},
-  Hash $mounts = {},
+  Hash $mount_defaults,
+  Hash $mounts,
 ) {
 
   if $enabled {

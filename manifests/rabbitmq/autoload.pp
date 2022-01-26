@@ -1,9 +1,9 @@
 class ducktape::rabbitmq::autoload (
-  Boolean $load_vhosts           = true,
-  Boolean $load_exchanges        = true,
-  Boolean $load_queues           = true,
-  Boolean $load_users            = true,
-  Boolean $load_user_permissions = true,
+  Boolean $load_vhosts,
+  Boolean $load_exchanges,
+  Boolean $load_queues,
+  Boolean $load_users,
+  Boolean $load_user_permissions,
 ) {
 
   if $load_vhosts {

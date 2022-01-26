@@ -1,0 +1,4 @@
+---
+
+ducktape::corosync::enabled: true
+ducktape::corosync::external::monit::enabled: true

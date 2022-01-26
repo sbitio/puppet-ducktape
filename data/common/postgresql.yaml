@@ -1,0 +1,4 @@
+---
+
+ducktape::postgresql::enabled: true
+ducktape::postgresql::external::monit::enabled: true

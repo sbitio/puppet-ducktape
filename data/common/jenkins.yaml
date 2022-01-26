@@ -1,0 +1,44 @@
+---
+
+lookup_options:
+  ducktape::jenkins::cli_execs:
+    merge:
+      strategy: deep
+  ducktape::jenkins::credentials:
+    merge:
+      strategy: deep
+  ducktape::jenkins::native_credentials:
+    merge:
+      strategy: deep
+  ducktape::jenkins::rogues:
+    merge:
+      strategy: deep
+  ducktape::jenkins::users:
+    merge:
+      strategy: deep
+
+ducktape::jenkins::cli_execs: {}
+ducktape::jenkins::cli_exec_defaults: {}
+ducktape::jenkins::credentials: {}
+ducktape::jenkins::credential_defaults: {}
+ducktape::jenkins::native_credentials: {}
+ducktape::jenkins::native_credential_defaults: {}
+ducktape::jenkins::users: {}
+ducktape::jenkins::user_defaults: {}
+ducktape::jenkins::rogues: {}
+ducktape::jenkins::rogue_defaults: {}
+ducktape::jenkins::enabled: true
+ducktape::jenkins::bootstrap: true
+
+ducktape::jenkins::autoload::cli_exec: true
+ducktape::jenkins::autoload::credential: true
+ducktape::jenkins::autoload::native_credential: true
+ducktape::jenkins::autoload::rogue: true
+ducktape::jenkins::autoload::user: true
+
+ducktape::jenkins::bootstrap::admin_user: 'admin'
+ducktape::jenkins::bootstrap::admin_pass: ''
+ducktape::jenkins::bootstrap::admin_mail: 'root@localhost'
+ducktape::jenkins::bootstrap::admin_name: "%{lookup('ducktape::jenkins::bootstrap::admin_user')}"
+ducktape::jenkins::bootstrap::admin_keys: ''
+ducktape::jenkins::bootstrap::create_password_file: false

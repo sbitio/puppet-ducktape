@@ -1,9 +1,9 @@
 define ducktape::mysql::conf(
-  Enum['present', 'absent'] $ensure = 'present',
-  String $priority   = '010',
-  String $section    = 'mysqld',
-  $directives = {},
-  $content    = undef,
+  Enum['present', 'absent'] $ensure     = 'present',
+  String                    $priority   = '010',
+  String                    $section    = 'mysqld',
+  Hash                      $directives = {},
+  Optional[String]          $content    = undef,
 ) {
 
   $file = "${::mysql::server::includedir}/${priority}-${name}.cnf"

@@ -1,0 +1,13 @@
+---
+
+lookup_options:
+  ducktape::ldap::entries:
+    merge:
+      strategy: deep
+      knockout_prefix: --
+
+ducktape::ldap::entries: {}
+ducktape::ldap::entry_defaults: {}
+ducktape::ldap::enabled: true
+
+ducktape::ldap::autoload::entry: true

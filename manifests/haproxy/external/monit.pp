@@ -1,7 +1,7 @@
 class ducktape::haproxy::external::monit(
-  Boolean $enabled = true,
-  String  $action  = 'restart',
-  Hash $conn_tolerance = { cycles => 1 },
+  Boolean $enabled,
+  String  $action,
+  Hash $conn_tolerance,
 ) {
 
   if $enabled {
@@ -36,4 +36,3 @@ class ducktape::haproxy::external::monit(
   }
 
 }
-

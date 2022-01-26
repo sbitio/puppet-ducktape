@@ -1,7 +1,7 @@
 class ducktape::rsyslog (
-  Boolean $enabled = true,
-  Hash    $snippet_defaults  = {},
-  Hash    $snippets          = {},
+  Boolean $enabled,
+  Hash    $snippet_defaults,
+  Hash    $snippets,
 ) {
 
   if $enabled {

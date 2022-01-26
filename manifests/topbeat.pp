@@ -1,5 +1,5 @@
 class ducktape::topbeat(
-  Boolean $enabled = true,
+  Boolean $enabled,
 ) {
 
   if $enabled {

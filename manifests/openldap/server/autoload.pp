@@ -1,9 +1,9 @@
 class ducktape::openldap::server::autoload(
-  Boolean $load_accesses = true,
-  Boolean $load_indexes = true,
-  Boolean $load_modules = true,
-  Boolean $load_overlays = true,
-  Boolean $load_schemas = true,
+  Boolean $load_accesses,
+  Boolean $load_indexes,
+  Boolean $load_modules,
+  Boolean $load_overlays,
+  Boolean $load_schemas,
 ) {
 
   if $load_accesses {

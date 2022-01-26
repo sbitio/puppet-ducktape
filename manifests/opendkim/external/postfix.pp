@@ -1,5 +1,5 @@
 class ducktape::opendkim::external::postfix(
-  Boolean $enabled = true,
+  Boolean $enabled,
 ) {
 
   if $enabled {
@@ -12,4 +12,3 @@ class ducktape::opendkim::external::postfix(
   }
 
 }
-

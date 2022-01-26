@@ -1,7 +1,7 @@
 class ducktape::elasticsearch::external::monit(
-  Boolean $enabled      = true,
-  Stdlib::Absolutepath $systemd_file = '/lib/systemd/system/elasticsearch-es01.service',
-  Array[String] $tests = [],
+  Boolean $enabled,
+  Stdlib::Absolutepath $systemd_file,
+  Array[String] $tests,
 ) {
 
   if $enabled {

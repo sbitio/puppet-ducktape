@@ -1,0 +1,4 @@
+---
+
+ducktape::filebeat::enabled: true
+ducktape::filebeat::external::monit::enabled: true

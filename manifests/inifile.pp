@@ -1,7 +1,7 @@
 class ducktape::inifile (
-  Boolean $enabled  = true,
-  Hash $settings = {},
-  Hash $defaults = {},
+  Boolean $enabled,
+  Hash $settings,
+  Hash $defaults,
 ) {
 
   if $enabled {

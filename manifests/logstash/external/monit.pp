@@ -1,6 +1,6 @@
 class ducktape::logstash::external::monit(
-  Boolean $enabled  = true,
-  Array[Hash] $tests = [],
+  Boolean $enabled,
+  Array[Hash] $tests,
 ) {
 
   if $enabled {

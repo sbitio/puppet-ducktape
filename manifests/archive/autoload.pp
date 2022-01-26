@@ -1,5 +1,5 @@
 class ducktape::archive::autoload (
-  Boolean $autoload = true,
+  Boolean $autoload,
 ) {
 
   if $autoload {

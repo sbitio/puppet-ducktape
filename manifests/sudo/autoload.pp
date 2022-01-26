@@ -1,5 +1,5 @@
 class ducktape::sudo::autoload (
-  Boolean $autoload = true,
+  Boolean $autoload,
 ) {
 
   if $autoload {

@@ -1,0 +1,15 @@
+---
+
+lookup_options:
+  ducktape::rsyslog::autoload::snippets:
+    merge:
+      strategy: deep
+      knockout_prefix: --
+
+ducktape::rsyslog::snippets: {}
+ducktape::rsyslog::snippet_defaults: {}
+ducktape::rsyslog::enabled: true
+
+ducktape::rsyslog::autoload::snippet: true
+
+ducktape::rsyslog::external::monit::enabled: true

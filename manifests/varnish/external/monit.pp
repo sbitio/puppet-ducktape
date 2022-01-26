@@ -1,8 +1,8 @@
 class ducktape::varnish::external::monit(
-  Boolean $enabled = true,
-  String  $action  = 'restart',
-  Hash $conn_tolerance = { cycles => 1 },
-  String $varnish_host = 'health.varnish',
+  Boolean $enabled,
+  String  $action,
+  Hash $conn_tolerance,
+  String $varnish_host,
 ) {
 
   if $enabled {
@@ -42,4 +42,3 @@ class ducktape::varnish::external::monit(
   }
 
 }
-

@@ -1,6 +1,6 @@
 class ducktape::letsencrypt::autoload (
-  Boolean $load_certonlys = true,
-  Boolean $load_backends  = true,
+  Boolean $load_certonlys,
+  Boolean $load_backends,
 ) {
 
 

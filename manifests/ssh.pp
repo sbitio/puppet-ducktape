@@ -1,5 +1,5 @@
 class ducktape::ssh(
-  Boolean $enabled = true,
+  Boolean $enabled,
 ) {
 
   if $enabled {

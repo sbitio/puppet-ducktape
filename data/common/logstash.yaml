@@ -1,0 +1,30 @@
+---
+
+lookup_options:
+  ducktape::logstash::configfiles:
+    merge:
+      strategy: deep
+      knockout_prefix: --
+  ducktape::logstash::patternfiles:
+    merge:
+      strategy: deep
+      knockout_prefix: --
+  ducktape::logstash::plugins:
+    merge:
+      strategy: deep
+      knockout_prefix: --
+
+ducktape::logstash::configfiles: {}
+ducktape::logstash::configfile_defaults: {}
+ducktape::logstash::patternfiles: {}
+ducktape::logstash::patternfile_defaults: {}
+ducktape::logstash::plugins: {}
+ducktape::logstash::plugin_defaults: {}
+ducktape::logstash::enabled: true
+
+ducktape::logstash::autoload::load_configfiles: true
+ducktape::logstash::autoload::load_patternfiles: true
+ducktape::logstash::autoload::load_plugins: true
+
+ducktape::logstash::external::monit::enabled: true
+ducktape::logstash::external::monit::tests: []

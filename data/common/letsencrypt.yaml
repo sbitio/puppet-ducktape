@@ -1,0 +1,14 @@
+---
+
+lookup_options:
+  ducktape::letsencrypt::certonlys:
+    merge:
+      strategy: deep
+      knockout_prefix: --
+
+ducktape::letsencrypt::certonlys: {}
+ducktape::letsencrypt::certonly_defaults: {}
+ducktape::letsencrypt::enabled: true
+
+ducktape::letsencrypt::autoload::load_certonlys: true
+ducktape::letsencrypt::autoload::load_backends: true

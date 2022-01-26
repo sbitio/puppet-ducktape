@@ -1,0 +1,13 @@
+---
+
+lookup_options:
+  ducktape::php::confs:
+    merge:
+      strategy: deep
+      knockout_prefix: --
+
+ducktape::php::confs: {}
+ducktape::php::defaults: {}
+ducktape::php::enabled: true
+
+ducktape::php::autoload::autoload: true

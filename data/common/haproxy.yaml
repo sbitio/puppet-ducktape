@@ -1,0 +1,58 @@
+---
+
+lookup_options:
+  ducktape::haproxy::backends:
+    merge:
+      strategy: deep
+      knockout_prefix: --
+  ducktape::haproxy::frontends:
+    merge:
+      strategy: deep
+      knockout_prefix: --
+  ducktape::haproxy::userlists:
+    merge:
+      strategy: deep
+      knockout_prefix: --
+  ducktape::haproxy::peers:
+    merge:
+      strategy: deep
+      knockout_prefix: --
+
+ducktape::haproxy::frontends: {}
+ducktape::haproxy::frontend_defaults: {}
+ducktape::haproxy::backends: {}
+ducktape::haproxy::backend_defaults: {}
+ducktape::haproxy::userlists: {}
+ducktape::haproxy::userlist_defaults: {}
+ducktape::haproxy::peers: {}
+ducktape::haproxy::enabled: true
+ducktape::haproxy::package_install_options: ~
+
+ducktape::haproxy::latest::enabled: true
+
+ducktape::haproxy::autoload::load_frontends: true
+ducktape::haproxy::autoload::load_peers: true
+ducktape::haproxy::autoload::load_backends: true
+ducktape::haproxy::autoload::load_userlists: true
+
+ducktape::haproxy::autoload::http_edge: true
+ducktape::haproxy::autoload::http_edge_path: '/opt/http-edge'
+ducktape::haproxy::autoload::http_edge_path_owner: 'root'
+ducktape::haproxy::autoload::http_edge_frontend: 'default_fe'
+ducktape::haproxy::autoload::http_edge_redirect_marker: '###http-edge-redirects###'
+ducktape::haproxy::autoload::http_edge_redirect_types:
+  - 'str'
+  - 'beg'
+  - 'end'
+  - 'sub'
+  - 'dir'
+  - 'regm'
+ducktape::haproxy::autoload::http_edge_domains_envs: {}
+
+ducktape::haproxy::external::monit::enabled: true
+ducktape::haproxy::external::monit::action: 'restart'
+ducktape::haproxy::external::monit::conn_tolerance:
+  cycles: 1
+
+ducktape::haproxy::external::munin_node_plugin::enabled: true
+ducktape::haproxy::external::munin_node_plugin::url: 'http://127.0.0.1:8000/haproxy/haproxy-status;csv;norefresh'

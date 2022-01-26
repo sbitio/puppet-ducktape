@@ -1,0 +1,29 @@
+---
+
+lookup_options:
+  ducktape::openvpn::servers:
+    merge:
+      strategy: deep
+      knockout_prefix: --
+  ducktape::openvpn::clients:
+    merge:
+      strategy: deep
+      knockout_prefix: --
+  ducktape::openvpn::revokes:
+    merge:
+      strategy: deep
+      knockout_prefix: --
+
+ducktape::openvpn::servers: {}
+ducktape::openvpn::server_defaults: {}
+ducktape::openvpn::clients: {}
+ducktape::openvpn::client_defaults: {}
+ducktape::openvpn::revokes: {}
+ducktape::openvpn::revoke_defaults: {}
+ducktape::openvpn::enabled: true
+
+ducktape::openvpn::autoload::load_servers: true
+ducktape::openvpn::autoload::load_clients: true
+ducktape::openvpn::autoload::load_revokes: true
+
+ducktape::openvpn::external::monit::enabled: true

@@ -1,5 +1,5 @@
 class ducktape::varnish (
-  Boolean $enabled = true,
+  Boolean $enabled,
 ) {
 
   if $enabled {

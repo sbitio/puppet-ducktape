@@ -1,5 +1,5 @@
 class ducktape::rabbitmq::external::munin_node_plugin(
-  $enabled = true,
+  Boolean $enabled,
 ) {
   if $enabled and $ducktape::munin::node::enabled and $ducktape::munin::node::manage_repo {
 
@@ -23,8 +23,7 @@ class ducktape::rabbitmq::external::munin_node_plugin(
 	    'rabbitmq_queue_memory',
     ]
 
-    $vhosts = hiera_hash('ducktape::rabbitmq::vhosts', {})
-    $vhosts.each |$vhost, $definition| {
+    $ducktape::rabbitmq::vhosts.each |$vhost, $definition| {
       $plugins.each |$index, $plugin| {
         @munin::node::plugin { "${plugin}_${vhost}":
           target => "${::ducktape::munin::node::contrib_plugins_path}/plugins/rabbitmq/${plugin}",

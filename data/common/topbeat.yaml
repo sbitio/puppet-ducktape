@@ -1,0 +1,4 @@
+---
+
+ducktape::topbeat::enabled: true
+ducktape::topbeat::external::monit::enabled: true

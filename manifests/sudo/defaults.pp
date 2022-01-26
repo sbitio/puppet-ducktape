@@ -1,10 +1,10 @@
 class ducktape::sudo::defaults (
-  Boolean $enabled         = true,
-  String $passwd_policy   = 'PASSWD',
-  Array[String] $groups = [],
-  String $group_passwd_policy = 'NOPASSWD',
-  Boolean $ansible_enabled = true,
-  String $ansible_user    = 'ansible',
+  Boolean $enabled,
+  String $passwd_policy,
+  Array[String] $groups,
+  String $group_passwd_policy,
+  Boolean $ansible_enabled,
+  String $ansible_user,
   $vagrant_enabled = (defined('$::is_vagrant') and ($::is_vagrant)),
   $amazon_enabled  = (defined('$::ec2_ami_id') and ($::ec2_ami_id != '')),
 ) {

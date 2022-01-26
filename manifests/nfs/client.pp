@@ -1,5 +1,7 @@
 class ducktape::nfs::client (
-  Boolean $enabled = true,
+  Boolean $enabled,
+  Hash $mount_defaults,
+  Hash $mounts,
 ) {
 
   if $enabled {

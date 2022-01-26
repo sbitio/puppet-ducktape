@@ -1,7 +1,7 @@
 class ducktape::logrotate (
-  Boolean $enabled = true,
-  Hash $rule_defaults = {},
-  Hash $rules = {},
+  Boolean $enabled,
+  Hash $rule_defaults,
+  Hash $rules,
 ) {
 
   if $enabled {

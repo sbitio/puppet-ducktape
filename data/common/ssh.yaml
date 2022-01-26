@@ -1,0 +1,4 @@
+---
+
+ducktape::ssh::enabled: true
+ducktape::ssh::external::monit::enabled: true

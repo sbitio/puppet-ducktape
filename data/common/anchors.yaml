@@ -1,0 +1,11 @@
+---
+
+lookup_options:
+  ducktape::anchors::anchors:
+    merge:
+      strategy: deep
+      knockout_prefix: --
+
+ducktape::anchors::anchors: {}
+ducktape::anchors::anchor_defaults: {}
+ducktape::anchors::enabled: true

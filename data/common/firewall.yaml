@@ -1,0 +1,21 @@
+---
+
+lookup_options:
+  ducktape::firewall::chains:
+    merge:
+      strategy: deep
+      knockout_prefix: --
+  ducktape::firewall::rules:
+    merge:
+      strategy: deep
+      knockout_prefix: --
+
+ducktape::firewall::chain::defaults: {}
+ducktape::firewall::chains: {}
+ducktape::firewall::rules::defaults: {}
+ducktape::firewall::rules: {}
+ducktape::firewall::enabled: true
+ducktape::firewall::purge_firewall: false
+ducktape::firewall::purge_firewallchain: false
+ducktape::firewall::autoload::load_rules: true
+ducktape::firewall::autoload::load_chains: true

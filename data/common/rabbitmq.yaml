@@ -1,0 +1,45 @@
+---
+
+lookup_options:
+  ducktape::rabbitmq::vhosts:
+    merge:
+      strategy: deep
+      knockout_prefix: --
+  ducktape::rabbitmq::exchanges:
+    merge:
+      strategy: deep
+      knockout_prefix: --
+  ducktape::rabbitmq::queues:
+    merge:
+      strategy: deep
+      knockout_prefix: --
+  ducktape::rabbitmq::users:
+    merge:
+      strategy: deep
+      knockout_prefix: --
+  ducktape::rabbitmq::user_permissions:
+    merge:
+      strategy: deep
+      knockout_prefix: --
+
+ducktape::rabbitmq::vhosts: {}
+ducktape::rabbitmq::vhost_defaults: {}
+ducktape::rabbitmq::exchanges: {}
+ducktape::rabbitmq::exchange_defaults: {}
+ducktape::rabbitmq::queues: {}
+ducktape::rabbitmq::queue_defaults: {}
+ducktape::rabbitmq::users: {}
+ducktape::rabbitmq::user_defaults: {}
+ducktape::rabbitmq::user_permissions: {}
+ducktape::rabbitmq::user_permissions_defaults: {}
+ducktape::rabbitmq::enabled: true
+
+ducktape::rabbitmq::autoload::load_vhosts: true
+ducktape::rabbitmq::autoload::load_exchanges: true
+ducktape::rabbitmq::autoload::load_queues: true
+ducktape::rabbitmq::autoload::load_users: true
+ducktape::rabbitmq::autoload::load_user_permissions: true
+
+ducktape::rabbitmq::external::monit::enabled: true
+
+ducktape::rabbitmq::external::munin_node_plugin::enabled: true

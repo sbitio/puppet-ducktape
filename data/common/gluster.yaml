@@ -1,0 +1,12 @@
+---
+
+lookup_options:
+  ducktape::gluster::mounts:
+    merge:
+      strategy: deep
+      knockout_prefix: --
+
+ducktape::gluster::mounts: {}
+ducktape::gluster::mount_defaults: {}
+ducktape::gluster::defaults: true
+ducktape::gluster::autoload::load_mounts: true

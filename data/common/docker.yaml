@@ -1,0 +1,15 @@
+---
+
+lookup_options:
+  ducktape::docker::compose:
+    merge:
+      strategy: deep
+      knockout_prefix: --
+
+ducktape::docker::compose: {}
+ducktape::docker::compose_defaults: {}
+ducktape::docker::enabled: true
+ducktape::docker::compose::enabled: true
+
+ducktape::docker::external::munin_node_plugin::enabled: true
+ducktape::docker::external::munin_node_plugin::exclude_container_name_regexp: '^$'

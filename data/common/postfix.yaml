@@ -1,0 +1,16 @@
+---
+
+lookup_options:
+  ducktape::postfix::configs:
+    merge:
+      strategy: deep
+      knockout_prefix: --
+
+ducktape::postfix::configs: {}
+ducktape::postfix::config_defaults: {}
+ducktape::postfix::enabled: true
+
+ducktape::postfix::autoload::load_configs: true
+
+ducktape::postfix::external::monit::enabled: true
+ducktape::postfix::external::monit::action: 'restart'

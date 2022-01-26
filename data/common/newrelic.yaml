@@ -1,0 +1,5 @@
+---
+
+ducktape::newrelic::enabled: true
+
+ducktape::newrelic::external::monit::enabled: true

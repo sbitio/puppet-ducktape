@@ -1,0 +1,40 @@
+---
+
+lookup_options:
+  ducktape::apache::confs:
+    merge:
+      strategy: deep
+      knockout_prefix: --
+
+ducktape::apache::conf_defaults: {}
+ducktape::apache::confs: {}
+ducktape::apache::enabled: true
+ducktape::apache::autoload::autoload: true
+
+ducktape::apache::shield_vhost::enabled: true
+ducktape::apache::shield_vhost::ensure: 'present'
+ducktape::apache::shield_vhost::port: 80
+#ducktape::apache::shield_vhost::docroot: "%{lookup('apache::docroot')}"
+ducktape::apache::shield_vhost::priority: '10'
+ducktape::apache::shield_vhost::custom_fragment: ~
+
+ducktape::apache::external::monit::enabled: true
+ducktape::apache::external::monit::action: 'restart'
+ducktape::apache::external::monit::ip: '127.0.0.1'
+ducktape::apache::external::monit::port: 80
+ducktape::apache::external::monit::vhost_priority: 99
+ducktape::apache::external::monit::vhost_seed: 'monit-test'
+ducktape::apache::external::monit::vhost_prefix: 'monit-test-'
+ducktape::apache::external::monit::vhost_suffix: ".%{::fqdn}"
+ducktape::apache::external::monit::conn_tolerance:
+  cycles: 1
+ducktape::apache::external::monit::alerts: []
+ducktape::apache::external::monit::extra_tests: []
+
+ducktape::apache::external::munin_node_plugin::enabled: true
+ducktape::apache::external::munin_node_plugin::ip: '127.0.0.1'
+ducktape::apache::external::munin_node_plugin::port: 80
+ducktape::apache::external::munin_node_plugin::vhost_priority: 99
+ducktape::apache::external::munin_node_plugin::vhost_seed: 'munin-apache'
+ducktape::apache::external::munin_node_plugin::vhost_prefix: 'munin-apache-'
+ducktape::apache::external::munin_node_plugin::vhost_suffix: ".%{::fqdn}"

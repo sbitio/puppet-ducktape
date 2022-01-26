@@ -1,5 +1,5 @@
 class ducktape::kibana (
-  Boolean $enabled = true,
+  Boolean $enabled,
 ) {
 
   if $enabled {

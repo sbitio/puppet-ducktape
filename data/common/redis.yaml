@@ -1,0 +1,10 @@
+---
+
+ducktape::redis::enabled: true
+
+ducktape::redis::external::monit::enabled: true
+ducktape::redis::external::monit::action: 'restart'
+ducktape::redis::external::monit::conn_tolerance:
+  cycles: 1
+
+ducktape::redis::external::munin_node_plugin::enabled: true

@@ -1,7 +1,7 @@
 class ducktape::varnish::vcl (
-  Boolean $enabled    = true,
-  String $vcl_name   = 'puppet',
-  $vcl_source = undef,
+  Boolean $enabled,
+  String $vcl_name,
+  Optional[Variant[Array[String], String]] $vcl_source,
 ) {
 
 #TODO# try to move this to upstream module

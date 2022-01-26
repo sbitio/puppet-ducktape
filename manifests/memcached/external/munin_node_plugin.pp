@@ -1,5 +1,5 @@
 class ducktape::memcached::external::munin_node_plugin (
-  Boolean $enabled = true,
+  Boolean $enabled,
   $ensure  = $::memcached::package_ensure,
 ) {
 

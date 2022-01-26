@@ -1,11 +1,10 @@
 class ducktape::anchors(
   Boolean $enabled = true,
+  Hash $anchors,
+  Hash $anchor_defaults,
 ) {
 
   if $enabled {
-
-    $anchor_defaults = hiera('ducktape::anchor::defaults', {})
-    $anchors = hiera_hash('ducktape::anchors', {})
 
     $anchors.each |$anchor_name, $_config| {
       $config = merge($anchor_defaults, $_config)

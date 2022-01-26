@@ -1,5 +1,7 @@
 class ducktape::puppetserver(
-  Boolean $enabled = true,
+  Boolean $enabled,
+  Hash $puppetserver_config,
+  Hash $defaults,
 ) {
 
   if $enabled {

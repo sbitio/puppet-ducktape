@@ -1,5 +1,5 @@
 class ducktape::mysql (
-  Boolean $enabled = true,
+  Boolean $enabled,
 ) {
 
 }

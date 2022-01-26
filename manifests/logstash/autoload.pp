@@ -1,7 +1,7 @@
 class ducktape::logstash::autoload (
-  Boolean $load_configfiles  = true,
-  Boolean $load_patternfiles = true,
-  Boolean $load_plugins      = true,
+  Boolean $load_configfiles,
+  Boolean $load_patternfiles,
+  Boolean $load_plugins,
 ) {
 
   if $load_configfiles {

@@ -1,0 +1,5 @@
+---
+
+ducktape::kibana::external::monit::enabled: true
+
+ducktape::kibana::enabled: true

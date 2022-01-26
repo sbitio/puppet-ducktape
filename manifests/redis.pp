@@ -1,5 +1,5 @@
 class ducktape::redis (
-  Boolean $enabled = true,
+  Boolean $enabled,
 ) {
 
   if $enabled {

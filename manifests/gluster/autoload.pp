@@ -1,5 +1,5 @@
 class ducktape::gluster::autoload (
-  Boolean $load_mounts = true,
+  Boolean $load_mounts,
 ) {
 
   if $load_mounts {

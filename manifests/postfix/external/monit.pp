@@ -1,6 +1,6 @@
 class ducktape::postfix::external::monit(
-  Boolean $enabled = true,
-  String $action  = 'restart',
+  Boolean $enabled,
+  String $action,
 ) {
 
   if $enabled {
@@ -32,4 +32,3 @@ class ducktape::postfix::external::monit(
   }
 
 }
-

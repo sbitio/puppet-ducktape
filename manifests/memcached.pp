@@ -1,5 +1,5 @@
 class ducktape::memcached(
-  Boolean $enabled = true,
+  Boolean $enabled,
 ) {
 
   if $enabled {

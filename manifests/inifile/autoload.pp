@@ -1,5 +1,5 @@
 class ducktape::inifile::autoload(
-  Boolean $autoload = true,
+  Boolean $autoload,
 ) {
 
   if $autoload {

@@ -1,10 +1,10 @@
 class ducktape::jenkins::bootstrap (
-  String  $admin_user = 'admin',
-  String  $admin_pass = '',
-  String  $admin_mail = 'root@localhost',
-  String  $admin_name = $admin_user,
-  String  $admin_keys = '',
-  Boolean $create_password_file = false,
+  String  $admin_user,
+  String  $admin_pass,
+  String  $admin_mail,
+  String  $admin_name,
+  String  $admin_keys,
+  Boolean $create_password_file,
 ) {
 
   ### Create or update admin user
