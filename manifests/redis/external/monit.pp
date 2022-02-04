@@ -55,7 +55,7 @@ class ducktape::redis::external::monit(
         monit::check::service { "redis-server-${name}":
           group        => 'redis',
           # We use matching since pid behaviour is erratic
-          matching     => "\"/usr/bin/redis-server ${_real_bind}:${instance['port']}\"",
+          matching     => "/usr/bin/redis-server ${_real_bind}:${instance['port']}",
           binary       => '/usr/bin/redis-server',
           systemd_file => "/etc/systemd/system/redis-server-${name}.service",
           tests        => [ $connection_test, ],
