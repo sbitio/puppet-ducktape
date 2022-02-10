@@ -4,51 +4,51 @@ lookup_options:
   ducktape::apache::confs:
     merge:
       strategy: deep
-      knockout_prefix: --
+      knockout_prefix: --KOP_
   ducktape::archive::archives:
     merge:
       strategy: deep
-      knockout_prefix: --
+      knockout_prefix: --KOP_
   ducktape::alternatives::alternatives:
     merge:
       strategy: deep
-      knockout_prefix: --
+      knockout_prefix: --KOP_
   ducktape::apt::keys:
     merge:
       strategy: deep
-      knockout_prefix: --
+      knockout_prefix: --KOP_
   ducktape::apt::sources:
     merge:
       strategy: deep
-      knockout_prefix: --
+      knockout_prefix: --KOP_
   ducktape::firewall::chains:
     merge:
       strategy: deep
-      knockout_prefix: --
+      knockout_prefix: --KOP_
   ducktape::firewall::rules:
     merge:
       strategy: deep
-      knockout_prefix: --
+      knockout_prefix: --KOP_
   ducktape::gluster::mounts:
     merge:
       strategy: deep
-      knockout_prefix: --
+      knockout_prefix: --KOP_
   ducktape::haproxy::backends:
     merge:
       strategy: deep
-      knockout_prefix: --
+      knockout_prefix: --KOP_
   ducktape::haproxy::frontends:
     merge:
       strategy: deep
-      knockout_prefix: --
+      knockout_prefix: --KOP_
   ducktape::haproxy::userlists:
     merge:
       strategy: deep
-      knockout_prefix: --
+      knockout_prefix: --KOP_
   ducktape::inifile::settings:
     merge:
       strategy: deep
-      knockout_prefix: --
+      knockout_prefix: --KOP_
   ducktape::jenkins::cli_execs:
     merge:
       strategy: deep
@@ -67,112 +67,112 @@ lookup_options:
   ducktape::ldap::entries:
     merge:
       strategy: deep
-      knockout_prefix: --
+      knockout_prefix: --KOP_
   ducktape::letsencrypt::certonlys:
     merge:
       strategy: deep
-      knockout_prefix: --
+      knockout_prefix: --KOP_
   ducktape::logrotate::rules:
     merge:
       strategy: deep
-      knockout_prefix: --
+      knockout_prefix: --KOP_
   ducktape::logstash::configfiles:
     merge:
       strategy: deep
-      knockout_prefix: --
+      knockout_prefix: --KOP_
   ducktape::opendkim::domains:
     merge:
       strategy: deep
-      knockout_prefix: --
+      knockout_prefix: --KOP_
   ducktape::opendkim::trusteds:
     merge:
       strategy: deep
-      knockout_prefix: --
+      knockout_prefix: --KOP_
   ducktape::openldap::accesses:
     merge:
       strategy: deep
-      knockout_prefix: --
+      knockout_prefix: --KOP_
   ducktape::openldap::modules:
     merge:
       strategy: deep
-      knockout_prefix: --
+      knockout_prefix: --KOP_
   ducktape::openldap::overlays:
     merge:
       strategy: deep
-      knockout_prefix: --
+      knockout_prefix: --KOP_
   ducktape::openldap::indexes:
     merge:
       strategy: deep
-      knockout_prefix: --
+      knockout_prefix: --KOP_
   ducktape::openldap::schemas:
   ducktape::openvpn::servers:
     merge:
       strategy: deep
-      knockout_prefix: --
+      knockout_prefix: --KOP_
   ducktape::openvpn::clients:
     merge:
       strategy: deep
-      knockout_prefix: --
+      knockout_prefix: --KOP_
   ducktape::openvpn::revokes:
     merge:
       strategy: deep
-      knockout_prefix: --
+      knockout_prefix: --KOP_
   ducktape::posix_acl::acls:
     merge:
       strategy: deep
-      knockout_prefix: --
+      knockout_prefix: --KOP_
   ducktape::postfix::configs:
     merge:
       strategy: deep
-      knockout_prefix: --
+      knockout_prefix: --KOP_
   ducktape::rabbitmq::vhosts:
     merge:
       strategy: deep
-      knockout_prefix: --
+      knockout_prefix: --KOP_
   ducktape::rabbitmq::exchanges:
     merge:
       strategy: deep
-      knockout_prefix: --
+      knockout_prefix: --KOP_
   ducktape::rabbitmq::queues:
     merge:
       strategy: deep
-      knockout_prefix: --
+      knockout_prefix: --KOP_
   ducktape::rabbitmq::users:
     merge:
       strategy: deep
-      knockout_prefix: --
+      knockout_prefix: --KOP_
   ducktape::rabbitmq::user_permissions:
     merge:
       strategy: deep
-      knockout_prefix: --
+      knockout_prefix: --KOP_
   ducktape::rsyslog::autoload::snippets:
     merge:
       strategy: deep
-      knockout_prefix: --
+      knockout_prefix: --KOP_
   ducktape::sudo::confs:
     merge:
       strategy: deep
-      knockout_prefix: --
+      knockout_prefix: --KOP_
   ducktape::systemd::dropin_files:
     merge:
       strategy: deep
-      knockout_prefix: --
+      knockout_prefix: --KOP_
   ducktape::systemd::unit_files:
     merge:
       strategy: deep
-      knockout_prefix: --
+      knockout_prefix: --KOP_
   ducktape::systemd::timers:
     merge:
       strategy: deep
-      knockout_prefix: --
+      knockout_prefix: --KOP_
   ducktape::systemd::networks:
     merge:
       strategy: deep
-      knockout_prefix: --
+      knockout_prefix: --KOP_
   ducktape::vcsrepo::repos:
     merge:
       strategy: deep
-      knockout_prefix: --
+      knockout_prefix: --KOP_
 
 ducktape::firewall::chain::defaults: {}
 ducktape::firewall::chains: {}
