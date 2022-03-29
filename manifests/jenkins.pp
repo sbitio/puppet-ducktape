@@ -11,7 +11,7 @@ class ducktape::jenkins (
   Hash    $rogues                     = {},
   Hash    $user_defaults              = {},
   Hash    $users                      = {},
-  String  $java_params                = '-Xmx128m -Xms128m',
+  String  $cli_java_params            = '-Xmx128m -Xms128m',
 ) {
 
   if $enabled {
@@ -22,7 +22,7 @@ class ducktape::jenkins (
     anchor {'ducktape-jenkins-completed': }
 
     ### Create wrapper for jenkins cli
-    $jenkins_cli = "/usr/bin/java -jar ${java_params} ${::jenkins::cli::jar} -s http://127.0.0.1:${jenkins::cli_helper::port}${jenkins::cli_helper::prefix}"
+    $jenkins_cli = "/usr/bin/java -jar ${cli_java_params} ${::jenkins::cli::jar} -s http://127.0.0.1:${jenkins::cli_helper::port}${jenkins::cli_helper::prefix}"
     file {'/usr/local/bin/jenkins-cli':
       ensure => 'present',
       content  => epp('ducktape/jenkins/jenkins-cli', {'command' => $jenkins_cli, 'auth' => regsubst($::jenkins::_cli_auth_arg, "'", "", 'IG')}),
