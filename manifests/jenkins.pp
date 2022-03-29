@@ -38,6 +38,11 @@ class ducktape::jenkins (
     }
 
     include ducktape::jenkins::autoload
+
+    # External configs.
+    if defined('::monit') and defined(Class['::monit']) {
+      contain ducktape::jenkins::external::monit
+    }
   }
 
 }
