@@ -1,6 +1,7 @@
 class ducktape::ntp::external::monit(
   Boolean $enabled = true,
   String $action  = 'restart',
+  Hash $restart_limit = $ducktape::monit_restart_limit,
 ) {
 
   if $enabled {
@@ -38,14 +39,15 @@ class ducktape::ntp::external::monit(
       action      => $action,
     }
     monit::check::service { $::ntp::service_name:
-      init_system => $init_system,
-      pidfile     => $pidfile,
-      matching    => $matching,
-      binary      => $::osfamily ? {
+      init_system   => $init_system,
+      pidfile       => $pidfile,
+      matching      => $matching,
+      binary        => $::osfamily ? {
         'Debian' => '/usr/sbin/ntpd',
         default  => undef,
       },
-      tests       => [$test, ],
+      tests         => [$test, ],
+      restart_limit => $restart_limit,
     }
   }
 

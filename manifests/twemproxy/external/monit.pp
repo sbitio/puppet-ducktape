@@ -4,6 +4,7 @@ class ducktape::twemproxy::external::monit(
   Hash $conn_tolerance = { cycles => 1 },
   Boolean $test_redis = true,
   Integer $test_redis_port = 22122,
+  Hash $restart_limit = $ducktape::monit_restart_limit,
 ) {
 
   if $enabled {
@@ -29,9 +30,10 @@ class ducktape::twemproxy::external::monit(
       }
     }
     monit::check::service { 'nutcracker':
-      matching     => 'nutcracker',
-      init_system  => 'sysv',
-      tests        => $connection_test ? {
+      matching      => 'nutcracker',
+      init_system   => 'sysv',
+      restart_limit => $restart_limit,
+      tests         => $connection_test ? {
         undef => undef,
         default => [ $connection_test, ],
       }

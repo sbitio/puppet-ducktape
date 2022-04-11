@@ -2,6 +2,7 @@ class ducktape::haproxy::external::monit(
   Boolean $enabled = true,
   String  $action  = 'restart',
   Hash $conn_tolerance = { cycles => 1 },
+  Hash $restart_limit = $ducktape::monit_restart_limit,
 ) {
 
   if $enabled {
@@ -28,12 +29,11 @@ class ducktape::haproxy::external::monit(
       tolerance => $conn_tolerance,
     }
     monit::check::service { 'haproxy':
-      init_system => $init_system,
-      pidfile     => $::haproxy::params::global_options['pidfile'],
-      tests       => [$connection_test, ],
-      #TODO# if 5 restarts within 5 cycles then timeout
+      init_system   => $init_system,
+      pidfile       => $::haproxy::params::global_options['pidfile'],
+      tests         => [$connection_test, ],
+      restart_limit => $restart_limit,
     }
   }
 
 }
-

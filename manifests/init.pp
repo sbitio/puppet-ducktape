@@ -1,4 +1,10 @@
-class ducktape {
+class ducktape (
+    Hash $monit_restart_limit = {
+      restarts => 5,
+      cycles => 5,
+      action => 'unmonitor',
+    }
+  ) {
   # Munin first because it is referenced in external checks.
   if defined('::munin::node') and defined(Class['::munin::node']) {
     require ::ducktape::munin::node

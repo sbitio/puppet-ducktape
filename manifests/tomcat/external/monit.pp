@@ -2,6 +2,7 @@ class ducktape::tomcat::external::monit (
   Boolean $enabled = true,
   String  $action  = 'restart',
   Hash $conn_tolerance = { cycles => 1 },
+  Hash $restart_limit = $ducktape::monit_restart_limit,
 ) {
 
   if $enabled {
@@ -45,13 +46,13 @@ class ducktape::tomcat::external::monit (
     }
 
     monit::check::service { $::tomcat::service_name :
-      init_system => $init_system,
-      pidfile     => $pidfile,
-      matching    => $matching,
-      binary      => $bin,
-      tests       => [ $connection_test ],
-      require     => Class['::tomcat::service'],
+      init_system   => $init_system,
+      pidfile       => $pidfile,
+      matching      => $matching,
+      binary        => $bin,
+      tests         => [ $connection_test ],
+      require       => Class['::tomcat::service'],
+      restart_limit => $restart_limit,
     }
   }
 }
-
