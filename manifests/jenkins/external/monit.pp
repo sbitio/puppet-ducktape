@@ -3,6 +3,7 @@ class ducktape::jenkins::external::monit(
   String  $action  = 'restart',
   Integer $port = 8080,
   Hash $conn_tolerance = { cycles => 1 },
+  Hash $restart_limit = $ducktape::monit_restart_limit,
 ) {
 
   if $enabled {
@@ -19,10 +20,11 @@ class ducktape::jenkins::external::monit(
       }
     }
     monit::check::service { 'jenkins':
-      binary       => '/usr/share/java/jenkins.war',
-      systemd_file => '/lib/systemd/system/jenkins.service',
-      matching     => 'jenkins.war',
-      tests        => [$connection_test, ],
+      binary        => '/usr/share/java/jenkins.war',
+      systemd_file  => '/lib/systemd/system/jenkins.service',
+      matching      => 'jenkins.war',
+      tests         => [$connection_test, ],
+      restart_limit => $restart_limit,
     }
   }
 

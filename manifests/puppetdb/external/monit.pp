@@ -1,5 +1,6 @@
 class ducktape::puppetdb::external::monit(
   Boolean $enabled = true,
+  Hash $restart_limit = $ducktape::monit_restart_limit,
 ) {
 
   if $enabled {
@@ -9,8 +10,9 @@ class ducktape::puppetdb::external::monit(
     }
 
     monit::check::service { $::puppetdb::server::puppetdb_service:
-      pidfile => $pidfile,
-      binary  => '/opt/puppetlabs/bin/puppetdb',
+      pidfile       => $pidfile,
+      binary        => '/opt/puppetlabs/bin/puppetdb',
+      restart_limit => $restart_limit,
     }
   }
 

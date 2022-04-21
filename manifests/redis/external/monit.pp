@@ -2,6 +2,7 @@ class ducktape::redis::external::monit(
   Boolean $enabled = true,
   String  $action  = 'restart',
   Hash $conn_tolerance = { cycles => 1 },
+  Hash $restart_limit = $ducktape::monit_restart_limit,
 ) {
 
   if $enabled {
@@ -53,12 +54,13 @@ class ducktape::redis::external::monit(
           action => 'restart',
         }
         monit::check::service { "redis-server-${name}":
-          group        => 'redis',
+          group         => 'redis',
           # We use matching since pid behaviour is erratic
-          matching     => "/usr/bin/redis-server ${_real_bind}:${instance['port']}",
-          binary       => '/usr/bin/redis-server',
-          systemd_file => "/etc/systemd/system/redis-server-${name}.service",
-          tests        => [ $connection_test, ],
+          matching      => "/usr/bin/redis-server ${_real_bind}:${instance['port']}",
+          binary        => '/usr/bin/redis-server',
+          systemd_file  => "/etc/systemd/system/redis-server-${name}.service",
+          tests         => [ $connection_test, ],
+          restart_limit => $restart_limit,
         }
       }
     }

@@ -1,14 +1,15 @@
 class ducktape::openvpn::external::monit(
   Boolean $enabled = true,
   $pidfile,
+  Hash $restart_limit = $ducktape::monit_restart_limit,
 ) {
 
   if $enabled {
     #TODO# Add network test
     monit::check::service { 'openvpn':
-      pidfile => $pidfile,
+      pidfile       => $pidfile,
+      restart_limit => $restart_limit,
     }
   }
 
 }
-

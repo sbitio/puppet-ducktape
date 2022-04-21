@@ -10,6 +10,7 @@ class ducktape::apache::external::monit(
   Hash $conn_tolerance = { cycles => 1 },
   Array[String] $alerts         = [],
   Array[Hash] $extra_tests    = [],
+  Hash $restart_limit = $ducktape::monit_restart_limit,
 ) {
 
   if $enabled {
@@ -80,7 +81,7 @@ class ducktape::apache::external::monit(
       program_start => $program_start,
       alerts        => $alerts,
       tests         => $extra_tests + [$connection_test],
-      #TODO# if 5 restarts within 5 cycles then timeout
+      restart_limit => $restart_limit,
     }
   }
 

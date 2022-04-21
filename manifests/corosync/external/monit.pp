@@ -1,5 +1,6 @@
 class ducktape::corosync::external::monit(
   Boolean $enabled = true,
+  Hash $restart_limit = $ducktape::monit_restart_limit,
 ) {
 
   if $enabled {
@@ -26,9 +27,10 @@ class ducktape::corosync::external::monit(
       'RedHat' => '/var/run/pacemakerd.pid',
     }
     monit::check::service { 'pacemaker':
-      binary   => '/usr/sbin/pacemakerd',
-      matching => $matching_pacemaker,
-      pidfile  => $pidfile_pacemaker,
+      binary        => '/usr/sbin/pacemakerd',
+      matching      => $matching_pacemaker,
+      pidfile       => $pidfile_pacemaker,
+      restart_limit => $restart_limit,
     }
   }
 

@@ -1,6 +1,7 @@
 class ducktape::memcached::external::monit(
   Boolean $enabled = true,
   String $action  = 'restart',
+  Hash $restart_limit = $ducktape::monit_restart_limit,
 ) {
 
   if $enabled {
@@ -38,10 +39,11 @@ class ducktape::memcached::external::monit(
       action      => $action,
     }
     monit::check::service { $::memcached::params::service_name:
-      pidfile  => $pidfile,
-      matching => $matching,
-      binary   => '/usr/bin/memcached',
-      tests    => [$test_tcp, $test_udp,],
+      pidfile       => $pidfile,
+      matching      => $matching,
+      binary        => '/usr/bin/memcached',
+      tests         => [$test_tcp, $test_udp,],
+      restart_limit => $restart_limit,
     }
   }
 

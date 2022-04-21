@@ -1,6 +1,7 @@
 class ducktape::postfix::external::monit(
   Boolean $enabled = true,
   String $action  = 'restart',
+  Hash $restart_limit = $ducktape::monit_restart_limit,
 ) {
 
   if $enabled {
@@ -25,11 +26,11 @@ class ducktape::postfix::external::monit(
       action   => $action,
     }
     monit::check::service { 'postfix':
-      init_system => $init_system,
-      pidfile     => $pidfile,
-      tests       => [$test,]
+      init_system   => $init_system,
+      pidfile       => $pidfile,
+      tests         => [$test,],
+      restart_limit => $restart_limit,
     }
   }
 
 }
-

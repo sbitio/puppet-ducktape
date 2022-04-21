@@ -2,6 +2,7 @@ class ducktape::mysql::external::monit(
   Boolean $enabled = true,
   String  $action  = 'restart',
   Hash $conn_tolerance = { cycles => 1 },
+  Hash $restart_limit = $ducktape::monit_restart_limit,
 ) {
 
   if $enabled {
@@ -24,9 +25,9 @@ class ducktape::mysql::external::monit(
       tolerance => $conn_tolerance,
     }
     monit::check::service { $::mysql::server::service_name:
-      init_system => $init_system,
-      pidfile     => $::mysql::params::pidfile,
-      binary      => $::osfamily ? {
+      init_system   => $init_system,
+      pidfile       => $::mysql::params::pidfile,
+      binary        => $::osfamily ? {
         'Debian' => '/usr/sbin/mysqld',
         'Redhat' => $::lsbmajdistrelease ? {
           7       => '/usr/libexec/mysqld',
@@ -34,10 +35,9 @@ class ducktape::mysql::external::monit(
         },
         default  => undef,
       },
-      tests       => [$connection_test, ],
-      #TODO# if 5 restarts within 5 cycles then timeout
+      tests         => [$connection_test, ],
+      restart_limit => $restart_limit,
     }
   }
 
 }
-

@@ -1,5 +1,6 @@
 class ducktape::rsyslog::external::monit(
   Boolean $enabled = true,
+  Hash $restart_limit = $ducktape::monit_restart_limit,
 ) {
 
   if $enabled {
@@ -26,11 +27,11 @@ class ducktape::rsyslog::external::monit(
     }
 
     monit::check::service { 'rsyslog':
-      binary   => $binary,
-      matching => $matching,
-      pidfile  => $pidfile,
+      binary        => $binary,
+      matching      => $matching,
+      pidfile       => $pidfile,
+      restart_limit => $restart_limit,
     }
   }
 
 }
-

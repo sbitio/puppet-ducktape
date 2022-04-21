@@ -1,5 +1,6 @@
 class ducktape::newrelic::external::monit(
   Boolean $enabled = true,
+  Hash $restart_limit = $ducktape::monit_restart_limit,
 ) {
 
   if $enabled {
@@ -15,10 +16,11 @@ class ducktape::newrelic::external::monit(
     }
     if $::newrelic::enable_infra {
       monit::check::service { 'newrelic-infra':
-        group   => 'newrelic',
-        binary  => '/usr/bin/newrelic-infra',
-        systemd_file => '/etc/systemd/system/newrelic-infra.service',
-        pidfile => '/var/run/newrelic-infra/newrelic-infra.pid',
+        group         => 'newrelic',
+        binary        => '/usr/bin/newrelic-infra',
+        systemd_file  => '/etc/systemd/system/newrelic-infra.service',
+        pidfile       => '/var/run/newrelic-infra/newrelic-infra.pid',
+        restart_limit => $restart_limit,
       }
     }
   }

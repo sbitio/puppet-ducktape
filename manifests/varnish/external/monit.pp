@@ -3,6 +3,7 @@ class ducktape::varnish::external::monit(
   String  $action  = 'restart',
   Hash $conn_tolerance = { cycles => 1 },
   String $varnish_host = 'health.varnish',
+  Hash $restart_limit = $ducktape::monit_restart_limit,
 ) {
 
   if $enabled {
@@ -34,12 +35,11 @@ class ducktape::varnish::external::monit(
       tolerance => $conn_tolerance,
     }
     monit::check::service { 'varnish':
-      pidfile     => $pidfile,
-      binary      => '/usr/sbin/varnishd',
-      tests       => [$connection_test, $adm_test],
-      #TODO# if 5 restarts within 5 cycles then timeout
+      pidfile       => $pidfile,
+      binary        => '/usr/sbin/varnishd',
+      tests         => [$connection_test, $adm_test],
+      restart_limit => $restart_limit,
     }
   }
 
 }
-
