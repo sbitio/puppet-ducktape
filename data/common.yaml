@@ -5,6 +5,8 @@ lookup_options:
     merge:
       strategy: deep
       knockout_prefix: --KOP_
+  ducktape::apache::shield_vhost::port:
+    merge: unique
   ducktape::archive::archives:
     merge:
       strategy: deep
