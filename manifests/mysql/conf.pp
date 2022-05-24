@@ -18,7 +18,7 @@ define ducktape::mysql::conf(
     }
   }
   else {
-    $content_real = '';
+    $content_real = ''
   }
 
   file { $file:
