@@ -1,9 +1,9 @@
 define ducktape::mysql::conf(
   Enum['present', 'absent'] $ensure = 'present',
-  String $priority   = '010',
-  String $section    = 'mysqld',
-  $directives = {},
-  $content    = undef,
+  String $priority                  = '010',
+  String $section                   = 'mysqld',
+  Hash $directives                  = {},
+  Optional[String] $content         = undef,
 ) {
 
   $file = "${::mysql::server::includedir}/${priority}-${name}.cnf"
@@ -16,6 +16,9 @@ define ducktape::mysql::conf(
       $options = {"${section}" => $directives}
       $content_real = template('mysql/my.cnf.erb')
     }
+  }
+  else {
+    $content_real = '';
   }
 
   file { $file:
