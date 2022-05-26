@@ -1,7 +1,7 @@
 class ducktape::apache::shield_vhost (
   Boolean $enabled = true,
   Enum['present', 'absent'] $ensure = 'present',
-  Integer $port = 80,
+  Variant[String, Array[String]] $port = '8008',
   Stdlib::Absolutepath $docroot = $::apache::docroot,
   String $priority = '10',
   Optional[String] $custom_fragment = undef,
@@ -37,6 +37,7 @@ class ducktape::apache::shield_vhost (
 
     apache::vhost{ 'shield' :
       ensure          => $ensure,
+      add_listen      => false,
       port            => $port,
       docroot         => $docroot,
       access_log      => false,
