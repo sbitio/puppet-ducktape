@@ -38,7 +38,7 @@ class ducktape::haproxy::autoload (
           'reg' => '\.',
           default => '.',
         }
-        $options['_envs'].map |$env| {
+        $options['_envs'].reduce([]) |$memo, $env| {
           $path_env = "${http_edge_path}/${env}"
           if $options[$env] {
             $domain_env = $options[$env]
@@ -57,7 +57,21 @@ class ducktape::haproxy::autoload (
               ensure => present,
               owner => $http_edge_path_owner,
             }
-            "redirect location %[path,$map_func($map_file)] code 301 if { ${hdr_match}(host) -i $domain_env } { path,$map_func($map_file) -m found } !{ path,$map_func($map_file) -m str haproxy-skip }"
+            case $type {
+              'regm':{
+                file { "$path_env/current/redirects/$domain.url.$type.map":
+                  ensure => present,
+                  owner => $http_edge_path_owner,
+                }
+                $memo
+                + "redirect location %[path,$map_func($map_file)] code 301 if { ${hdr_match}(host) -i $domain_env } { path,$map_func($map_file) -m found } !{ path,$map_func($map_file) -m str haproxy-skip }"
+                + "redirect location %[url,$map_func($path_env/current/redirects/$domain.url.$type.map)] code 301 if { ${hdr_match}(host) -i $domain_env } { url,$map_func($path_env/current/redirects/$domain.url.$type.map) -m found } !{ url,$map_func($path_env/current/redirects/$domain.url.$type.map) -m str haproxy-skip }"
+              }
+              default: {
+                $memo
+                + "redirect location %[path,$map_func($map_file)] code 301 if { ${hdr_match}(host) -i $domain_env } { path,$map_func($map_file) -m found } !{ path,$map_func($map_file) -m str haproxy-skip }"
+              }
+            }
           }
         }
       })
