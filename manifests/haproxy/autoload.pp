@@ -50,29 +50,28 @@ class ducktape::haproxy::autoload (
 
           ensure_resource('file', [$path_env, "$path_env/current", "$path_env/current/redirects"], $file_args)
 
-          $http_edge_redirect_types.map |$type| {
+          $maps = $http_edge_redirect_types.map |$type| {
             $map_file = "$path_env/current/redirects/$domain.$type.map"
             $map_func = "map_$type"
             file { $map_file:
               ensure => present,
               owner => $http_edge_path_owner,
             }
-            case $type {
-              'regm':{
-                file { "$path_env/current/redirects/$domain.url.$type.map":
-                  ensure => present,
-                  owner => $http_edge_path_owner,
-                }
-                $memo
-                + "redirect location %[path,$map_func($map_file)] code 301 if { ${hdr_match}(host) -i $domain_env } { path,$map_func($map_file) -m found } !{ path,$map_func($map_file) -m str haproxy-skip }"
-                + "redirect location %[url,$map_func($path_env/current/redirects/$domain.url.$type.map)] code 301 if { ${hdr_match}(host) -i $domain_env } { url,$map_func($path_env/current/redirects/$domain.url.$type.map) -m found } !{ url,$map_func($path_env/current/redirects/$domain.url.$type.map) -m str haproxy-skip }"
-              }
-              default: {
-                $memo
-                + "redirect location %[path,$map_func($map_file)] code 301 if { ${hdr_match}(host) -i $domain_env } { path,$map_func($map_file) -m found } !{ path,$map_func($map_file) -m str haproxy-skip }"
-              }
-            }
+            $line = "redirect location %[path,$map_func($map_file)] code 301 if { ${hdr_match}(host) -i $domain_env } { path,$map_func($map_file) -m found } !{ path,$map_func($map_file) -m str haproxy-skip }"
+            $memo + $line
           }
+
+          # Extra rule to add support for query strings. It is a regm match on the url. It is applied for files named after "$domain.url_regm.map".
+          # #TODO# This is generalizable to ${fetch}_${matchtype}, being "path" the default fetch (for backwards compatibility) if no underscore is present.
+          $type = 'regm'
+          $map_file = "$path_env/current/redirects/$domain.url_$type.map"
+          $map_func = "map_$type"
+          file { $map_file:
+            ensure => present,
+            owner => $http_edge_path_owner,
+          }
+          $line = "redirect location %[url,$map_func($map_file)] code 301 if { ${hdr_match}(host) -i $domain_env } { url,$map_func($map_file) -m found } !{ url,$map_func($map_file) -m str haproxy-skip }"
+          $maps + $line
         }
       })
 
