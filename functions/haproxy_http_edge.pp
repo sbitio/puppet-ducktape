@@ -6,7 +6,7 @@ function ducktape::haproxy_http_edge(
   String  $http_edge_redirect_marker = '###http-edge-redirects###',
   Array   $http_edge_redirect_types  = [ 'str', 'beg', 'end', 'sub', 'dir', 'regm' ],
   Hash    $http_edge_domains_envs    = {},
-) {
+) >> Hash {
   file { $http_edge_path:
     ensure => directory,
     owner => $http_edge_path_owner,
@@ -41,17 +41,6 @@ function ducktape::haproxy_http_edge(
 
       ensure_resource('file', [$path_env, "$path_env/current", "$path_env/current/redirects"], $file_args)
 
-      $maps = $http_edge_redirect_types.map |$type| {
-        $map_file = "$path_env/current/redirects/$domain.$type.map"
-        $map_func = "map_$type"
-        file { $map_file:
-          ensure => present,
-          owner => $http_edge_path_owner,
-        }
-        $line = "redirect location %[path,$map_func($map_file)] code 301 if { ${hdr_match}(host) -i $domain_env } { path,$map_func($map_file) -m found } !{ path,$map_func($map_file) -m str haproxy-skip }"
-        $memo + $line
-      }
-
       # Extra rule to add support for query strings. It is a regm match on the url. It is applied for files named after "$domain.url_regm.map".
       # #TODO# This is generalizable to ${fetch}_${matchtype}, being "path" the default fetch (for backwards compatibility) if no underscore is present.
       $type = 'regm'
@@ -62,7 +51,20 @@ function ducktape::haproxy_http_edge(
         owner => $http_edge_path_owner,
       }
       $line = "redirect location %[url,$map_func($map_file)] code 301 if { ${hdr_match}(host) -i $domain_env } { url,$map_func($map_file) -m found } !{ url,$map_func($map_file) -m str haproxy-skip }"
-      $maps + $line
+      $redirects_url = [$line]
+
+      $redirects_path = $http_edge_redirect_types.map |$type| {
+        $map_file = "$path_env/current/redirects/$domain.$type.map"
+        $map_func = "map_$type"
+        file { $map_file:
+          ensure => present,
+          owner => $http_edge_path_owner,
+        }
+        $line = "redirect location %[path,$map_func($map_file)] code 301 if { ${hdr_match}(host) -i $domain_env } { path,$map_func($map_file) -m found } !{ path,$map_func($map_file) -m str haproxy-skip }"
+        $memo + $line
+      }
+
+      $redirects_url + $redirects_path
     }
   })
 
@@ -77,6 +79,6 @@ function ducktape::haproxy_http_edge(
 
   $http_request_rules_hash = {$http_edge_frontend => {'options' => {'http-request' => $http_request_rules_real}}}
   $frontends_real = deep_merge($ducktape::haproxy::frontends, $http_request_rules_hash)
-  
+
   return $frontends_real
 }
