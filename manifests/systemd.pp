@@ -25,14 +25,15 @@ class ducktape::systemd (
 
     if $logging_level {
       ['system', 'user'].each |String $instance| {
-        ini_setting { "systemd-${instance}-loglevel":
+        $item = "systemd-${instance}-loglevel"
+        ini_setting { $item:
           path              => "/etc/systemd/${instance}.conf",
           section           => 'Manager',
           key_val_separator => '=',
           setting           => 'LogLevel',
           value             => $logging_level,
-          notify            => Class[systemd::systemctl::daemon_reload],
         }
+        ensure_resource('systemd::daemon_reload', $item)
       }
     }
   }
