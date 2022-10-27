@@ -1,7 +1,7 @@
 class ducktape::apache::shield_vhost (
   Boolean $enabled = true,
   Enum['present', 'absent'] $ensure = 'present',
-  Variant[String, Array[String]] $port = '8008',
+  Variant[Integer, Array[Integer]] $port = 8008,
   Stdlib::Absolutepath $docroot = $::apache::docroot,
   String $priority = '10',
   Optional[String] $custom_fragment = undef,
