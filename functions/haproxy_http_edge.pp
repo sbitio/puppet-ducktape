@@ -50,8 +50,9 @@ function ducktape::haproxy_http_edge(
         ensure => present,
         owner => $http_edge_path_owner,
       }
-      $line = "redirect location %[url,$map_func($map_file)] code 301 if { ${hdr_match}(host) -i $domain_env } { url,$map_func($map_file) -m found } !{ url,$map_func($map_file) -m str haproxy-skip }"
-      $redirects_url = [$line]
+      $redirects_url = [
+        "redirect location %[url,$map_func($map_file)] code 301 if { ${hdr_match}(host) -i $domain_env } { url,$map_func($map_file) -m found } !{ url,$map_func($map_file) -m str haproxy-skip }"
+      ]
 
       $redirects_path = $http_edge_redirect_types.map |$type| {
         $map_file = "$path_env/current/redirects/$domain.$type.map"
@@ -61,10 +62,10 @@ function ducktape::haproxy_http_edge(
           owner => $http_edge_path_owner,
         }
         $line = "redirect location %[path,$map_func($map_file)] code 301 if { ${hdr_match}(host) -i $domain_env } { path,$map_func($map_file) -m found } !{ path,$map_func($map_file) -m str haproxy-skip }"
-        $memo + $line
+        $line
       }
 
-      $redirects_url + $redirects_path
+      $memo + $redirects_url + $redirects_path
     }
   })
 
