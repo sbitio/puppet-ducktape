@@ -25,4 +25,10 @@ if [[ $READY -eq 0 ]]; then
   exit 1
 fi
 
-$COMMAND "$@"
+if [ ${#@} -ge 2 ] && [ "$1" ==  "sbit.io-groovy-script" ]; then
+  SCRIPT=$2
+  shift 2
+  $COMMAND groovy = "$@" < $SCRIPT
+else
+  $COMMAND "$@"
+fi
