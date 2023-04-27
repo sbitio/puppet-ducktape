@@ -107,15 +107,6 @@ lookup_options:
       strategy: deep
       knockout_prefix: --KOP_
   ducktape::openldap::schemas:
-  ducktape::openvpn::servers:
-    merge:
-      strategy: deep
-      knockout_prefix: --KOP_
-  ducktape::openvpn::clients:
-    merge:
-      strategy: deep
-      knockout_prefix: --KOP_
-  ducktape::openvpn::revokes:
     merge:
       strategy: deep
       knockout_prefix: --KOP_
