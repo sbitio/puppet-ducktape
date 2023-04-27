@@ -5,6 +5,7 @@ class ducktape::openvpn::external::monit(
 ) {
 
   if $enabled {
+    #TODO# Checks should be created iterating on openvpn::servers:
     #TODO# Add network test
     monit::check::service { 'openvpn':
       pidfile       => $pidfile,

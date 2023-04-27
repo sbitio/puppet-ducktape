@@ -65,7 +65,7 @@ Those are the modules we work with at present:
 * [puppetlabs/ntp](https://forge.puppetlabs.com/puppetlabs/ntp)
 * [bi4o4ek/opendkim](https://forge.puppetlabs.com/bi4o4ek/opendkim)
 * [camptocamp/openldap](https://forge.puppetlabs.com/camptocamp/openldap)
-* [luxflux/openvpn](https://forge.puppetlabs.com/luxflux/openvpn)
+* [voxpupuli/openvpn](https://forge.puppet.com/modules/puppet/openvpn)
 * [voxpupuli/php](https://forge.puppetlabs.com/puppet/php)
 * [puppet/posix_acl](https://forge.puppet.com/modules/puppet/posix_acl)
 * [camptocamp/postfix](https://forge.puppetlabs.com/camptocamp/postfix)
