@@ -5,7 +5,7 @@ class ducktape::openvpn (
   if $enabled {
     # External checks.
     if defined('::monit') and defined(Class['::monit']) {
-      #TODO# BROKEN, pidfile depends on defines, cannotuse service check include ::ducktape::openvpn::external::monit
+      include ::ducktape::openvpn::external::monit
     }
   }
 
