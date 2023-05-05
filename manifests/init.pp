@@ -101,7 +101,7 @@ class ducktape (
   if defined('::postfix') and defined(Class['::postfix']) {
     require ::ducktape::postfix
   }
-  if defined('::postgresql') and defined(Class['::postgresql']) {
+  if defined('::postgresql::server') and defined(Class['::postgresql::server']) {
     require ::ducktape::postgresql
   }
   if defined('::puppetdb') and defined(Class['::puppetdb']) {
