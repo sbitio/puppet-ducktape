@@ -118,6 +118,9 @@ lookup_options:
     merge:
       strategy: deep
       knockout_prefix: --KOP_
+  ducktape::postgresql::external::munin_node_plugin::databases:
+    merge:
+      strategy: unique
   ducktape::rabbitmq::vhosts:
     merge:
       strategy: deep
