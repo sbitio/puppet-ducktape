@@ -1,6 +1,10 @@
 class ducktape::postgresql::external::munin_node_plugin(
   Boolean $enabled = true,
   Enum['present', 'absent'] $ensure = 'present',
+  String $dbhost = 'localhost',
+  String $dbname = 'template1',
+  String $dbuser = 'postgres',
+  String $dbpass = $::postgresql::server::postgres_password,
   Array[String] $plugins = [
     'pg__connections',
     'postgres_locks',
@@ -49,8 +53,10 @@ class ducktape::postgresql::external::munin_node_plugin(
       sufixes => $databases,
       config => [
         'user postgres',
-        'env.dbuser postgres',
-        "env.dbpass $postgresql::server::postgres_password",
+        "env.dbhost $dbhost",
+        "env.dbname $dbname",
+        "env.dbuser $dbuser",
+        "env.dbpass $dbpass",
       ],
       require => [
         Class['::postgresql::server'],
