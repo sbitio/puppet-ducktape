@@ -41,7 +41,6 @@ class ducktape::postgresql::external::munin_node_plugin(
         "env.dbpass $postgresql::server::postgres_password",
       ],
       require => [
-        Class['::postgresql::server'],
         Package[$required_packages],
       ],
     }
@@ -59,7 +58,6 @@ class ducktape::postgresql::external::munin_node_plugin(
         "env.dbpass $dbpass",
       ],
       require => [
-        Class['::postgresql::server'],
         Package[$required_packages],
       ],
     }
