@@ -4,7 +4,7 @@ class ducktape::corosync (
 
   if $enabled {
     corosync::service { 'pacemaker':
-      version => 1,
+      version => '1',
     }
     if (!$::corosync::manage_pacemaker_service) {
       service { 'pacemaker':
