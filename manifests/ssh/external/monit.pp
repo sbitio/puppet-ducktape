@@ -13,7 +13,7 @@ class ducktape::ssh::external::monit(
       port     => 22,
       protocol => ssh,
     }
-    monit::check::service { $::ssh::params::service_name:
+    monit::check::service { $::ssh::server::service_name:
       pidfile       => $pidfile,
       binary        => $::osfamily ? {
         'Debian' => '/usr/sbin/sshd',
