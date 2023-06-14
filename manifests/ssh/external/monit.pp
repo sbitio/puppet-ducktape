@@ -8,12 +8,17 @@ class ducktape::ssh::external::monit(
       /(RedHat|Debian)/ => '/var/run/sshd.pid',
     }
 
+    $service_name = $::ssh::server::service_name ? {
+      undef   => $::ssh::params::service_name,
+      default => $::ssh::server::service_name
+    }
+
     $test = {
       type     => connection,
       port     => 22,
       protocol => ssh,
     }
-    monit::check::service { $::ssh::params::service_name:
+    monit::check::service { $service_name:
       pidfile       => $pidfile,
       binary        => $::osfamily ? {
         'Debian' => '/usr/sbin/sshd',
