@@ -4,10 +4,14 @@ class ducktape::kibana::external::monit(
 ) {
 
   if $enabled {
+    $systemd_file = (versioncmp($::kibana::ensure, '8') <= 0) ? {
+      true    => '/etc/systemd/system/kibana.service',
+      default => '/lib/systemd/system/kibana.service',
+    }
     monit::check::service { 'kibana':
       binary        => '/usr/share/kibana/bin/../node/bin/node',
       matching      => 'kibana',
-      systemd_file  => '/etc/systemd/system/kibana.service',
+      systemd_file  => $systemd_file,
       restart_limit => $restart_limit,
       tests         => [
         {
