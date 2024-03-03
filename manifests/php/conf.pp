@@ -16,6 +16,7 @@ define ducktape::php::conf(
         setting           => '; priority',
         value             => $priority,
         before            => Php::Config[$name],
+        require           => Class['::php::packages'],
       }
       php::config { $name:
         file    => $php_config_file,
