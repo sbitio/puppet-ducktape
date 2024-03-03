@@ -23,6 +23,7 @@ class ducktape::apache::external::munin_node_plugin (
       path           => $docroot,
       options        => [ 'None' ],
       allow_override => [ 'None' ],
+      require        => 'ip 127.0.0.1',
     }
     $_location = {
       path           => $status_path,
@@ -30,21 +31,9 @@ class ducktape::apache::external::munin_node_plugin (
       options        => [ 'None' ],
       allow_override => [ 'None' ],
       sethandler     => 'server-status',
-    }
-    if versioncmp($::apache::apache_version, '2.4') >= 0 {
-      $_directory_version = {
-        require => 'ip 127.0.0.1',
-      }
-    } else {
-      $_directory_version = {
-        order => 'deny,allow',
-        deny  => 'from all',
-        allow => 'from 127.0.0.1'
-      }
+      require        => 'ip 127.0.0.1',
     }
     $_directories = [
-      merge($_directory, $_directory_version),
-      merge($_location, $_directory_version),
     ]
 
     apache::vhost { $servername:
@@ -55,7 +44,10 @@ class ducktape::apache::external::munin_node_plugin (
       access_log_pipe   => '/dev/null',
       access_log_format => '-',
       error_log_pipe    => '/dev/null',
-      directories       => $_directories,
+      directories       => [
+        $_directory,
+        $_location,
+      ],
     }
     host { $servername:
       ip => $ip,
