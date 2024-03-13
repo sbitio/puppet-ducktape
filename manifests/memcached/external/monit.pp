@@ -32,17 +32,24 @@ class ducktape::memcached::external::monit(
       port        => $::memcached::tcp_port,
       action      => $action,
     }
-    $test_udp = {
-      type        => 'connection',
-      socket_type => 'udp',
-      port        => $::memcached::udp_port,
-      action      => $action,
+    if $::memcached::udp_port != 0 {
+      $test_udp = {
+        type        => 'connection',
+        socket_type => 'udp',
+        port        => $::memcached::udp_port,
+        action      => $action,
+      }
+      $tests_list = [$test_tcp, $test_udp,]
     }
+    else {
+      $tests_list = [$test_tcp,]
+    }
+
     monit::check::service { $::memcached::params::service_name:
       pidfile       => $pidfile,
       matching      => $matching,
       binary        => '/usr/bin/memcached',
-      tests         => [$test_tcp, $test_udp,],
+      tests         => $tests_list,
       restart_limit => $restart_limit,
     }
   }
