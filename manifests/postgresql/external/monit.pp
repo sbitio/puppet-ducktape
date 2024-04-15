@@ -14,7 +14,7 @@ class ducktape::postgresql::external::monit(
       tolerance => $conn_tolerance,
     }
     $pg_bin = "$::postgresql::params::bindir/postgres"
-    monit::check::service { $::postgresql::server::service::service_name:
+    monit::check::service { $::postgresql::server::service_name:
       matching      => $pg_bin,
       binary        => $pg_bin,
       tests         => [$connection_test, ],
