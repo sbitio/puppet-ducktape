@@ -1,18 +1,16 @@
 class ducktape::logcheck (
   Boolean $enabled = true,
 ) {
-
   if $enabled {
     # Workaround packaging bug https://bugzilla.redhat.com/show_bug.cgi?id=678436
-    case $::osfamily {
+    case $facts['os']['family'] {
       'RedHat': {
-        require ::logcheck::params
+        require logcheck::params
 
-        ensure_resource (
-          'file',
-          $::logcheck::params::logfiles_real,
-          { mode  => 'g+r',
-            group => 'adm', }
+        ensure_resource ('file', $logcheck::params::logfiles_real, {
+            mode  => 'g+r',
+            group => 'adm',
+          }
         )
 
         logrotate::rule { 'syslog':
@@ -32,8 +30,7 @@ class ducktape::logcheck (
         }
       }
 
-      default: { }
+      default: {}
     }
   }
-
 }

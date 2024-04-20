@@ -5,7 +5,6 @@ class ducktape::jenkins::autoload (
   Boolean $rogue                      = true,
   Boolean $user                       = true,
 ) {
-
   if $cli_exec {
     create_resources('jenkins::cli::exec', $ducktape::jenkins::cli_execs, $ducktape::jenkins::cli_exec_defaults)
   }
@@ -15,7 +14,7 @@ class ducktape::jenkins::autoload (
     $ducktape::jenkins::credentials.each |String $name, Hash $params| {
       if $params[private_key_or_path] and $params[private_key_or_path] =~ /^-/ {
         $modified_params = {
-          private_key_or_path => "\n${params[private_key_or_path]}"
+          private_key_or_path => "\n${params[private_key_or_path]}",
         }
         create_resources('jenkins::credentials', { $name => $params + $modified_params }, $ducktape::jenkins::credential_defaults)
       }
@@ -42,5 +41,4 @@ class ducktape::jenkins::autoload (
   if $user {
     create_resources('jenkins::user', $ducktape::jenkins::users, $ducktape::jenkins::user_defaults)
   }
-
 }

@@ -7,14 +7,12 @@ class ducktape::logstash (
   Hash $plugin_defaults = {},
   Hash $plugins = {},
 ) {
-
   if $enabled {
     include ducktape::logstash::autoload
 
     # External configs.
-    if defined('::monit') and defined(Class['::monit']) {
-      include ::ducktape::logstash::external::monit
+    if defined('monit') and defined(Class['monit']) {
+      include ducktape::logstash::external::monit
     }
   }
-
 }

@@ -2,9 +2,8 @@ class ducktape::firewall::autoload (
   Boolean $load_rules = true,
   Boolean $load_chains = true,
 ) {
-
   if $load_rules {
-    if defined('::firewall_multi') and defined(Resource['::firewall_multi']) {
+    if defined('firewall_multi') and defined(Resource['::firewall_multi']) {
       create_resources('firewall_multi', $ducktape::firewall::rules, $ducktape::firewall::rule_defaults)
     }
     else {
@@ -20,5 +19,4 @@ class ducktape::firewall::autoload (
       }
     }
   }
-
 }

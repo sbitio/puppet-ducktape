@@ -1,10 +1,9 @@
-class ducktape::newrelic::external::monit(
+class ducktape::newrelic::external::monit (
   Boolean $enabled = true,
   Hash $restart_limit = $ducktape::monit_restart_limit,
 ) {
-
   if $enabled {
-    if $::newrelic::enable_php_agent {
+    if $newrelic::enable_php_agent {
       monit::check::service { 'newrelic-daemon':
         group         => 'newrelic',
         init_system   => 'sysv',
@@ -14,7 +13,7 @@ class ducktape::newrelic::external::monit(
         program_stop  => '/etc/init.d/newrelic-daemon stop',
       }
     }
-    if $::newrelic::enable_infra {
+    if $newrelic::enable_infra {
       monit::check::service { 'newrelic-infra':
         group         => 'newrelic',
         binary        => '/usr/bin/newrelic-infra',
@@ -24,5 +23,4 @@ class ducktape::newrelic::external::monit(
       }
     }
   }
-
 }

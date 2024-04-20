@@ -1,15 +1,14 @@
 class ducktape::corosync (
   Boolean $enabled = true,
 ) {
-
   if $enabled {
     corosync::service { 'pacemaker':
       version => '1',
     }
-    if (!$::corosync::manage_pacemaker_service) {
+    if (!$corosync::manage_pacemaker_service) {
       service { 'pacemaker':
-        enable  => true,
         ensure  => running,
+        enable  => true,
         require => Package['pacemaker'],
       }
 
@@ -20,9 +19,8 @@ class ducktape::corosync (
     }
 
     # External checks.
-    if defined('::monit') and defined(Class['::monit']) {
-      include ::ducktape::corosync::external::monit
+    if defined('monit') and defined(Class['monit']) {
+      include ducktape::corosync::external::monit
     }
   }
-
 }

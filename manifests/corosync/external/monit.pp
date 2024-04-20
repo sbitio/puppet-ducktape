@@ -1,26 +1,25 @@
-class ducktape::corosync::external::monit(
+class ducktape::corosync::external::monit (
   Boolean $enabled = true,
   Hash $restart_limit = $ducktape::monit_restart_limit,
 ) {
-
   if $enabled {
     #TODO# Add network test
-    $pidfile_corosync = $::osfamily ? {
+    $pidfile_corosync = $facts['os']['family'] ? {
       /(RedHat|Debian)/ => '/var/run/corosync.pid',
     }
     monit::check::service { 'corosync':
       pidfile  => $pidfile_corosync,
     }
 
-    $matching_pacemaker = $::osfamily ? {
-      'Debian' => (versioncmp($::operatingsystemrelease, '8') >= 0) ? {
-        true  =>  '/usr/sbin/pacemakerd',
+    $matching_pacemaker = $facts['os']['family'] ? {
+      'Debian' => (versioncmp($facts['os']['release']['full'], '8') >= 0) ? {
+        true  => '/usr/sbin/pacemakerd',
         false => undef,
       },
       default => undef,
     }
-    $pidfile_pacemaker = $::osfamily ? {
-      'Debian' => (versioncmp($::operatingsystemrelease, '8') >= 0) ? {
+    $pidfile_pacemaker = $facts['os']['family'] ? {
+      'Debian' => (versioncmp($facts['os']['release']['full'], '8') >= 0) ? {
         true  => undef,
         false => '/var/run/pacemakerd.pid',
       },
@@ -33,5 +32,4 @@ class ducktape::corosync::external::monit(
       restart_limit => $restart_limit,
     }
   }
-
 }

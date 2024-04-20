@@ -13,19 +13,21 @@ class ducktape::jenkins (
   Hash    $users                      = {},
   String  $cli_java_params            = '-Xmx128m -Xms128m',
 ) {
-
   if $enabled {
-    anchor {'ducktape-jenkins-start': }
+    anchor { 'ducktape-jenkins-start': }
     -> Class['jenkins::cli_helper']
     -> File['/usr/local/bin/jenkins-cli']
     -> Class['ducktape::jenkins::autoload']
-    -> anchor {'ducktape-jenkins-completed': }
+    -> anchor { 'ducktape-jenkins-completed': }
 
     ### Create wrapper for jenkins cli
-    $jenkins_cli = "/usr/bin/java -jar ${cli_java_params} ${::jenkins::cli::jar} -s http://127.0.0.1:${jenkins::cli_helper::port}${jenkins::cli_helper::prefix}"
-    file {'/usr/local/bin/jenkins-cli':
-      ensure  => 'present',
-      content => epp('ducktape/jenkins/jenkins-cli', {'command' => $jenkins_cli, 'auth' => regsubst($::jenkins::_cli_auth_arg, "'", "", 'IG')}),
+    $jenkins_cli = "/usr/bin/java -jar ${cli_java_params} ${jenkins::cli::jar} -s http://127.0.0.1:${jenkins::cli_helper::port}${jenkins::cli_helper::prefix}"
+    file { '/usr/local/bin/jenkins-cli':
+      content => epp('ducktape/jenkins/jenkins-cli', {
+          'command' => $jenkins_cli,
+          'auth'    => regsubst($jenkins::_cli_auth_arg, "'", '', 'IG')
+        }
+      ),
       mode    => '0755',
     }
 
@@ -40,9 +42,8 @@ class ducktape::jenkins (
     include ducktape::jenkins::autoload
 
     # External configs.
-    if defined('::monit') and defined(Class['::monit']) {
+    if defined('monit') and defined(Class['monit']) {
       contain ducktape::jenkins::external::monit
     }
   }
-
 }

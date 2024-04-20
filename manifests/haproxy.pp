@@ -9,25 +9,21 @@ class ducktape::haproxy (
   Hash    $userlist_defaults  = {},
   Hash    $userlists          = {},
 ) {
-
   if $enabled {
     if ($package_install_options) {
-      Package <| title == "$::haproxy::package_name" |> {
+      Package <| title == $haproxy::package_name |> {
         install_options => $package_install_options,
       }
     }
 
     contain ducktape::haproxy::autoload
 
-    contain ducktape::haproxy::latest
-
     # External configs.
-    if defined('::munin::node') and defined(Class['::munin::node']) {
+    if defined('munin::node') and defined(Class['munin::node']) {
       contain ducktape::haproxy::external::munin_node_plugin
     }
-    if defined('::monit') and defined(Class['::monit']) {
+    if defined('monit') and defined(Class['monit']) {
       contain ducktape::haproxy::external::monit
     }
   }
-
 }

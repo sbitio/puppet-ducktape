@@ -1,9 +1,8 @@
-class ducktape::filebeat::external::monit(
+class ducktape::filebeat::external::monit (
   Boolean $enabled = true,
   Hash $restart_limit = $ducktape::monit_restart_limit,
 ) {
   #TODO# Add more validations
-
   if $enabled {
     $binary = '/usr/share/filebeat/bin/filebeat'
     monit::check::service { 'filebeat':
@@ -12,5 +11,4 @@ class ducktape::filebeat::external::monit(
       restart_limit => $restart_limit,
     }
   }
-
 }

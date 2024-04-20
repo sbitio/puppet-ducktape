@@ -3,7 +3,6 @@ class ducktape::logstash::autoload (
   Boolean $load_patternfiles = true,
   Boolean $load_plugins      = true,
 ) {
-
   if $load_configfiles {
     create_resources('logstash::configfile', $ducktape::logstash::configfiles, $ducktape::logstash::configfile_defaults)
   }
@@ -15,5 +14,4 @@ class ducktape::logstash::autoload (
   if $load_plugins {
     create_resources('logstash::plugin', $ducktape::logstash::plugins, $ducktape::logstash::plugin_defaults)
   }
-
 }

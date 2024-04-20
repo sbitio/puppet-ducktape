@@ -1,19 +1,18 @@
-class ducktape::opendkim::external::monit(
+class ducktape::opendkim::external::monit (
   Boolean $enabled = true,
   String $action  = 'restart',
   Hash $restart_limit = $ducktape::monit_restart_limit,
 ) {
-
   if $enabled {
-    $init_system = $::operatingsystem ? {
-      'Debian' => $::lsbdistcodename ? {
+    $init_system = $facts['os']['name'] ? {
+      'Debian' => $facts['os']['distro']['codename'] ? {
         'jessie' => 'sysv',
         default  => undef,
       },
       default  => undef,
     }
 
-    $pidfile = $::osfamily ? {
+    $pidfile = $facts['os']['family'] ? {
       /(RedHat|Debian)/ => '/var/run/opendkim/opendkim.pid',
     }
     $test = {
@@ -28,5 +27,4 @@ class ducktape::opendkim::external::monit(
       restart_limit => $restart_limit,
     }
   }
-
 }

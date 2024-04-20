@@ -1,9 +1,8 @@
-class ducktape::openvpn::external::monit(
+class ducktape::openvpn::external::monit (
   Boolean $enabled = true,
-  $pidfile,
+  Stdlib::Absolutepath $pidfile,
   Hash $restart_limit = $ducktape::monit_restart_limit,
 ) {
-
   if $enabled {
     #TODO# Checks should be created iterating on openvpn::servers:
     #TODO# Add network test
@@ -12,5 +11,4 @@ class ducktape::openvpn::external::monit(
       restart_limit => $restart_limit,
     }
   }
-
 }

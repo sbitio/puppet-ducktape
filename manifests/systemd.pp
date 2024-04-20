@@ -1,15 +1,15 @@
 class ducktape::systemd (
   Boolean $enabled = true,
   Optional[Enum[
-    'emerg',
-    'alert',
-    'crit',
-    'err',
-    'warning',
-    'notice',
-    'info',
-    'debug'
-    ]] $logging_level,
+      'emerg',
+      'alert',
+      'crit',
+      'err',
+      'warning',
+      'notice',
+      'info',
+      'debug'
+  ]] $logging_level,
   Hash $dropin_file_defaults = {},
   Hash $dropin_files = {},
   Hash $unit_file_defaults = {},
@@ -19,7 +19,6 @@ class ducktape::systemd (
   Hash $network_defaults = {},
   Hash $networks = {},
 ) {
-
   if $enabled {
     include ducktape::systemd::autoload
 
@@ -37,5 +36,4 @@ class ducktape::systemd (
       }
     }
   }
-
 }

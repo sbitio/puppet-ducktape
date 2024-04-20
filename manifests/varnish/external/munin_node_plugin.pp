@@ -1,27 +1,27 @@
-class ducktape::varnish::external::munin_node_plugin(
-  $enabled = true,
+class ducktape::varnish::external::munin_node_plugin (
+  Boolean $enabled = true,
 ) {
   if $enabled {
-    case $::osfamily {
-      debian : {
+    case $facts['os']['family'] {
+      'debian': {
         $required_packages = 'librpc-xml-perl'
       }
-      redhat : {
+      'redhat': {
         $required_packages = []
       }
       default: {
-        fail("Unsupported platform: ${::osfamily}")
+        fail("Unsupported platform: ${facts['os']['family']}")
       }
     }
     ensure_resource('munin::node::plugin::required_package', $required_packages)
 
-    if versioncmp($::varnish::varnish_version, '4.0') >= 0 {
+    if versioncmp($varnish::varnish_version, '4.0') >= 0 {
       @munin::node::autoconf::exclusion { 'varnish_' : }
       $config = [
         'group varnish',
         'env.varnishstat varnishstat',
       ]
-      if versioncmp($::varnish::varnish_version, '5.0') >= 0 {
+      if versioncmp($varnish::varnish_version, '5.0') >= 0 {
         $varnish_plugin = 'varnish5_'
         $source = 'puppet:///modules/ducktape/varnish/external/munin_node_plugin/varnish5_'
       }
@@ -34,8 +34,8 @@ class ducktape::varnish::external::munin_node_plugin(
       $varnish_plugin = 'varnish_'
     }
     @munin::node::plugin { $varnish_plugin :
-      config    => $config,
-      sufixes   => [
+      config  => $config,
+      sufixes => [
         'backend_traffic',
         'bad',
         'expunge',
@@ -47,12 +47,11 @@ class ducktape::varnish::external::munin_node_plugin(
         'transfer_rates',
         'uptime',
       ],
-      require   => [
-        Class['::varnish::service'],
+      require => [
+        Class['varnish::service'],
         Package[$required_packages],
       ],
-      source    => $source,
+      source  => $source,
     }
   }
 }
-

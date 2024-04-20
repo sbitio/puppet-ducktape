@@ -1,8 +1,7 @@
-class ducktape::rabbitmq::external::monit(
+class ducktape::rabbitmq::external::monit (
   Boolean $enabled = true,
   Hash $restart_limit = $ducktape::monit_restart_limit,
 ) {
-
   if $enabled {
     monit::check::service { 'rabbitmq-server':
       matching      => 'rabbitmq-server',
@@ -10,5 +9,4 @@ class ducktape::rabbitmq::external::monit(
       restart_limit => $restart_limit,
     }
   }
-
 }

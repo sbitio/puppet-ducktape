@@ -3,7 +3,6 @@ class ducktape::inifile (
   Hash $settings = {},
   Hash $defaults = {},
 ) {
-
   if $enabled {
     require ducktape::inifile::autoload
   }

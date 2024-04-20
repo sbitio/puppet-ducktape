@@ -5,7 +5,6 @@ class ducktape::rabbitmq::autoload (
   Boolean $load_users            = true,
   Boolean $load_user_permissions = true,
 ) {
-
   if $load_vhosts {
     create_resources('rabbitmq_vhost', $ducktape::rabbitmq::vhosts, $ducktape::rabbitmq::vhost_defaults)
   }
@@ -25,5 +24,4 @@ class ducktape::rabbitmq::autoload (
   if $load_user_permissions {
     create_resources('rabbitmq_user_permissions', $ducktape::rabbitmq::user_permissions, $ducktape::rabbitmq::user_permissions_defaults)
   }
-
 }

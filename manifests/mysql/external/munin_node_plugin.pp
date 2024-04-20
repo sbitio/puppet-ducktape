@@ -1,4 +1,4 @@
-class ducktape::mysql::external::munin_node_plugin(
+class ducktape::mysql::external::munin_node_plugin (
   Boolean $enabled            = true,
   Enum['present', 'absent'] $ensure = 'present',
   Boolean $old_plugin         = false,
@@ -48,11 +48,9 @@ class ducktape::mysql::external::munin_node_plugin(
   ],
   Stdlib::Absolutepath $kjellm_repo_dst = '/opt/kjellm-munin-mysql'
 ) {
-
-  if $enabled and defined('::munin::node') and defined(Class['::munin::node']) {
-
-    $required_packages = $::operatingsystem ? {
-      'Debian' => $::lsbdistcodename ? {
+  if $enabled and defined('munin::node') and defined(Class['munin::node']) {
+    $required_packages = $facts['os']['name'] ? {
+      'Debian' => $facts['os']['distro']['codename'] ? {
         'jessie'  => 'libdbd-mysql-perl',
         'stretch' => 'libdbd-mysql-perl',
         default   => 'libcache-cache-perl',
@@ -84,8 +82,8 @@ class ducktape::mysql::external::munin_node_plugin(
         ensure  => $ensure,
         sufixes => $new_plugin_sufixes,
         require => [
-        Service[$mysql::params::service_name],
-        Package[$required_packages],
+          Service[$mysql::params::service_name],
+          Package[$required_packages],
         ],
       }
     }
@@ -94,7 +92,7 @@ class ducktape::mysql::external::munin_node_plugin(
     }
 
     if $kjellm_plugin {
-      require ::munin::node::params
+      require munin::node::params
 
       vcsrepo { $kjellm_repo_dst :
         ensure   => $ensure,
@@ -105,25 +103,23 @@ class ducktape::mysql::external::munin_node_plugin(
 
       # Based on makefile https://github.com/kjellm/munin-mysql/blob/master/Makefile
       $kjellm_ensure = $ensure
-      $lib_dir = "${::munin::node::params::imported_scripts_dir}/mysql_lib"
-      file { $lib_dir :
-        ensure => $kjellm_ensure ? {
-          present => link,
-          default => $ensure
-        },
+      $lib_dir = "${munin::node::params::imported_scripts_dir}/mysql_lib"
+      $kjellm_file_ensure = $kjellm_ensure ? {
+        'present' => link,
+        default   => $ensure
+      }
+      file { $lib_dir:
+        ensure => $kjellm_file_ensure,
         target => "${kjellm_repo_dst}/lib/Munin/MySQL/Graph",
       }
-      $contrib_dir = "${::munin::node::params::imported_scripts_dir}/mysql_contrib"
-      file { $contrib_dir :
-        ensure => $kjellm_ensure ? {
-          present => link,
-          default => $ensure
-        },
+      $contrib_dir = "${munin::node::params::imported_scripts_dir}/mysql_contrib"
+      file { $contrib_dir:
+        ensure => $kjellm_file_ensure,
         target => "${kjellm_repo_dst}/contrib/Munin/MySQL/Graph",
       }
       $perl_lib_dir = "$(perl '-V:installsitelib' | cut -d \"'\" -f2)/Munin/MySQL/Graph/"
       case $kjellm_ensure {
-        present : {
+        default, 'present': {
           exec { 'kjellm-create-perl-lib-dir' :
             command => "mkdir -p ${perl_lib_dir}",
             unless  => "test -d ${perl_lib_dir}",
@@ -139,21 +135,22 @@ class ducktape::mysql::external::munin_node_plugin(
             require      => Exec['kjellm-create-perl-lib-dir'],
           }
         }
-        absent : {
+        'absent': {
           exec { 'kjellm-create-perl-lib-dir' :
             command => "rm -rf ${perl_lib_dir}",
             onlyif  => "test -d ${perl_lib_dir}",
           }
         }
       }
-      case $::osfamily {
-        debian : {
-          $kjellm_required_packages = [ 'libmodule-pluggable-perl', 'libcache-cache-perl' ]
-          @munin::node::plugin::required_package { $kjellm_required_packages :
+      case $facts['os']['family'] {
+        'debian': {
+          $kjellm_required_packages = ['libmodule-pluggable-perl', 'libcache-cache-perl']
+          @munin::node::plugin::required_package { $kjellm_required_packages:
             ensure => $ensure,
             tag    => 'mysql',
           }
         }
+        default: {}
       }
       @munin::node::plugin::conf { 'mysql' :
         ensure  => $ensure,
@@ -168,18 +165,5 @@ class ducktape::mysql::external::munin_node_plugin(
         ],
       }
     }
-  }
-
-}
-
-define ducktape::mysql::external::munin_node_plugin::kjellm_link (
-  $source_dir,
-  $perl_lib_dir,
-) {
-  $src = "${source_dir}/${name}"
-  $dst = "${perl_lib_dir}${name}"
-  exec { "ducktape-mysql-server-external-munin_node_plugin-kjellm_link-${name}" :
-    command => "ln -s ${src} ${dst}",
-    unless  => "test $(readlink ${dst}) = ${src}",
   }
 }

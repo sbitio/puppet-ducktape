@@ -7,7 +7,6 @@ class ducktape::munin::node (
   String $repo_revision = 'master',
   Stdlib::Absolutepath $contrib_plugins_path = '/opt/munin-monitoring',
 ) {
-
   if $enabled {
     if $manage_repo {
       vcsrepo { $contrib_plugins_path :
@@ -19,9 +18,8 @@ class ducktape::munin::node (
     }
 
     # External checks.
-    if defined('::monit') and defined(Class['::monit']) {
-      include ::ducktape::munin::external::monit
+    if defined('monit') and defined(Class['monit']) {
+      include ducktape::munin::external::monit
     }
   }
-
 }

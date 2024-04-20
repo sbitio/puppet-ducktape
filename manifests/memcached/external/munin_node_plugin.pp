@@ -1,19 +1,18 @@
 class ducktape::memcached::external::munin_node_plugin (
   Boolean $enabled = true,
-  $ensure  = $::memcached::package_ensure,
+  Stdlib::Ensure::Package $ensure = $memcached::package_ensure,
 ) {
-
   if $enabled {
-    require ::memcached::params
-    case $::osfamily {
-      debian : {
+    require memcached::params
+    case $facts['os']['family'] {
+      'debian': {
         $required_packages = 'libcache-memcached-perl'
       }
-      redhat : {
+      'redhat': {
         $required_packages = 'perl-Cache-Memcached'
       }
       default: {
-        fail("Unsupported platform: ${::osfamily}")
+        fail("Unsupported platform: ${facts['os']['family']}")
       }
     }
     @munin::node::plugin::required_package { $required_packages :
@@ -21,10 +20,10 @@ class ducktape::memcached::external::munin_node_plugin (
       # TODO: add stdlib as dependency
       tag    => 'memcached_',
     }
-    $host = $::memcached::listen_ip ? {
+    $host = $memcached::listen_ip ? {
       undef     => '127.0.0.1',
       '0.0.0.0' => '127.0.0.1',
-      default   => $::memcached::listen_ip,
+      default   => $memcached::listen_ip,
     }
     @munin::node::plugin { 'memcached_' :
       ensure  => $ensure,
@@ -35,10 +34,10 @@ class ducktape::memcached::external::munin_node_plugin (
       ],
       config  => [
         "env.host ${host}",
-        "env.port ${::memcached::tcp_port}",
+        "env.port ${memcached::tcp_port}",
       ],
       require => [
-        Service[$::memcached::params::service_name],
+        Service[$memcached::params::service_name],
         Package[$required_packages],
       ],
     }

@@ -1,4 +1,4 @@
-class ducktape::twemproxy::external::monit(
+class ducktape::twemproxy::external::monit (
   Boolean $enabled = true,
   String $action = 'restart',
   Hash $conn_tolerance = { cycles => 1 },
@@ -6,11 +6,10 @@ class ducktape::twemproxy::external::monit(
   Integer $test_redis_port = 22122,
   Hash $restart_limit = $ducktape::monit_restart_limit,
 ) {
-
   if $enabled {
     if $test_redis {
       # We need to know key length forehand, sha256 produces 64 bytes lenthgs
-      $redis_key = sha256("twemproxy_${hostname}")
+      $redis_key = sha256("twemproxy_${facter['networking']['hostname']}")
       $connection_test = {
         type     => 'connection',
         port     => $test_redis_port,
@@ -29,14 +28,15 @@ class ducktape::twemproxy::external::monit(
         tolerance => $conn_tolerance,
       }
     }
+    $tests = $connection_test ? {
+      undef   => undef,
+      default => [$connection_test,],
+    }
     monit::check::service { 'nutcracker':
       matching      => 'nutcracker',
       init_system   => 'sysv',
       restart_limit => $restart_limit,
-      tests         => $connection_test ? {
-        undef => undef,
-        default => [ $connection_test, ],
-      }
+      tests         => $connection_test,
     }
   }
 }

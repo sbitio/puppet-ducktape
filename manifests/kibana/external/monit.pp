@@ -1,10 +1,9 @@
-class ducktape::kibana::external::monit(
+class ducktape::kibana::external::monit (
   Boolean $enabled  = true,
   Hash $restart_limit = $ducktape::monit_restart_limit,
 ) {
-
   if $enabled {
-    $systemd_file = (versioncmp($::kibana::ensure, '8') <= 0) ? {
+    $systemd_file = (versioncmp($kibana::ensure, '8') <= 0) ? {
       true    => '/etc/systemd/system/kibana.service',
       default => '/usr/lib/systemd/system/kibana.service',
     }
@@ -22,5 +21,4 @@ class ducktape::kibana::external::monit(
       ],
     }
   }
-
 }

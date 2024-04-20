@@ -1,12 +1,10 @@
-class ducktape::openldap::server::external::monit(
+class ducktape::openldap::server::external::monit (
   Boolean $enabled = true,
   String  $action  = 'restart',
   Hash $conn_tolerance = { cycles => 1 },
 ) {
-
   if $enabled {
-    #TODO# Add support for RedHat family.
-    $pidfile = $::osfamily ? {
+    $pidfile = $facts['os']['family'] ? {
       'Debian' => '/var/run/slapd/slapd.pid',
     }
 
@@ -17,11 +15,10 @@ class ducktape::openldap::server::external::monit(
       action   => $action,
       tolerance => $conn_tolerance,
     }
-    monit::check::service { $::openldap::server::service:
-      pidfile => $pidfile,
+    monit::check::service { $openldap::server::service:
+      pidfile     => $pidfile,
       init_system => 'sysv',
-      tests => [$connection_test, ],
+      tests       => [$connection_test,],
     }
   }
-
 }

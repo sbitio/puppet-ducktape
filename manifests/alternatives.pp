@@ -3,9 +3,7 @@ class ducktape::alternatives (
   Hash $alternative_defaults = {},
   Hash $alternatives = {},
 ) {
-
   if $enabled {
     contain ducktape::alternatives::autoload
   }
-
 }

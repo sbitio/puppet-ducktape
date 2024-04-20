@@ -1,19 +1,28 @@
-# @see https://www.kernel.org/pub/software/scm/git/docs/gitignore.html
-# @see http://git-scm.com/docs/gitignore
-# @see https://help.github.com/articles/ignoring-files
-# @see https://github.com/github/gitignore
-# @see http://gitignore.io/cli
-
-### vim ###
-.*.s[a-w][a-z]
-*.un~
-Session.vim
-.netrwhist
-*~
-
-### Linux ###
-.*
-!.gitignore
-!.gitkeep
-*~
-
+.git/
+.*.sw[op]
+.metadata
+.yardoc
+.yardwarns
+*.iml
+/.bundle/
+/.idea/
+/.vagrant/
+/coverage/
+/bin/
+/doc/
+/Gemfile.local
+/Gemfile.lock
+/junit/
+/log/
+/pkg/
+/spec/fixtures/manifests/
+/spec/fixtures/modules/*
+/tmp/
+/vendor/
+/convert_report.txt
+/update_report.txt
+.DS_Store
+.project
+.envrc
+/inventory.yaml
+/spec/fixtures/litmus_inventory.yaml

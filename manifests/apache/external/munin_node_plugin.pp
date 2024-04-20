@@ -5,31 +5,30 @@ class ducktape::apache::external::munin_node_plugin (
   Integer $vhost_priority = 99,
   String $vhost_seed     = 'munin-apache',
   String $vhost_prefix   = 'munin-apache-',
-  String $vhost_suffix   = ".${::fqdn}",
+  String $vhost_suffix   = ".${facts['networking']['fqdn']}",
 ) {
   #TODO# Add more validations
 
   if $enabled {
-
     $rand_fragment = fqdn_rand(1000000, $vhost_seed)
     $servername    = "${vhost_prefix}${rand_fragment}${vhost_suffix}"
     $docroot       = "/var/www/${servername}"
 
     # Require mod status.
-    include ::apache::mod::status
-    $status_path = $::apache::mod::status::status_path
+    include apache::mod::status
+    $status_path = $apache::mod::status::status_path
 
     $_directory = {
       path           => $docroot,
-      options        => [ 'None' ],
-      allow_override => [ 'None' ],
+      options        => ['None'],
+      allow_override => ['None'],
       require        => 'ip 127.0.0.1',
     }
     $_location = {
       path           => $status_path,
       provider       => 'location',
-      options        => [ 'None' ],
-      allow_override => [ 'None' ],
+      options        => ['None'],
+      allow_override => ['None'],
       sethandler     => 'server-status',
       require        => 'ip 127.0.0.1',
     }
@@ -39,7 +38,7 @@ class ducktape::apache::external::munin_node_plugin (
     apache::vhost { $servername:
       port              => $port,
       docroot           => $docroot,
-      options           => [ 'None' ],
+      options           => ['None'],
       priority          => $vhost_priority,
       access_log_pipe   => '/dev/null',
       access_log_format => '-',
@@ -53,15 +52,15 @@ class ducktape::apache::external::munin_node_plugin (
       ip => $ip,
     }
 
-    case $::osfamily {
-      debian : {
+    case $facts['os']['family'] {
+      'debian': {
         $required_packages = 'libio-all-lwp-perl'
       }
-      redhat : {
+      'redhat': {
         $required_packages = 'perl-libwww-perl'
       }
       default: {
-        fail("Unsupported platform: ${::osfamily}")
+        fail("Unsupported platform: ${facts['os']['family']}")
       }
     }
 

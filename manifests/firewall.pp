@@ -7,7 +7,6 @@ class ducktape::firewall (
   Hash $chains = {},
   Hash $chain_defaults = {},
 ) {
-
   if $enabled {
     resources { 'firewall':
       purge => $purge_firewall,
@@ -19,5 +18,4 @@ class ducktape::firewall (
 
     include ducktape::firewall::autoload
   }
-
 }

@@ -1,8 +1,4 @@
-class ducktape::munin(
-  Boolean $enabled = true,
+class ducktape::munin (
+  Boolean $enabled = true
 ) {
-
-  if $enabled {
-  }
-
 }

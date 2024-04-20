@@ -3,9 +3,7 @@ class ducktape::vcsrepo (
   Hash $repo_defaults = {},
   Hash $repos = {},
 ) {
-
   if $enabled {
-    require ::ducktape::vcsrepo::autoload
+    require ducktape::vcsrepo::autoload
   }
-
 }

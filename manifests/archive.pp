@@ -3,9 +3,7 @@ class ducktape::archive (
   Hash $defaults = {},
   Hash $archives = {},
 ) {
-
   if $enabled {
     require ducktape::archive::autoload
   }
-
 }

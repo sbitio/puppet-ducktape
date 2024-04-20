@@ -1,14 +1,13 @@
-class ducktape::varnish::external::monit(
+class ducktape::varnish::external::monit (
   Boolean $enabled = true,
   String  $action  = 'restart',
   Hash $conn_tolerance = { cycles => 1 },
   String $varnish_host = 'health.varnish',
   Hash $restart_limit = $ducktape::monit_restart_limit,
 ) {
-
   if $enabled {
-    $pidfile = $::osfamily ? {
-      'Debian' => $::lsbdistcodename ? {
+    $pidfile = $facts['os']['family'] ? {
+      'Debian' => $facts['os']['distro']['codename'] ? {
         'wheezy' => '/var/run/varnishd.pid',
         default  => '/var/run/varnish.pid',
       },
@@ -19,7 +18,7 @@ class ducktape::varnish::external::monit(
     $connection_test = {
       type     => 'connection',
       protocol => 'http',
-      port     => $::varnish::listen_port,
+      port     => $varnish::listen_port,
       protocol_test => {
         request    => '/',
         hostheader => $varnish_host,
@@ -30,7 +29,7 @@ class ducktape::varnish::external::monit(
     #TODO# Provide a test for admin interface
     $adm_test = {
       type => 'connection',
-      port => $::varnish::admin_port,
+      port => $varnish::admin_port,
       action   => $action,
       tolerance => $conn_tolerance,
     }
@@ -41,5 +40,4 @@ class ducktape::varnish::external::monit(
       restart_limit => $restart_limit,
     }
   }
-
 }

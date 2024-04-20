@@ -3,10 +3,8 @@ class ducktape::sudo (
   Hash $conf_defaults = {},
   Hash $confs = {},
 ) {
-
   if $enabled {
-    require ::ducktape::sudo::defaults
-    require ::ducktape::sudo::autoload
+    require ducktape::sudo::defaults
+    require ducktape::sudo::autoload
   }
-
 }

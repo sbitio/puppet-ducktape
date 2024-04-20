@@ -1,11 +1,10 @@
-class ducktape::openldap::server::autoload(
+class ducktape::openldap::server::autoload (
   Boolean $load_accesses = true,
   Boolean $load_indexes = true,
   Boolean $load_modules = true,
   Boolean $load_overlays = true,
   Boolean $load_schemas = true,
 ) {
-
   if $load_accesses {
     create_resources('openldap::server::access', $ducktape::openldap::accesses, $ducktape::openldap::access_defaults)
   }
@@ -25,5 +24,4 @@ class ducktape::openldap::server::autoload(
   if $load_schemas {
     create_resources('openldap::server::schema', $ducktape::openldap::schemas, $ducktape::openldap::schema_defaults)
   }
-
 }

@@ -1,11 +1,10 @@
-define ducktape::apache::conf(
+define ducktape::apache::conf (
   Enum['present', 'absent'] $ensure = 'present',
   String $priority   = '010',
   Array[String] $directives = [],
   Optional[String] $content    = undef,
 ) {
-
-  $file = "${::apache::confd_dir}/${priority}-${name}.conf"
+  $file = "${apache::confd_dir}/${priority}-${name}.conf"
 
   if $ensure == present {
     if $content != undef {
@@ -22,6 +21,6 @@ define ducktape::apache::conf(
     group   => 'root',
     mode    => '0644',
     content => $content_real,
-    notify  => Class['::apache::service'],
+    notify  => Class['apache::service'],
   }
 }

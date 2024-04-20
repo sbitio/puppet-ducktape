@@ -3,9 +3,7 @@ class ducktape::ldap (
   Hash $entry_defaults = {},
   Hash $entries = {},
 ) {
-
   if $enabled {
     include ducktape::ldap::autoload
   }
-
 }

@@ -1,30 +1,29 @@
-class ducktape::ntp::external::monit(
+class ducktape::ntp::external::monit (
   Boolean $enabled = true,
   String $action  = 'restart',
   Hash $restart_limit = $ducktape::monit_restart_limit,
 ) {
-
   if $enabled {
-    $pidfile = $::osfamily ? {
+    $pidfile = $facts['os']['family'] ? {
       'Debian' => '/var/run/ntpd.pid',
-      'RedHat' => $::lsbmajdistrelease ? {
+      'RedHat' => $facts['os']['distro']['release']['major'] ? {
         7       => undef,
         default => '/var/run/ntpd.pid',
       },
     }
-    $matching = $::osfamily ? {
+    $matching = $facts['os']['family'] ? {
       'Debian' => undef,
-      'RedHat' => $::lsbmajdistrelease ? {
+      'RedHat' => $facts['os']['distro']['release']['major'] ? {
         7       => '/usr/sbin/ntpd',
         default => undef,
       },
     }
-    $init_system = $::operatingsystem ? {
-      'Ubuntu' => $::lsbmajdistrelease ? {
+    $init_system = $facts['os']['name'] ? {
+      'Ubuntu' => $facts['os']['distro']['release']['major'] ? {
         /(12\.|14\.)/ => 'sysv',
         default       => undef,
       },
-      'Debian' => $::lsbdistcodename ? {
+      'Debian' => $facts['os']['distro']['codename'] ? {
         'jessie'  => 'sysv',
         'stretch' => 'sysv',
         default   => undef,
@@ -38,17 +37,17 @@ class ducktape::ntp::external::monit(
       port        => 123,
       action      => $action,
     }
-    monit::check::service { $::ntp::service_name:
+    $binary = $facts['os']['family'] ? {
+      'Debian' => '/usr/sbin/ntpd',
+      default  => undef,
+    }
+    monit::check::service { $ntp::service_name:
       init_system   => $init_system,
       pidfile       => $pidfile,
       matching      => $matching,
-      binary        => $::osfamily ? {
-        'Debian' => '/usr/sbin/ntpd',
-        default  => undef,
-      },
-      tests         => [$test, ],
+      binary        => $binary,
+      tests         => [$test,],
       restart_limit => $restart_limit,
     }
   }
-
 }

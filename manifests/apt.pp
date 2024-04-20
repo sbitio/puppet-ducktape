@@ -5,9 +5,7 @@ class ducktape::apt (
   Hash $source_defaults = {},
   Hash $sources = {},
 ) {
-
   if $enabled {
     contain ducktape::apt::autoload
   }
-
 }

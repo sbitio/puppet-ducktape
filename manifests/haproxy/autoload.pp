@@ -10,10 +10,9 @@ class ducktape::haproxy::autoload (
   String  $http_edge_frontend        = 'default_fe',
 
   String  $http_edge_redirect_marker = '###http-edge-redirects###',
-  Array   $http_edge_redirect_types  = [ 'str', 'beg', 'end', 'sub', 'dir', 'regm' ],
+  Array   $http_edge_redirect_types  = ['str', 'beg', 'end', 'sub', 'dir', 'regm'],
   Hash    $http_edge_domains_envs    = {},
 ) {
-
   if $load_frontends {
     $frontends_real = $http_edge ? {
       true => ducktape::haproxy_http_edge($http_edge_path, $http_edge_path_owner, $http_edge_frontend, $http_edge_redirect_marker, $http_edge_redirect_types, $http_edge_domains_envs),
@@ -31,7 +30,7 @@ class ducktape::haproxy::autoload (
     if $ducktape::haproxy::peers != {} {
       haproxy::peers { 'peerlist': }
       $peer_defaults = {
-        peers_name => 'peerlist'
+        peers_name => 'peerlist',
       }
       create_resources('haproxy::peer', $ducktape::haproxy::peers, $peer_defaults)
     }

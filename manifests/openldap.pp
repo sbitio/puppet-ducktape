@@ -11,14 +11,12 @@ class ducktape::openldap (
   Hash $schema_defaults = {},
   Hash $schemas = {},
 ) {
-
   if $enabled {
     include ducktape::openldap::server::autoload
 
     # External checks.
-    if defined('::monit') and defined(Class['::monit']) {
-      include ::ducktape::openldap::server::external::monit
+    if defined('monit') and defined(Class['monit']) {
+      include ducktape::openldap::server::external::monit
     }
   }
-
 }

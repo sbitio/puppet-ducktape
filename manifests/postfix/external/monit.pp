@@ -1,19 +1,18 @@
-class ducktape::postfix::external::monit(
+class ducktape::postfix::external::monit (
   Boolean $enabled = true,
   String $action  = 'restart',
   Hash $restart_limit = $ducktape::monit_restart_limit,
 ) {
-
   if $enabled {
-    $pidfile = $::osfamily ? {
+    $pidfile = $facts['os']['family'] ? {
       /(RedHat|Debian)/ => '/var/spool/postfix/pid/master.pid',
     }
-    $init_system = $::operatingsystem ? {
-      'Ubuntu' => $::lsbmajdistrelease ? {
+    $init_system = $facts['os']['name'] ? {
+      'Ubuntu' => $facts['os']['distro']['release']['major'] ? {
         /(12\.|14\.)/ => 'sysv',
         default       => undef,
       },
-      'Debian' => $::lsbdistcodename ? {
+      'Debian' => $facts['os']['distro']['codename'] ? {
         'jessie' => 'sysv',
         default  => undef,
       },
@@ -32,5 +31,4 @@ class ducktape::postfix::external::monit(
       restart_limit => $restart_limit,
     }
   }
-
 }

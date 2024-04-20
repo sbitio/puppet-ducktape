@@ -1,4 +1,4 @@
-class ducktape::postgresql::external::munin_node_plugin(
+class ducktape::postgresql::external::munin_node_plugin (
   Boolean $enabled = true,
   Enum['present', 'absent'] $ensure = 'present',
   Array[String] $plugins = [
@@ -22,7 +22,6 @@ class ducktape::postgresql::external::munin_node_plugin(
   ],
   Array[String] $databases = [],
 ) {
-
   $required_packages = [
     'libdbd-pg-perl',
   ]
@@ -30,14 +29,14 @@ class ducktape::postgresql::external::munin_node_plugin(
 
   $plugins.each |$plugin| {
     @munin::node::plugin { $plugin:
-      target => "${::ducktape::munin::node::contrib_plugins_path}/plugins/postgresql/${plugin}",
-      config => [
+      target  => "${ducktape::munin::node::contrib_plugins_path}/plugins/postgresql/${plugin}",
+      config  => [
         'user postgres',
         'env.dbuser postgres',
-        "env.dbpass $postgresql::server::postgres_password",
+        "env.dbpass ${postgresql::server::postgres_password}",
       ],
       require => [
-        Class['::postgresql::server'],
+        Class['postgresql::server'],
         Package[$required_packages],
       ],
     }
@@ -45,15 +44,15 @@ class ducktape::postgresql::external::munin_node_plugin(
 
   $plugins_for_db.each |$plugin| {
     @munin::node::plugin { $plugin:
-      target => "${::ducktape::munin::node::contrib_plugins_path}/plugins/postgresql/${plugin}",
+      target  => "${ducktape::munin::node::contrib_plugins_path}/plugins/postgresql/${plugin}",
       sufixes => $databases,
-      config => [
+      config  => [
         'user postgres',
         'env.dbuser postgres',
-        "env.dbpass $postgresql::server::postgres_password",
+        "env.dbpass ${postgresql::server::postgres_password}",
       ],
       require => [
-        Class['::postgresql::server'],
+        Class['postgresql::server'],
         Package[$required_packages],
       ],
     }
