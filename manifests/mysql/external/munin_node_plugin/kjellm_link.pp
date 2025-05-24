@@ -1,6 +1,7 @@
 define ducktape::mysql::external::munin_node_plugin::kjellm_link (
   Stdlib::Absolutepath $source_dir,
-  Stdlib::Absolutepath $perl_lib_dir,
+  # String because perl_lib_dir is a shell expression returning a path.
+  String $perl_lib_dir,
 ) {
   $src = "${source_dir}/${name}"
   $dst = "${perl_lib_dir}${name}"
