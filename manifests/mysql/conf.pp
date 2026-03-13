@@ -13,7 +13,7 @@ define ducktape::mysql::conf (
     }
     else {
       $options = { "${section}" => $directives }
-      $content_real = template('mysql/my.cnf.erb')
+      $content_real = epp('mysql/my.cnf.epp', {'options' => $options, 'includedir' => ''})
     }
   }
   else {
