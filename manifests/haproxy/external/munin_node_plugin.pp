@@ -1,7 +1,7 @@
 class ducktape::haproxy::external::munin_node_plugin (
   Boolean $enabled = true,
   Stdlib::Ensure::Package $ensure = $haproxy::package_ensure,
-  String $url = 'http://127.0.0.1:8000/haproxy/haproxy-status;csv;norefresh'
+  String $url = 'http://127.0.0.1:8404/haproxy/haproxy-status;csv;norefresh'
 ) {
   if $enabled {
     case $facts['os']['family'] {
