@@ -22,6 +22,9 @@ class ducktape (
   if defined('docker') and defined(Class['docker']) {
     require ducktape::docker
   }
+  if defined('fail2ban') and defined(Class['fail2ban']) {
+    require ducktape::fail2ban
+  }
   if defined('filebeat') and defined(Class['filebeat']) {
     require ducktape::filebeat
   }

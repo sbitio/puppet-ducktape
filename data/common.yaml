@@ -23,6 +23,18 @@ lookup_options:
     merge:
       strategy: deep
       knockout_prefix: --KOP_
+  ducktape::fail2ban::actions:
+    merge:
+      strategy: deep
+      knockout_prefix: --KOP_
+  ducktape::fail2ban::filters:
+    merge:
+      strategy: deep
+      knockout_prefix: --KOP_
+  ducktape::fail2ban::jails:
+    merge:
+      strategy: deep
+      knockout_prefix: --KOP_
   ducktape::firewall::chains:
     merge:
       strategy: deep
