@@ -21,7 +21,7 @@ class ducktape::jenkins (
     -> anchor { 'ducktape-jenkins-completed': }
 
     ### Create wrapper for jenkins cli
-    $jenkins_cli = "/usr/bin/java -jar ${cli_java_params} ${jenkins::cli::jar} -s http://127.0.0.1:${jenkins::cli_helper::port}${jenkins::cli_helper::prefix}"
+    $jenkins_cli = "/usr/bin/java -jar ${cli_java_params} ${jenkins::cli::jar} -http -s http://127.0.0.1:${jenkins::cli_helper::port}${jenkins::cli_helper::prefix}"
     file { '/usr/local/bin/jenkins-cli':
       content => epp('ducktape/jenkins/jenkins-cli', {
           'command' => $jenkins_cli,
