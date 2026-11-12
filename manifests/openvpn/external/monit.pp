@@ -1,6 +1,6 @@
 class ducktape::openvpn::external::monit (
   Boolean $enabled = true,
-  Stdlib::Absolutepath $pidfile,
+  Optional[Stdlib::Absolutepath] $pidfile = undef,
   Hash $restart_limit = $ducktape::monit_restart_limit,
 ) {
   if $enabled {
